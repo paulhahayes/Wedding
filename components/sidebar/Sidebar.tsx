@@ -1,9 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import useSidebar from "@/hooks/useSideBar";
-import { FaHome, FaRegListAlt, FaMusic, FaGithub } from "react-icons/fa";
+import { FaHome, FaMusic, FaGithub } from "react-icons/fa";
 import { HiMenu, HiOutlineMenuAlt1 } from "react-icons/hi";
+import { MdOutlineContactPhone } from "react-icons/md";
+import { TfiGallery } from "react-icons/tfi";
+import { LuGift } from "react-icons/lu";
 import { IconType } from "react-icons";
+
+import { HiOutlineMail } from "react-icons/hi";
+import { AiOutlineSchedule } from "react-icons/ai";
+
 import useTranslate from "@/hooks/useTranslate";
 
 interface MenuItemProps {
@@ -13,7 +20,18 @@ interface MenuItemProps {
 
 const MENU_ITEMS: MenuItemProps[] = [
   { Icon: FaHome, text: "Home" },
-  { Icon: FaRegListAlt, text: "Registry" },
+  { Icon: LuGift, text: "Registry" },
+  { Icon: FaMusic, text: "Music" },
+  { Icon: FaGithub, text: "Source Code" },
+];
+
+const MORE_ITEMS: MenuItemProps[] = [
+  { Icon: FaHome, text: "Home" },
+  { Icon: AiOutlineSchedule, text: "Wedding" },
+  { Icon: HiOutlineMail, text: "RSVP" },
+  { Icon: MdOutlineContactPhone, text: "Contact" },
+  { Icon: TfiGallery, text: "Gallery" },
+  { Icon: LuGift, text: "Registry" },
   { Icon: FaMusic, text: "Music" },
   { Icon: FaGithub, text: "Source Code" },
 ];
@@ -50,7 +68,7 @@ const Sidebar = () => {
   return (
     <div className="h-screen w-12 flex flex-col items-center fixed z-40 ">
       <div
-        className="fixed top-[21%] hover:cursor-pointer z-30 text-white hover:opacity-70"
+        className="fixed sm:top-[21%] min-[320px]:top-[6%] hover:cursor-pointer z-30 text-white hover:opacity-70"
         onClick={toggleCollapsed}
       >
         {collapsed ? <HiOutlineMenuAlt1 size={24} /> : <HiMenu size={24} />}
@@ -60,21 +78,36 @@ const Sidebar = () => {
          min-[320px]:rounded-none sm:top-[18%] min-[320px]:h-screen sm:h-[60%] fixed transition-all 
          duration-300 ease-in-out sm:rounded-tr-30 sm:rounded-br-30 ${
            collapsed
-             ? "w-12  bg-blue-300/60"
+             ? "w-12    bg-blue-300/60"
              : "sm:w-[200px] bg-blue-500 min-[320px]:w-screen "
          }`}
       >
         <div className=" text-white w-full pl-3 relative">
-          {MENU_ITEMS.map((item, index) => (
-            <MenuItem
-              key={index}
-              Icon={item.Icon}
-              text={item.text}
-              collapsed={collapsed}
-              onClick={() => handleItemClick(item)}
-              ref={refs[item.text]}
-            />
-          ))}
+          <div className="min-[320px]:hidden sm:block">
+            {MENU_ITEMS.map((item, index) => (
+              <MenuItem
+                key={index}
+                Icon={item.Icon}
+                text={item.text}
+                collapsed={collapsed}
+                onClick={() => handleItemClick(item)}
+                ref={refs[item.text]}
+              />
+            ))}
+          </div>
+          <div className="sm:hidden min-[320px]:block">
+            {MORE_ITEMS.map((item, index) => (
+              <MenuItem
+                key={index}
+                Icon={item.Icon}
+                text={item.text}
+                collapsed={collapsed}
+                onClick={() => handleItemClick(item)}
+                ref={refs[item.text]}
+              />
+            ))}
+          </div>
+
           <div
             className={`highlight-div absolute top-0 transition-all duration-200 ease-in-out border-r-4 z-30 border-white`}
             style={{
@@ -86,7 +119,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div
-        className="fixed text-xl hover:cursor-pointer hover:opacity-70 top-[72%] z-40 "
+        className="fixed text-xl hover:cursor-pointer hover:opacity-70 sm:top-[72%] min-[320px]:top-[90%] z-40 "
         onClick={() => toggleLang()}
       >
         {lang === "en" ? "🇦🇺" : "🇨🇴"}

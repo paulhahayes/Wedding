@@ -9,7 +9,7 @@ interface detailsProps {
 const Details = ({ onClick }: detailsProps) => {
   return (
     <div
-      className="text-xl font-semibold  items-center hidden md:block
+      className="text-xl font-semibold  items-center hidden sm:block
       dark:text-neutral-100 cursor-pointer hover:opacity-60 
       transition-opacity"
       onClick={onClick}

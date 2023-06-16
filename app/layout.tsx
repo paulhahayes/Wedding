@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { TranslateProvider } from "@/context/TranslateContext";
 import Sidebar from "@/components/sidebar/Sidebar";
+import RSVPModal from "@/components/modal/RSVPModal";
 
 const font = Raleway({ subsets: ["latin"] });
 export const metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
           <TranslateProvider>
             <Sidebar />
             <Navbar />
+            <RSVPModal />
             <div>{children}</div>
           </TranslateProvider>
         </ThemeProvider>

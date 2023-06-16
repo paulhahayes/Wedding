@@ -17,7 +17,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="h-[2700px] overflow-hidden">
+    <div className="h-[2500px]">
       <Plx
         parallaxData={[
           {

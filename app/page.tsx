@@ -1,6 +1,5 @@
 "use client";
 import Landing from "../components/Landing";
-import { useInView } from "react-intersection-observer";
 
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -11,9 +10,10 @@ export default function Home() {
 
   return (
     // <section>
-    <>
+    <div>
       <Hero />
+      {/* hello */}
       <Landing />
-    </>
+    </div>
   );
 }

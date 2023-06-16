@@ -26,7 +26,7 @@ const Hero = () => {
     return () => window.removeEventListener("resize", updateFontSize);
   }, []);
   return (
-    <div className="w-full flex flex-col justify-center items-center top-[25%] z-30 text-white fixed">
+    <div className="w-full flex flex-col justify-center items-center top-[25%] z-10 text-white fixed">
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
