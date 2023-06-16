@@ -1,38 +1,67 @@
 "use client";
-import Landing from "../components/Landing";
-import Image from "next/image";
-import styles from "./hero.module.css";
-import Button from "@/components/Button";
+import { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
-import { useWindowScroll } from "react-use";
+import Head from "next/head";
+import { TranslateContext } from "@/context/TranslateContext";
 
 const Hero = () => {
-  const heroVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-  const { y } = useWindowScroll();
+  const [fontSize, setFontSize] = useState("72px");
+  const { lang } = useContext(TranslateContext);
+
+  useEffect(() => {
+    const updateFontSize = () => {
+      if (window.innerWidth <= 640) {
+        // For mobile devices
+        setFontSize("36px");
+      } else if (window.innerWidth <= 1024) {
+        // For tablet devices
+        setFontSize("48px");
+      } else {
+        setFontSize("72px"); // For desktop
+      }
+    };
+
+    window.addEventListener("resize", updateFontSize);
+    updateFontSize();
+    return () => window.removeEventListener("resize", updateFontSize);
+  }, []);
   return (
-    <div className="flex items-center gap-8 padding-8  relative top-[900px] pl-4 z-5">
-      {/* <motion.div
-        variants={heroVariants}
-        initial="hidden"
-        animate={y > 550 ? "visible" : "hidden"}
-        transition={{ duration: 0.5 }}
-        className=""
-      > */}
-      <div className={styles.item}>
-        <h1 className={styles.title}>We're getting married!</h1>
-        <p className={styles.desc}>Come join us for the celebration.</p>
-        <Button url="/details" text="See the details" />
-      </div>
-      <div className={styles.item}>
-        {/* <Image src={Hero} alt="" className={styles.img} /> */}
-      </div>
-      {/* </motion.div> */}
+    <div className="w-full flex flex-col justify-center items-center top-[25%] z-30 text-white fixed">
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <p>
+        {lang === "en"
+          ? "CELEBRATING THE MARRIAGE OF"
+          : "CELEBRANDO EL MATRIMONIO DE"}
+      </p>
+      <motion.h1
+        style={{
+          fontSize: fontSize,
+          background: "linear-gradient(to bottom, white, white)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+      >
+        PAUL & XIMENA
+      </motion.h1>
+      <p
+        className="text-space"
+        style={{
+          fontFamily: "'Dancing Script', cursive",
+          letterSpacing: "2px",
+        }}
+      >
+        18 . 11 . 23
+      </p>
+      <p></p>
     </div>
   );
 };
+
 export default Hero;
 
 // .container {

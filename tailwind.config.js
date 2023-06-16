@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         yellow: "#e8d33f",
       },
+      borderRadius: {
+        30: "30px",
+      },
     },
   },
 

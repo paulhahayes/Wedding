@@ -8,7 +8,7 @@ const Landing = () => {
   let topPos = isFixed ? 0 : y - 700;
 
   if (y > 700) {
-    topPos = 700; // or any other position you want to set
+    topPos = 0; // Reset top position to 0 once y is more than 700
   }
 
   const styles = {
@@ -17,7 +17,7 @@ const Landing = () => {
   };
 
   return (
-    <section className="w-full overflow-hidden">
+    <div className="h-[2700px] overflow-hidden">
       <Plx
         parallaxData={[
           {
@@ -39,7 +39,7 @@ const Landing = () => {
           },
         ]}
         style={{
-          position: isFixed ? "fixed" : "absolute",
+          position: y > 700 ? "fixed" : isFixed ? "fixed" : "absolute", // Keep position fixed when y > 700
           left: 0,
           top: topPos,
           zIndex: 1,
@@ -62,7 +62,7 @@ const Landing = () => {
           },
         ]}
         style={{
-          position: isFixed ? "fixed" : "absolute",
+          position: y > 700 ? "fixed" : isFixed ? "fixed" : "absolute", // Keep position fixed when y > 700
           top: topPos,
           left: 0,
           zIndex: 0,
@@ -70,7 +70,7 @@ const Landing = () => {
       >
         <img src="beach.jpg" alt="background" style={styles} />
       </Plx>
-    </section>
+    </div>
   );
 };
 export default Landing;

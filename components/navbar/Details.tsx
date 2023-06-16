@@ -15,7 +15,7 @@ const Details = ({ onClick }: detailsProps) => {
       onClick={onClick}
     >
       <AiOutlineSchedule className="inline-block mr-1" size={32} />
-      Details
+      Wedding
     </div>
   );
 };

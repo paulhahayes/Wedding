@@ -9,8 +9,8 @@ interface RsvpProps {
 const Rsvp = ({ onClick }: RsvpProps) => {
   return (
     <div
-      className="text-xl items-center hidden md:block layout
-      dark:text-neutral-100 cursor-pointer hover:opacity-60 
+      className="text-xl font-semibold items-center hidden md:block rounded-xl
+      dark:text-neutral-100 cursor-pointer hover:opacity-60 border-4 border-white p-1
       transition-opacity"
       onClick={onClick}
     >

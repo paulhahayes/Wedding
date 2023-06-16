@@ -10,9 +10,10 @@ export default function Home() {
   // const { ref, inView, entry } = useInView();
 
   return (
-    <div>
+    // <section>
+    <>
       <Hero />
       <Landing />
-    </div>
+    </>
   );
 }

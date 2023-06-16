@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { SidebarContext } from "@/context/SideBarContext";
-import React, { useContext } from "react";
+import { useContext } from "react";
 // import MenuItem from "./MenuItem";
 // import Box from "../sidebar/Box";
 
@@ -14,7 +14,7 @@ interface UserMenuProps {
   onClick: () => void;
 }
 
-const UserMenu: React.FC<UserMenuProps> = () => {
+const UserMenu: React.FC<UserMenuProps> = ({ onClick }) => {
   const { collapsed, toggleCollapsed } = useContext(SidebarContext);
 
   const router = useRouter();
@@ -47,7 +47,7 @@ const UserMenu: React.FC<UserMenuProps> = () => {
 
   return (
     <div className="relative" ref={menuRef}>
-      <div className="flex flex-row items-center gap-3 ml-8">
+      <div className="flex flex-row items-center gap-3">
         <div
           onClick={toggleOpen}
           className="
@@ -64,15 +64,10 @@ const UserMenu: React.FC<UserMenuProps> = () => {
           hover:opacity-70
           transition
           min-[320px]:flex
-
           "
         >
           <AiOutlineMenu />
-          <div className=" ">
-            {isOpen ? <BsChevronDown /> : <BsChevronRight />}
-          </div>
         </div>
-        {/* {isOpen && <Box className="top-0 h-[100vh]">hello world</Box>} */}
       </div>
     </div>
   );
@@ -83,22 +78,4 @@ export default UserMenu;
 {
   /* <MenuItem label="Music" onClick={() => router.push("/music")} />
 <MenuItem label="Gifts" onClick={() => router.push("/gifts  ")} /> */
-}
-
-{
-  /* <div
-className="
-  absolute 
-  rounded-xl 
-  shadow-md
-  px-16
-  py-2
-  md:w-3/4 
-  bg-yellow
-  overflow-hidden 
-  right-0 
-  top-12
-  text-sm
-"
-> */
 }

@@ -10,7 +10,7 @@ const Logo: React.FC<LogoProps> = ({ onClick }) => {
     <Image
       onClick={onClick}
       alt="Logo"
-      className=" cursor-pointer hover:opacity-60 mr-4 hidden min-[320px]:flex"
+      className=" cursor-pointer hover:opacity-60  hidden min-[320px]:flex"
       height="160"
       priority
       width="160"

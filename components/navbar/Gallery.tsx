@@ -7,7 +7,7 @@ interface GalleryProps {
 const Gallery = ({ onClick }: GalleryProps) => {
   return (
     <div
-      className="text-xl items-center hidden md:block
+      className="text-xl  font-semibold items-center hidden md:block
       dark:text-neutral-100 cursor-pointer hover:opacity-60 
       transition-opacity"
       onClick={onClick}
