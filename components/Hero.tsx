@@ -3,20 +3,37 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { TranslateContext } from "@/context/TranslateContext";
-
+import { FaMapMarkerAlt } from "react-icons/fa";
 const Hero = () => {
-  const [fontSize, setFontSize] = useState("72px");
+  const [fontSize, setFontSize] = useState("90px");
+  const [secondaryFontSize, setSecondaryFontSize] = useState("24px");
   const { lang } = useContext(TranslateContext);
   const ref = useRef<HTMLDivElement>(null);
+
+  const mainTextStyle = {
+    fontSize: fontSize,
+    background: "linear-gradient(to bottom, white, white)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    fontFamily: "'Covered By Your Grace', cursive",
+    letterSpacing: "8px",
+  };
+
+  const secondaryTextStyle = {
+    letterSpacing: "2px",
+    fontSize: secondaryFontSize,
+  };
 
   useEffect(() => {
     const updateFontSize = () => {
       if (window.innerWidth <= 640) {
         // For mobile devices
         setFontSize("36px");
+        setSecondaryFontSize("14px");
       } else if (window.innerWidth <= 1024) {
         // For tablet devices
         setFontSize("48px");
+        setSecondaryFontSize("18px");
       } else {
         setFontSize("72px"); // For desktop
       }
@@ -26,71 +43,98 @@ const Hero = () => {
     updateFontSize();
     return () => window.removeEventListener("resize", updateFontSize);
   }, []);
+  // Define animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.5, // Delay child animations
+        staggerChildren: 0.3, // Increase stagger time
+      },
+    },
+  };
 
+  const childVariants = {
+    hidden: { opacity: 0, y: 75 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1, // Increase duration for smoother animation
+        ease: "easeInOut", // Use easeInOut for smoother start and end
+      },
+    },
+  };
   return (
     <motion.div
       ref={ref}
       className="w-full flex flex-col justify-center items-center top-[25%] z-10 text-white fixed"
-      variants={{
-        hidden: { opacity: 0, y: 75 },
-        visible: { opacity: 1, y: 0 },
-      }}
+      variants={containerVariants}
       initial="hidden"
       animate="visible"
-      transition={{ duration: 1.5, delay: 0.5 }}
     >
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
           rel="stylesheet"
         />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
       <motion.p
+        style={secondaryTextStyle}
+        variants={childVariants}
         className="font-semibold"
-        style={{
-          fontFamily: "'Dancing Script', cursive",
-          letterSpacing: "2px",
-        }}
       >
         18 . 11 . 23
       </motion.p>
 
-      <p>
+      <motion.p variants={childVariants} style={secondaryTextStyle}>
         {lang === "en"
           ? "CELEBRATING THE MARRIAGE OF"
           : "CELEBRANDO EL MATRIMONIO DE"}
-      </p>
+      </motion.p>
 
-      <motion.h1
-        style={{
-          fontSize: fontSize,
-          background: "linear-gradient(to bottom, white, white)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
-      >
+      <motion.h1 variants={childVariants} style={mainTextStyle}>
         PAUL & XIMENA
       </motion.h1>
 
-      <p className="text-lg font-semibold w-[35%] text-r text-center">
-        Ripples Chowder Bay / Mosman lookout
-      </p>
-      <p className="text-lg">3 PM - 10 PM</p>
-      <button
+      <motion.p
+        variants={childVariants}
+        style={secondaryTextStyle}
+        className="w-[45%] text-center "
+      >
+        <FaMapMarkerAlt className="inline-block" /> Georges Height Lookout,
+        Ripples Chowder Bay
+      </motion.p>
+      <motion.p
+        variants={childVariants}
+        style={secondaryTextStyle}
+        className="text-lg"
+      >
+        3 PM - 10 PM
+      </motion.p>
+      <motion.button
+        variants={childVariants}
         className="relative
-        disabled:opacity-70
-        disabled:cursor-not-allowed
+        mt-3
         rounded-lg
-        hover:opacity-80
+        hover:opacity-10
         transition
         bg-blue-300
         px-4
-        text-md
+        border-2
+        text-lg
+        font-semibold
         py-2"
       >
         Enter
-      </button>
+      </motion.button>
     </motion.div>
   );
 };

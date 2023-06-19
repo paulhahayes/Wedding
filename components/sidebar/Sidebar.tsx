@@ -154,7 +154,8 @@ const MenuItem = React.forwardRef<HTMLDivElement, MenuItemActionProps>(
       onClick={onClick}
       style={{ position: "relative" }}
     >
-      <Icon style={{ fontSize: collapsed ? "24px" : "24px" }} />
+      <Icon className="text-[24px]" />
+
       <div
         style={{
           position: "absolute",
