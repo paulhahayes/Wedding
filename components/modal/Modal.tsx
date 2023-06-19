@@ -99,7 +99,7 @@ const Modal: React.FC<ModalProps> = ({
           xl:w-2/5
           my-6
           mx-auto 
-          h-full 
+          h-full
           lg:h-auto
           md:h-auto
           "

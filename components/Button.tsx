@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
         transition
         w-full
         ${outline ? "bg-white" : "bg-blue-300"}
-        ${outline ? "border-black" : "bg-blue-300"}
+        ${outline ? "hover:opacity-50" : "bg-blue-300"}
         ${outline ? "text-black" : "text-white"}
         ${small ? "text-sm" : "text-md"}
         ${small ? "py-1" : "py-3"}
@@ -56,21 +56,3 @@ const Button: React.FC<ButtonProps> = ({
 };
 
 export default Button;
-
-// import styles from "./button.module.css";
-// import Link from "next/link";
-
-// interface ButtonProps {
-//   text: string;
-//   url: string;
-// }
-
-// const Button: React.FC<ButtonProps> = ({ text, url }) => {
-//   return (
-//     <Link href={url}>
-//       <div className={styles.container}>{text}</div>
-//     </Link>
-//   );
-// };
-
-// export default Button;

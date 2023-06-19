@@ -4,11 +4,11 @@ import Plx from "react-plx";
 
 const Landing = () => {
   const { y } = useWindowScroll();
-  const isFixed = y >= 0 && y <= 700;
-  let topPos = isFixed ? 0 : y - 700;
+  const isFixed = y >= 0 && y <= 800;
+  let topPos = isFixed ? 0 : y - 800;
 
-  if (y > 700) {
-    topPos = 0; // Reset top position to 0 once y is more than 700
+  if (y > 800) {
+    topPos = 0;
   }
 
   const styles = {
@@ -17,12 +17,12 @@ const Landing = () => {
   };
 
   return (
-    <div className="h-[2500px]">
+    <div className="h-[2300px]">
       <Plx
         parallaxData={[
           {
             start: 0,
-            end: 700,
+            end: 800,
             easing: "easeIn",
             properties: [
               {
@@ -31,7 +31,7 @@ const Landing = () => {
                 property: "scale",
               },
               {
-                startValue: 0.9,
+                startValue: 0.85,
                 endValue: 0,
                 property: "opacity",
               },
@@ -39,7 +39,7 @@ const Landing = () => {
           },
         ]}
         style={{
-          position: y > 700 ? "fixed" : isFixed ? "fixed" : "absolute", // Keep position fixed when y > 700
+          position: y > 700 ? "fixed" : isFixed ? "fixed" : "absolute",
           left: 0,
           top: topPos,
           zIndex: 1,
@@ -51,11 +51,11 @@ const Landing = () => {
         parallaxData={[
           {
             start: 0,
-            end: 700,
+            end: 800,
             properties: [
               {
                 startValue: 1,
-                endValue: 1.2,
+                endValue: 1.3,
                 property: "scale",
               },
             ],
