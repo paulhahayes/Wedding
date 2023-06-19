@@ -15,7 +15,7 @@ const Hero = () => {
     background: "linear-gradient(to bottom, white, white)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    fontFamily: "'Covered By Your Grace', cursive",
+    fontFamily: "'Covered By Your Grace'",
     letterSpacing: "8px",
   };
 
