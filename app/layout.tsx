@@ -25,7 +25,7 @@ export default function RootLayout({
             <Sidebar />
             <Navbar />
             <RSVPModal />
-            <div>{children}</div>
+            <div className="">{children}</div>
           </TranslateProvider>
         </ThemeProvider>
       </body>
