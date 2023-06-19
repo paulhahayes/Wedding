@@ -1,4 +1,6 @@
-About 50% complete Ximena and I's wedding website.
+About 50% complete.
+
+Ximena and I's wedding website.
 
 Cool features include
 
