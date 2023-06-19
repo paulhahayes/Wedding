@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import { TranslateContext } from "@/context/TranslateContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Covered_By_Your_Grace } from "next/font/google";
+const grace = Covered_By_Your_Grace({ weight: "400", subsets: ["latin"] });
 const Hero = () => {
   const [fontSize, setFontSize] = useState("90px");
   const [secondaryFontSize, setSecondaryFontSize] = useState("24px");
@@ -15,8 +17,8 @@ const Hero = () => {
     background: "linear-gradient(to bottom, white, white)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    fontFamily: "'Covered By Your Grace'",
-    letterSpacing: "8px",
+    fontFamily: grace.style.fontFamily,
+    letterSpacing: fontSize === "72px" ? "5px" : "2px",
   };
 
   const secondaryTextStyle = {
