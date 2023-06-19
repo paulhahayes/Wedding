@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import useSidebar from "@/hooks/useSideBar";
 import useTranslate from "@/hooks/useTranslate";
-
+import useMenuRefs from "@/hooks/useMenuRefs";
 import { FaHome, FaMusic, FaGithub } from "react-icons/fa";
 import { HiMenu, HiOutlineMenuAlt1 } from "react-icons/hi";
 import { MdOutlineContactPhone } from "react-icons/md";
@@ -47,14 +47,7 @@ const Sidebar = () => {
 
   const [activeItem, setActiveItem] = useState(MENU_ITEMS[0].text);
 
-  const refs: { [key: string]: React.RefObject<HTMLDivElement> } =
-    MENU_ITEMS.reduce(
-      (acc: { [key: string]: React.RefObject<HTMLDivElement> }, value) => {
-        acc[value.text] = useRef<HTMLDivElement>(null);
-        return acc;
-      },
-      {}
-    );
+  const refs = useMenuRefs(MENU_ITEMS);
 
   const handleItemClick = (item: any) => {
     setActiveItem(item.text);
@@ -179,5 +172,6 @@ const MenuItem = React.forwardRef<HTMLDivElement, MenuItemActionProps>(
     </div>
   )
 );
+MenuItem.displayName = "MenuItem";
 
 export default Sidebar;

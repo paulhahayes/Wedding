@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import useTranslate from "@/hooks/useTranslate";
 
-const details = () => {
+const Details = () => {
   const { lang } = useTranslate();
   return (
     <div className="w-full flex justify-center pr-4 text-white 3xl:pt-36 2xl:py-8">
@@ -29,4 +29,4 @@ const details = () => {
   );
 };
 
-export default details;
+export default Details;
