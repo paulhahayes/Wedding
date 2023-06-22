@@ -62,7 +62,7 @@ const Landing = () => {
           },
         ]}
         style={{
-          position: y > 700 ? "fixed" : isFixed ? "fixed" : "absolute", // Keep position fixed when y > 700
+          position: y > 800 ? "fixed" : isFixed ? "fixed" : "absolute",
           top: topPos,
           left: 0,
           zIndex: 0,

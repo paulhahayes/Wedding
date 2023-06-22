@@ -1,7 +1,6 @@
 "use client";
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { BiDollar } from "react-icons/bi";
 
 interface InputProps {
   id: string;
@@ -58,7 +57,7 @@ const Input: React.FC<InputProps> = ({
           transform 
           -translate-y-3 
           top-5 
-          z-10 
+          z-5
           origin-[0] 
           ${formatPrice ? "left-9" : "left-4"}
           peer-placeholder-shown:scale-100 
