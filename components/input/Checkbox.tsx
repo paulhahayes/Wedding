@@ -22,7 +22,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
       <label
         className="relative flex cursor-pointer items-center rounded-full p-3"
         htmlFor={checkboxId}
-        data-ripple-dark="true"
       >
         <input
           type="checkbox"

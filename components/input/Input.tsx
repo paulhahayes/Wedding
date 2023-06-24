@@ -1,15 +1,16 @@
 "use client";
 
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+
+import { FormData } from "@/types/FormData";
 
 interface InputProps {
-  id: string;
+  id: keyof FormData;
   label: string;
   type?: string;
   disabled?: boolean;
-  formatPrice?: boolean;
   required?: boolean;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<FormData>;
   errors: FieldErrors;
 }
 
@@ -18,15 +19,14 @@ const Input: React.FC<InputProps> = ({
   label,
   type = "text",
   disabled,
-  formatPrice,
-  register,
   required,
+  register,
   errors,
 }) => {
   return (
     <div className="w-full relative">
       <input
-        id={id}
+        id={String(id)}
         disabled={disabled}
         {...register(id, { required })}
         placeholder=" "
@@ -59,7 +59,7 @@ const Input: React.FC<InputProps> = ({
           top-5 
           z-5
           origin-[0] 
-          ${formatPrice ? "left-9" : "left-4"}
+          left-4
           peer-placeholder-shown:scale-100 
           peer-placeholder-shown:translate-y-0 
           peer-focus:scale-75

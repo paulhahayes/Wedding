@@ -13,6 +13,7 @@ const OTP: React.FC<OTPProps> = ({ value, onChange, hasError }) => {
     >
       <OtpInput
         value={value}
+        shouldAutoFocus={true}
         onChange={onChange}
         numInputs={4}
         containerStyle="w-[60%]"

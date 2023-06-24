@@ -1,18 +1,17 @@
 "use client";
 
 import { toast } from "react-hot-toast";
+import { useEffect, useMemo, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { ButtonGroup, Button } from "@material-tailwind/react";
-import DietaryOptions from "../input/DietaryOptions";
-import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
-import Modal from "./Modal";
-import useRSVP from "@/hooks/useRSVP";
+import { Button, ButtonGroup } from "@material-tailwind/react";
 import Heading from "../Heading";
+import DietaryOptions from "../input/DietaryOptions";
 import Input from "../input/Input";
 import OTP from "../input/OTP";
+import useRSVP from "@/hooks/useRSVP";
+import Modal from "./Modal";
 import Checkbox from "../input/Checkbox";
-import { useEffect } from "react";
+
 enum STEPS {
   CODE = 0,
   NAME = 1,
@@ -22,28 +21,37 @@ enum STEPS {
 }
 
 const RSVPModal = () => {
-  const router = useRouter();
   const rsvpModal = useRSVP();
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(STEPS.CODE);
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
   const [isChecked, setChecked] = useState(false);
+  const [dietaryRestrictions, setDietaryRestrictions] = useState({
+    vegetarian: false,
+    lactoseIntolerant: false,
+    glutenIntolerant: false,
+    nutAllergy: false,
+    shellfishAllergy: false,
+  });
 
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors },
     reset,
-  } = useForm<FieldValues>({
+  } = useForm({
     defaultValues: {
+      attending: "",
       firstName: "",
       lastName: "",
-      status: "",
-      dietaryRestrictions: "",
-      mealChoice: "",
+      dietaryRestrictions: {
+        vegetarian: false,
+        lactoseIntolerant: false,
+        glutenIntolerant: false,
+        nutAllergy: false,
+        shellfishAllergy: false,
+      },
     },
   });
 
@@ -56,11 +64,11 @@ const RSVPModal = () => {
     setChecked(false);
   };
 
-  const firstName = watch("firstName");
-  const lastName = watch("lastName");
-  const status = watch("status");
-  const dietaryRestrictions = watch("dietaryRestrictions");
-  const mealChoice = watch("mealChoice");
+  useEffect(() => {
+    if (rsvpModal.isOpen === false) {
+      resetModal();
+    }
+  }, [rsvpModal.isOpen]);
 
   useEffect(() => {
     if (otp === "1234") {
@@ -99,6 +107,7 @@ const RSVPModal = () => {
     }
 
     setIsLoading(true);
+    console.log(data);
     // axios
     //   .post("/api/listings", data)
     //   .then(() => {
@@ -154,7 +163,7 @@ const RSVPModal = () => {
   if (step === STEPS.NAME) {
     bodyContent = (
       <div className="flex flex-col gap-4">
-        <Heading title="Will do be attending?" />
+        <Heading title="Will you be attending?" />
         <ButtonGroup className="w-full gap-2">
           <Button className="w-[50%] bg-blue-300 hover:opacity-70">
             Going
@@ -165,7 +174,7 @@ const RSVPModal = () => {
         </ButtonGroup>
         <Heading title="Please enter your name" />
         <Input
-          id="Name"
+          id="firstName"
           label="first name"
           disabled={isLoading}
           register={register}
@@ -173,7 +182,7 @@ const RSVPModal = () => {
           required
         />
         <Input
-          id="Last Name"
+          id="lastName"
           label="last name"
           disabled={isLoading}
           register={register}
@@ -181,7 +190,7 @@ const RSVPModal = () => {
           required
         />
         <div>
-          <Heading subtitle="Please select any dietary restrictions" />
+          <Heading subtitle="Please select any dietary requirements" />
           <DietaryOptions />
         </div>
         <div className="border-t pt-2">
@@ -197,11 +206,19 @@ const RSVPModal = () => {
 
   if (step === STEPS.GUEST) {
     bodyContent = (
-      <div className="flex flex-col gap-8">
-        <Heading title="Please enter your second guest's name" subtitle="" />
-
+      <div className="flex flex-col gap-4">
+        <Heading title="Will you be attending?" />
+        <ButtonGroup className="w-full gap-2">
+          <Button className="w-[50%] bg-blue-300 hover:opacity-70">
+            Going
+          </Button>
+          <Button className="w-[50%] border-neutral-300 text-neutral-600 bg-white border hover:opacity-70">
+            Not going
+          </Button>
+        </ButtonGroup>
+        <Heading title="Please enter second name" />
         <Input
-          id="Name"
+          id="secondFirstName"
           label="first name"
           disabled={isLoading}
           register={register}
@@ -209,13 +226,24 @@ const RSVPModal = () => {
           required
         />
         <Input
-          id="Last Name"
+          id="secondLastName"
           label="last name"
           disabled={isLoading}
           register={register}
           errors={errors}
           required
         />
+        <div>
+          <Heading subtitle="Please select any dietary requirements" />
+          <DietaryOptions register={register} id="dietaryRestrictions" />
+        </div>
+        <div className="border-t pt-2">
+          <Checkbox
+            label="Do you have a plus one?"
+            isChecked={isChecked}
+            setIsChecked={setChecked}
+          />
+        </div>
       </div>
     );
   }
@@ -240,7 +268,10 @@ const RSVPModal = () => {
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CODE ? undefined : onBack}
-      onClose={rsvpModal.onClose}
+      onClose={() => {
+        rsvpModal.onClose();
+        resetModal();
+      }}
       body={bodyContent}
     />
   );

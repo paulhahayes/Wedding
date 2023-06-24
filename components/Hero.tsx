@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import { TranslateContext } from "@/context/TranslateContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { Covered_By_Your_Grace } from "next/font/google";
-const grace = Covered_By_Your_Grace({ weight: "400", subsets: ["latin"] });
+// import { Kavivanar } from "next/font/google";
+import { Molle } from "next/font/google";
+import { HiClock } from "react-icons/hi";
+
+const font = Molle({ weight: "400", subsets: ["latin"] });
 const Hero = () => {
   const [fontSize, setFontSize] = useState("90px");
   const [secondaryFontSize, setSecondaryFontSize] = useState("24px");
@@ -17,7 +20,7 @@ const Hero = () => {
     background: "linear-gradient(to bottom, white, white)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    fontFamily: grace.style.fontFamily,
+    fontFamily: font.style.fontFamily,
     letterSpacing: fontSize === "72px" ? "5px" : "2px",
   };
 
@@ -93,6 +96,7 @@ const Hero = () => {
         variants={childVariants}
         className="font-semibold"
       >
+        {/* calander icon */}
         18 . 11 . 23
       </motion.p>
 
@@ -103,7 +107,7 @@ const Hero = () => {
       </motion.p>
 
       <motion.h1 variants={childVariants} style={mainTextStyle}>
-        PAUL & XIMENA
+        Paul & Ximena
       </motion.h1>
 
       <motion.p
@@ -117,9 +121,9 @@ const Hero = () => {
       <motion.p
         variants={childVariants}
         style={secondaryTextStyle}
-        className="text-lg"
+        className="text-lg flex flex-row items-center gap-2"
       >
-        3 PM - 10 PM
+        <HiClock className="pt-1" />3 PM - 10 PM
       </motion.p>
       <motion.button
         variants={childVariants}
