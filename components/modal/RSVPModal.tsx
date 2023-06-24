@@ -217,8 +217,8 @@ const RSVPModal = () => {
           </Button>
         </ButtonGroup>
         <Heading title="Please enter second name" />
-        <Input
-          id="secondFirstName"
+        {/* <Input
+          // id="secondFirstName"
           label="first name"
           disabled={isLoading}
           register={register}
@@ -232,10 +232,10 @@ const RSVPModal = () => {
           register={register}
           errors={errors}
           required
-        />
+        /> */}
         <div>
           <Heading subtitle="Please select any dietary requirements" />
-          <DietaryOptions register={register} id="dietaryRestrictions" />
+          <DietaryOptions />
         </div>
         <div className="border-t pt-2">
           <Checkbox
