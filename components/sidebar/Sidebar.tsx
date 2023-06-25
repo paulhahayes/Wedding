@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import useSidebar from "@/hooks/useSideBar";
 import useTranslate from "@/hooks/useTranslate";
+import useRSVP from "@/hooks/useRSVP";
 import useMenuRefs from "@/hooks/useMenuRefs";
 import { useRouter } from "next/navigation";
 
@@ -61,13 +62,17 @@ const Sidebar = () => {
   const router = useRouter();
   const { collapsed, toggleCollapsed } = useSidebar();
   const { lang, toggleLang } = useTranslate();
-
+  const rsvpModal = useRSVP();
   const [activeItem, setActiveItem] = useState(MENU_ITEMS[0].text);
 
   const refs = useMenuRefs(MENU_ITEMS);
 
   const handleItemClick = (item: any) => {
     setActiveItem(item.text);
+    if (item.text === "RSVP") {
+      rsvpModal.isOpen ? rsvpModal.onClose() : rsvpModal.onOpen();
+      return;
+    }
     router.push(item.href);
   };
 
@@ -94,7 +99,7 @@ const Sidebar = () => {
          min-[320px]:rounded-none sm:top-[18%] min-[320px]:h-screen sm:h-[60%] fixed transition-all  border border-white
          duration-300 ease-in-out sm:rounded-tr-30 sm:rounded-br-30 ${
            collapsed
-             ? "w-12    bg-blue-300/60"
+             ? "w-12 min-[320px]:opacity-0  sm:opacity-100 bg-blue-300/60 "
              : "sm:w-[180px] bg-blue-500 min-[320px]:w-screen "
          }`}
       >
@@ -126,7 +131,8 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="fixed text-xl hover:cursor-pointer hover:opacity-70 sm:top-[72%] min-[320px]:top-[90%] z-40 "
+        className={`fixed text-xl hover:cursor-pointer hover:opacity-70 sm:top-[72%] min-[320px]:top-[90%] z-40 
+  ${collapsed ? "min-[320px]:hidden" : ""}`}
         onClick={() => toggleLang()}
       >
         {lang === "en" ? "🇦🇺" : "🇨🇴"}
