@@ -70,6 +70,7 @@ const Sidebar = () => {
   const handleItemClick = (item: any) => {
     setActiveItem(item.text);
     if (item.text === "RSVP") {
+      toggleCollapsed();
       rsvpModal.isOpen ? rsvpModal.onClose() : rsvpModal.onOpen();
       return;
     }
@@ -132,7 +133,7 @@ const Sidebar = () => {
 
       <div
         className={`fixed text-xl hover:cursor-pointer hover:opacity-70 sm:top-[72%] min-[320px]:top-[90%] z-40 
-  ${collapsed ? "min-[320px]:hidden" : ""}`}
+                ${collapsed ? "min-[320px]:hidden sm:block" : ""}`}
         onClick={() => toggleLang()}
       >
         {lang === "en" ? "🇦🇺" : "🇨🇴"}

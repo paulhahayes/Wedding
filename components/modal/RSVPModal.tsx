@@ -27,6 +27,9 @@ const RSVPModal = () => {
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
   const [isChecked, setChecked] = useState(false);
+  const [going, setGoing] = useState(false);
+  const [notGoing, setNotGoing] = useState(false);
+
   const [dietaryRestrictions, setDietaryRestrictions] = useState({
     vegetarian: false,
     lactoseIntolerant: false,
@@ -165,9 +168,13 @@ const RSVPModal = () => {
       <div className="flex flex-col gap-4">
         <Heading title="Will you be attending?" />
         <ButtonGroup className="w-full gap-2">
-          <Button className="w-[50%] bg-blue-300 hover:opacity-70">
+          <Button
+            className={`w-[50%] bg-blue-300 hover:opacity-70  shadow-highlight`}
+            onClick={() => setGoing(!going)}
+          >
             Going
           </Button>
+
           <Button className="w-[50%] border-neutral-300 text-neutral-600 bg-white border hover:opacity-70">
             Not going
           </Button>
@@ -217,22 +224,6 @@ const RSVPModal = () => {
           </Button>
         </ButtonGroup>
         <Heading title="Please enter second name" />
-        {/* <Input
-          // id="secondFirstName"
-          label="first name"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <Input
-          id="secondLastName"
-          label="last name"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        /> */}
         <div>
           <Heading subtitle="Please select any dietary requirements" />
           <DietaryOptions />

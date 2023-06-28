@@ -5,14 +5,19 @@ import Head from "next/head";
 import { TranslateContext } from "@/context/TranslateContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
 // import { Kavivanar } from "next/font/google";
-import { Molle } from "next/font/google";
+import { useRouter } from "next/navigation";
+
+import { Button } from "@material-tailwind/react";
+
+import { Pacifico } from "next/font/google";
 import { HiClock } from "react-icons/hi";
 
-const font = Molle({ weight: "400", subsets: ["latin"] });
+const font = Pacifico({ weight: "400", subsets: ["latin"] });
 const Hero = () => {
   const [fontSize, setFontSize] = useState("90px");
   const [secondaryFontSize, setSecondaryFontSize] = useState("24px");
   const { lang } = useContext(TranslateContext);
+  const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
   const mainTextStyle = {
@@ -125,22 +130,14 @@ const Hero = () => {
       >
         <HiClock className="pt-1" />3 PM - 10 PM
       </motion.p>
-      <motion.button
-        variants={childVariants}
-        className="relative
-        mt-3
-        rounded-lg
-        hover:opacity-10
-        transition
-        bg-blue-300
-        px-4
-        border-2
-        text-lg
-        font-semibold
-        py-2"
-      >
-        Enter
-      </motion.button>
+      <motion.div variants={childVariants}>
+        <Button
+          className=" bg-blue-300/70 py-2 px-4 mt-2 border-2 border-white"
+          onClick={() => router.push(`/details`)}
+        >
+          Enter
+        </Button>
+      </motion.div>
     </motion.div>
   );
 };

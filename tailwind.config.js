@@ -1,10 +1,13 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
+  purge: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -17,11 +20,12 @@ module.exports = {
         heading: ["Inter", "sans-serif"],
       },
       boxShadow: {
-        bs: "8px 8px 0px #000000",
-        bsl: "4px 4px 0px #fff",
+        highlight: "inset 3px 2px 1px 0px gray",
       },
     },
   },
-
+  variants: {
+    extend: {},
+  },
   plugins: [],
 };

@@ -7,7 +7,7 @@ const Details = () => {
   const { lang } = useTranslate();
 
   return (
-    <div className="w-full flex justify-center pr-4 text-white 3xl:pt-36 2xl:py-8">
+    <div className="w-full flex justify-center text-white 3xl:pt-36 2xl:py-8">
       <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12">
         <Link
           href="/details/story"
