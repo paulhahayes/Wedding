@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { UseFormRegister } from "react-hook-form";
+import { FormData } from "@/types/FormData";
 import Checkbox from "./Checkbox";
 const options = [
   "Lactose intolerance",
@@ -9,7 +11,11 @@ const options = [
   "Other",
 ];
 
-const DietaryOptions = () => {
+interface DietaryOptionsProps {
+  register: UseFormRegister<FormData>;
+}
+
+const DietaryOptions: React.FC<DietaryOptionsProps> = ({ register }) => {
   const [checkedState, setCheckedState] = useState(
     new Array(options.length).fill(false)
   );

@@ -198,7 +198,7 @@ const RSVPModal = () => {
         />
         <div>
           <Heading subtitle="Please select any dietary requirements" />
-          <DietaryOptions />
+          <DietaryOptions register={register} />
         </div>
         <div className="border-t pt-2">
           <Checkbox
@@ -226,7 +226,7 @@ const RSVPModal = () => {
         <Heading title="Please enter second name" />
         <div>
           <Heading subtitle="Please select any dietary requirements" />
-          <DietaryOptions />
+          <DietaryOptions register={register} />
         </div>
         <div className="border-t pt-2">
           <Checkbox
