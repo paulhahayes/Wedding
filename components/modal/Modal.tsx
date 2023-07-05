@@ -9,7 +9,7 @@ interface ModalProps {
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  actionLabel: string;
+  actionLabel: string | JSX.Element;
   disabled?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
@@ -88,6 +88,7 @@ const Modal: React.FC<ModalProps> = ({
           outline-none 
           focus:outline-none
           bg-neutral-800/70
+          min-[330px]:overflow-y-hidden
         "
       >
         <div
@@ -121,13 +122,16 @@ const Modal: React.FC<ModalProps> = ({
               lg:h-auto
               md:h-auto
               border-0 
-              rounded-lg 
+              md:rounded-lg 
+              min-[330px]:rounded-none
+              min-[330px]:h-screen
+              
               shadow-lg 
               relative 
               flex 
               flex-col 
-              w-full 
-              bg-white 
+              w-full
+              bg-neutral-50
               outline-none 
               focus:outline-none
             "

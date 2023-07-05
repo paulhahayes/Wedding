@@ -1,7 +1,6 @@
 "use client";
 
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-
 import { FormData } from "@/types/FormData";
 
 interface InputProps {

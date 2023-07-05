@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { UseFormRegister } from "react-hook-form";
 import { FormData } from "@/types/FormData";
 import Checkbox from "./Checkbox";
+
 const options = [
   "Lactose intolerance",
   "Gluten intolerance",
@@ -16,29 +17,38 @@ interface DietaryOptionsProps {
 }
 
 const DietaryOptions: React.FC<DietaryOptionsProps> = ({ register }) => {
-  const [checkedState, setCheckedState] = useState(
-    new Array(options.length).fill(false)
-  );
-
-  const handleInputChange = (position: any) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-  };
-
   return (
-    <div className="w-full grid grid-cols-3 gap-4 top-0 mt-2">
-      {options.map((option, index) => (
-        <div key={index} className="p-0">
-          <Checkbox
-            label={option}
-            isChecked={checkedState[index]}
-            setIsChecked={() => handleInputChange(index)}
-          />
-        </div>
-      ))}
+    <div className="w-full grid md:grid-cols-3 gap-4 min-[320px]:grid-cols-2 top-0 mt-2">
+      <div className="p-0">
+        <Checkbox
+          id="lactoseIntolerant"
+          register={register}
+          label={options[0]}
+        />
+      </div>
+      <div className="p-0">
+        <Checkbox
+          id="glutenIntolerant"
+          register={register}
+          label={options[1]}
+        />
+      </div>
+      <div className="p-0">
+        <Checkbox id="vegetarian" register={register} label={options[2]} />
+      </div>
+      <div className="p-0">
+        <Checkbox id="nutAllergy" register={register} label={options[3]} />
+      </div>
+      <div className="p-0">
+        <Checkbox
+          id="shellfishAllergy"
+          register={register}
+          label={options[4]}
+        />
+      </div>
+      <div className="p-0">
+        <Checkbox id="other" register={register} label={options[5]} />
+      </div>
     </div>
   );
 };

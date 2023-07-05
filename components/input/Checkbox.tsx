@@ -1,39 +1,36 @@
-import React, { useId } from "react";
-
+import React from "react";
+import { UseFormRegister } from "react-hook-form";
+import { FormData } from "@/types/FormData";
 interface CheckboxProps {
   label: string;
-  isChecked: boolean;
-  setIsChecked: (value: boolean) => void;
+  register: UseFormRegister<FormData>;
+  type?: string;
+  id: keyof FormData;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
-  isChecked,
-  setIsChecked,
+  register,
+  id,
+  type = "checkbox",
 }) => {
-  const checkboxId = useId();
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
-  };
-
   return (
     <div className="inline-flex items-center">
       <label
         className="relative flex cursor-pointer items-center rounded-full p-3"
-        htmlFor={checkboxId}
+        htmlFor={String(id)}
       >
         <input
-          type="checkbox"
+          type={type}
           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border 
-          border-neutral-300 transition-all before:absolute before:top-2/4 before:left-2/4 
+          border-neutral-300 transition-all before:absolute before:top-2/4 before:left-2/4 bg-white
           before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 
           before:rounded-full before:bg-neutral-300 before:opacity-0 before:transition-opacity 
           checked:border-bg-blue-300 checked:bg-blue-300 checked:before:bg-blue-300 hover:before:opacity-10"
-          id={checkboxId}
-          checked={isChecked}
-          onChange={handleChange}
+          id={String(id)}
+          {...register(id)}
         />
+
         <div className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,29 +1,29 @@
 "use client";
 
 import { IconType } from "react-icons";
-
+import { twMerge } from "tailwind-merge";
 interface ButtonProps {
-  label: string;
+  label: string | JSX.Element;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   outline?: boolean;
-  small?: boolean;
   icon?: IconType;
+  styles?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   label,
+  styles,
   onClick,
   disabled,
-  outline,
-  small,
   icon: Icon,
 }) => {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`
+      className={twMerge(
+        `
         relative
         disabled:opacity-70
         disabled:cursor-not-allowed
@@ -31,14 +31,17 @@ const Button: React.FC<ButtonProps> = ({
         hover:opacity-80
         transition
         w-full
-        ${outline ? "bg-white" : "bg-blue-300"}
-        ${outline ? "hover:opacity-50" : "bg-blue-300"}
-        ${outline ? "text-black" : "text-white"}
-        ${small ? "text-sm" : "text-md"}
-        ${small ? "py-1" : "py-3"}
-        ${small ? "font-light" : "font-semibold"}
-        ${small ? "border-[1px]" : "border-2"}
-      `}
+        bg-white
+       text-md
+       hover:bg-neutral-200
+
+       hover:border
+       hover:border-neutral-400
+        py-3
+        border-2
+      `,
+        styles
+      )}
     >
       {Icon && (
         <Icon

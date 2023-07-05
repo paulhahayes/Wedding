@@ -3,21 +3,18 @@
 import { toast } from "react-hot-toast";
 import { useEffect, useMemo, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Button, ButtonGroup } from "@material-tailwind/react";
 import Heading from "../Heading";
-import DietaryOptions from "../input/DietaryOptions";
-import Input from "../input/Input";
 import OTP from "../input/OTP";
 import useRSVP from "@/hooks/useRSVP";
 import Modal from "./Modal";
-import Checkbox from "../input/Checkbox";
+import GuestForm from "./GuestForm";
+import ConfettiButton from "../ConfettiButton";
 
 enum STEPS {
   CODE = 0,
   NAME = 1,
   GUEST = 2,
-  MENU = 3,
-  MORE = 4,
+  CONFIRM = 3,
 }
 
 const RSVPModal = () => {
@@ -27,34 +24,25 @@ const RSVPModal = () => {
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
   const [isChecked, setChecked] = useState(false);
-  const [going, setGoing] = useState(false);
-  const [notGoing, setNotGoing] = useState(false);
-
-  const [dietaryRestrictions, setDietaryRestrictions] = useState({
-    vegetarian: false,
-    lactoseIntolerant: false,
-    glutenIntolerant: false,
-    nutAllergy: false,
-    shellfishAllergy: false,
-  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
   } = useForm({
     defaultValues: {
       attending: "",
       firstName: "",
       lastName: "",
-      dietaryRestrictions: {
-        vegetarian: false,
-        lactoseIntolerant: false,
-        glutenIntolerant: false,
-        nutAllergy: false,
-        shellfishAllergy: false,
-      },
+      vegetarian: false,
+      lactoseIntolerant: false,
+      glutenIntolerant: false,
+      nutAllergy: false,
+      shellfishAllergy: false,
+      other: false,
+      otherAllergies: "",
     },
   });
 
@@ -80,7 +68,7 @@ const RSVPModal = () => {
   }, [otp]);
 
   const onBack = () => {
-    if (!isChecked && step === STEPS.MENU) {
+    if (!isChecked && step === STEPS.CONFIRM) {
       setStep(STEPS.NAME);
     } else {
       setStep((value) => value - 1);
@@ -98,41 +86,25 @@ const RSVPModal = () => {
       (isChecked && step === STEPS.GUEST) ||
       (!isChecked && step === STEPS.NAME)
     ) {
-      setStep(STEPS.MENU);
+      setStep(STEPS.CONFIRM);
     } else {
       setStep((value) => value + 1);
     }
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.MORE) {
+    if (step !== STEPS.CONFIRM) {
       return onNext();
     }
-
+    rsvpModal.onClose();
     setIsLoading(true);
     console.log(data);
-    // axios
-    //   .post("/api/listings", data)
-    //   .then(() => {
-    //     toast.success("Listing created!");
-    //     router.refresh();
-    //     reset();
-    //     setStep(STEPS.CATEGORY);
-    //     rentModal.onClose();
-    //   })
-    //   .catch(() => {
-    //     toast.error("Something went wrong.");
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.MORE) {
-      return "Submit";
+    if (step === STEPS.CONFIRM) {
+      return <ConfettiButton />;
     }
-
     return "Next";
   }, [step]);
 
@@ -165,87 +137,30 @@ const RSVPModal = () => {
 
   if (step === STEPS.NAME) {
     bodyContent = (
-      <div className="flex flex-col gap-4">
-        <Heading title="Will you be attending?" />
-        <ButtonGroup className="w-full gap-2">
-          <Button
-            className={`w-[50%] bg-blue-300 hover:opacity-70  shadow-highlight`}
-            onClick={() => setGoing(!going)}
-          >
-            Going
-          </Button>
-
-          <Button className="w-[50%] border-neutral-300 text-neutral-600 bg-white border hover:opacity-70">
-            Not going
-          </Button>
-        </ButtonGroup>
-        <Heading title="Please enter your name" />
-        <Input
-          id="firstName"
-          label="first name"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <Input
-          id="lastName"
-          label="last name"
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <div>
-          <Heading subtitle="Please select any dietary requirements" />
-          <DietaryOptions register={register} />
-        </div>
-        <div className="border-t pt-2">
-          <Checkbox
-            label="Do you have a plus one?"
-            isChecked={isChecked}
-            setIsChecked={setChecked}
-          />
-        </div>
-      </div>
+      <GuestForm
+        plusOne={true}
+        register={register}
+        errors={errors}
+        setValue={setValue}
+      />
     );
   }
 
   if (step === STEPS.GUEST) {
-    bodyContent = (
-      <div className="flex flex-col gap-4">
-        <Heading title="Will you be attending?" />
-        <ButtonGroup className="w-full gap-2">
-          <Button className="w-[50%] bg-blue-300 hover:opacity-70">
-            Going
-          </Button>
-          <Button className="w-[50%] border-neutral-300 text-neutral-600 bg-white border hover:opacity-70">
-            Not going
-          </Button>
-        </ButtonGroup>
-        <Heading title="Please enter second name" />
-        <div>
-          <Heading subtitle="Please select any dietary requirements" />
-          <DietaryOptions register={register} />
-        </div>
-        <div className="border-t pt-2">
-          <Checkbox
-            label="Do you have a plus one?"
-            isChecked={isChecked}
-            setIsChecked={setChecked}
-          />
-        </div>
-      </div>
+    bodyContent = bodyContent = (
+      <GuestForm
+        plusOne={false}
+        register={register}
+        errors={errors}
+        setValue={setValue}
+      />
     );
   }
 
-  if (step === STEPS.MENU) {
+  if (step === STEPS.CONFIRM) {
     bodyContent = (
       <div className="flex flex-col gap-8">
-        <Heading
-          title="Please select a meal"
-          subtitle="Add any meal requirements"
-        />
+        <Heading center title="Please confirm your RSVP" />
       </div>
     );
   }
