@@ -1,6 +1,9 @@
 "use client";
 import { useWindowScroll } from "react-use";
+import Image from "next/image";
 import Plx from "react-plx";
+import foreground from "@/public/resize.png";
+import background from "@/public/beach.jpg";
 
 const Landing = () => {
   const { y } = useWindowScroll();
@@ -45,7 +48,7 @@ const Landing = () => {
           zIndex: 1,
         }}
       >
-        <img src="resize.png" alt="foreground" style={styles} />
+        <Image src={foreground} alt="foreground" style={styles} />
       </Plx>
       <Plx
         parallaxData={[
@@ -68,7 +71,7 @@ const Landing = () => {
           zIndex: 0,
         }}
       >
-        <img src="beach.jpg" alt="background" style={styles} />
+        <Image src={background} alt="background" style={styles} />
       </Plx>
     </div>
   );

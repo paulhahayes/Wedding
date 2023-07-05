@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import { TranslateContext } from "@/context/TranslateContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
-// import { Kavivanar } from "next/font/google";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@material-tailwind/react";
@@ -53,14 +52,13 @@ const Hero = () => {
     updateFontSize();
     return () => window.removeEventListener("resize", updateFontSize);
   }, []);
-  // Define animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        delayChildren: 0.5, // Delay child animations
-        staggerChildren: 0.3, // Increase stagger time
+        delayChildren: 0.5,
+        staggerChildren: 0.3,
       },
     },
   };
@@ -71,8 +69,8 @@ const Hero = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1, // Increase duration for smoother animation
-        ease: "easeInOut", // Use easeInOut for smoother start and end
+        duration: 1,
+        ease: "easeInOut",
       },
     },
   };
