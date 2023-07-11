@@ -16,7 +16,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   const path = usePathname();
 
   return (
-    <section className="md:px-36 md:py-36 text-white text-center sm:py-28">
+    <section className="md:px-36 py-0 text-white text-center ">
       <h1 className="text-[70px]">{options[path as keyof typeof options]}</h1>
       {children}
     </section>

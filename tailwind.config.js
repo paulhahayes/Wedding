@@ -1,8 +1,3 @@
-const {
-  default: gradient,
-} = require("@material-tailwind/react/theme/components/timeline/timelineIconColors/gradient");
-const plugin = require("tailwindcss/plugin");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   purge: [
@@ -10,13 +5,22 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: false, // or 'media' or 'class'
+
   theme: {
     extend: {
+      opacity: {
+        10: "0.1",
+        20: "0.2",
+        30: "0.3",
+        40: "0.4",
+        50: "0.5",
+      },
       colors: {
         yellow: "#e8d33f",
+        lime: "#f0fd71",
         yes: "#081c15",
         button: "#ced4da",
+        cardbg: "#f9fcff",
       },
       borderRadius: {
         30: "30px",
@@ -30,9 +34,7 @@ module.exports = {
       backgroundImage: {
         greenGradient: "linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%)",
         redGradient: "linear-gradient(315deg, #972239 0%, #db6885 74%)",
-        blueGradient:
-          "linear-gradient(319deg, #fce055 0%, #256eff 37%, #46237a 100%)",
-        neutralGradient: "linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%)",
+        card: "linear-gradient(90deg, #fcecfe, #fbf6e7, #e6fcf5)",
       },
     },
   },
