@@ -8,7 +8,7 @@ import OTP from "../input/OTP";
 import useRSVP from "@/hooks/useRSVP";
 import Modal from "./Modal";
 import GuestForm from "./GuestForm";
-import ConfettiButton from "../ConfettiButton";
+import confetti from "canvas-confetti";
 
 enum STEPS {
   CODE = 0,
@@ -92,18 +92,29 @@ const RSVPModal = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (step !== STEPS.CONFIRM) {
       return onNext();
     }
     rsvpModal.onClose();
     setIsLoading(true);
-    console.log(data);
+    try {
+      await fetch("/api/rsvp", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      confetti({
+        particleCount: 150,
+        spread: 60,
+      });
+    } catch (error) {}
+
+    // toast.success("RSVP sent!");
   };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.CONFIRM) {
-      return <ConfettiButton />;
+      return "Submit 🎉";
     }
     return "Next";
   }, [step]);

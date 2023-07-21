@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 const useTranslate = () => {
   const { lang, setLang } = useContext(TranslateContext);
+
   const toggleLang = () => {
     setLang(lang === "en" ? "es" : "en");
   };

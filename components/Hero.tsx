@@ -5,9 +5,7 @@ import Head from "next/head";
 import { TranslateContext } from "@/context/TranslateContext";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-
 import { Button } from "@material-tailwind/react";
-
 import { Pacifico } from "next/font/google";
 import { HiClock } from "react-icons/hi";
 
