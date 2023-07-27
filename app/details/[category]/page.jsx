@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import styles from "./page.module.css";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
+
 import { items } from "./data.js";
 import { notFound } from "next/navigation";
 
@@ -16,18 +18,28 @@ const getData = (cat) => {
 
 const Category = ({ params }) => {
   const data = getData(params.category);
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.catTitle}></h1>
 
+  return (
+    <div>
       {data.map((item) => (
-        <div className={styles.item} key={item.id}>
-          <div className={styles.content}>
-            <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>{item.desc}</p>
+        <div
+          className={`${styles.item} flex gap-[50px] mt-6 mb-6`}
+          key={item.id}
+        >
+          <div className="flex flex-1 flex-col ">
+            <h1 className="text-[30px] text-lime">{item.title}</h1>
+            <p className="text-[20px]">{item.desc}</p>
           </div>
-          <div className={styles.imgContainer}>
-            <Image className={styles.img} fill={true} src={item.image} alt="" />
+
+          <div className="border-white border-2 shadow-md">
+            <CldImage
+              className={styles.img}
+              src={item.image}
+              alt="Scubar"
+              width="550"
+              height="550"
+              quality="100"
+            />
           </div>
         </div>
       ))}

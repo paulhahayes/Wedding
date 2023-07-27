@@ -1,35 +1,3 @@
-.item {
-  display: flex;
-  gap: 50px;
-  margin-top: 50px;
-  margin-bottom: 100px;
-}
-
-.item:nth-child(2n + 1) {
+.item:nth-child(2n) {
   flex-direction: row-reverse;
-}
-
-.imgContainer {
-  flex: 1;
-  height: 500px;
-  position: relative;
-}
-
-.img {
-  object-fit: cover;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.title {
-  font-size: 36px;
-}
-
-.desc {
-  font-size: 20px;
 }

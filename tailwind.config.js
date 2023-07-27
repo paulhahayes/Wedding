@@ -39,7 +39,7 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: { flexDirection: ["nth-child"] },
   },
   plugins: [],
 };

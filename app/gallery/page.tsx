@@ -1,7 +1,13 @@
+"use client";
 import Card from "@/components/Card";
+import { CldImage } from "next-cloudinary";
 
 const page = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CldImage width="500" height="500" src="scubar" alt="Scubar" />
+    </div>
+  );
 };
 
 export default page;
