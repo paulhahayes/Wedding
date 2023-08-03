@@ -48,15 +48,7 @@ const Landing = () => {
           zIndex: 1,
         }}
       >
-        <Image
-          src={foreground}
-          alt="foreground"
-          quality={1}
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-          }}
-        />
+        <Image src={foreground} alt="foreground" style={styles} />
       </Plx>
       <Plx
         parallaxData={[
@@ -79,16 +71,7 @@ const Landing = () => {
           zIndex: 0,
         }}
       >
-        <Image
-          src={background}
-          alt="background"
-          placeholder="blur"
-          quality={40}
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-          }}
-        />
+        <Image src={background} alt="background" style={styles} />
       </Plx>
     </div>
   );
