@@ -12,12 +12,6 @@ body {
     rgba(0, 123, 189, 0.3),
     rgba(252, 209, 42, 0.3)
   );
-  background-size: cover;
-  scroll-snap-type: y proximity;
-}
-
-.theme {
-  transition: 1s all ease;
 }
 
 a {
@@ -28,12 +22,6 @@ a {
   section {
     height: 700px;
   }
-}
-
-section {
-  width: 100vw;
-  height: 100vh;
-  left: 0;
 }
 
 @keyframes shake5 {

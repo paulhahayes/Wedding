@@ -69,3 +69,8 @@ export const items = {
     },
   ],
 };
+
+export const updates = [
+  // { title: "No Updates", desc: "No Updates", id: 1, date: "" },
+  // { title: "bah", desc: "No Updates", id: 1, date: "" },
+];

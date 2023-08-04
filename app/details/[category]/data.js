@@ -26,7 +26,7 @@ export const items = {
       id: 1,
       title: "Love at first pint",
       desc: "Welcome to our love story! It all began on a delightful Saturday night at Sidebar in Central. Paul challenged Xime to a game of pool and we hit it off straight away! At the time, the netflix show Narcos was at the height of its popularity which was cause for a few bad jokes. Xime took it in her stride and agreed to go on a date the following day, at the romanic setting of a park cricket game.",
-      image: "scubar",
+      image: "sidebar",
     },
     {
       id: 2,
