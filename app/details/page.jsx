@@ -12,7 +12,7 @@ const Details = () => {
   return (
     <div className=" flex flex-col items-center justify-start ">
       <div className="w-[75%] text-white 3xl:pt-36 2xl:py-8">
-        <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12 min-[320px]:justify-center">
           <Link
             href="/details/story"
             className="relative  shadow-lg hover:opacity-70 rounded p-4 w-72 h-96 border-4 border-white"
