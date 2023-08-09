@@ -9,4 +9,14 @@ export type FormData = {
   shellfishAllergy: boolean;
   other: boolean;
   otherAllergies: string;
+  plusone: boolean;
+  plusoneFirstName: string;
+  plusoneLastName: string;
+  plusoneVegetarian: boolean;
+  plusoneLactoseIntolerant: boolean;
+  plusoneGlutenIntolerant: boolean;
+  plusoneNutAllergy: boolean;
+  plusoneShellfishAllergy: boolean;
+  plusoneOther: boolean;
+  plusoneOtherAllergies: string;
 };

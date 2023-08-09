@@ -42,6 +42,16 @@ const RSVPModal = () => {
       shellfishAllergy: false,
       other: false,
       otherAllergies: "",
+      plusone: false,
+      plusoneFirstName: "",
+      plusoneLastName: "",
+      plusoneVegetarian: false,
+      plusoneLactoseIntolerant: false,
+      plusoneGlutenIntolerant: false,
+      plusoneNutAllergy: false,
+      plusoneShellfishAllergy: false,
+      plusoneOther: false,
+      plusoneOtherAllergies: "",
     },
   });
 
@@ -97,14 +107,14 @@ const RSVPModal = () => {
     }
     rsvpModal.onClose();
     setIsLoading(true);
+    confetti({
+      particleCount: 150,
+      spread: 60,
+    });
     try {
       await fetch("/api/rsvp", {
         method: "POST",
         body: JSON.stringify(data),
-      });
-      confetti({
-        particleCount: 150,
-        spread: 60,
       });
     } catch (error) {}
 

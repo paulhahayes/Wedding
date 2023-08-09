@@ -48,6 +48,7 @@ const Details = () => {
         <div className="w-full mt-4 ">
           {updates.length == 0 ? (
             <UpdateCard
+              id="0"
               key="0"
               title="No Updates."
               desc="Any major updates will be posted here."
@@ -57,6 +58,7 @@ const Details = () => {
             updates
               .map((update) => (
                 <UpdateCard
+                  id={update.id.toString()}
                   key={update.id}
                   title={update.title}
                   desc={update.desc}
