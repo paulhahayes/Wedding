@@ -22,7 +22,7 @@ const RSVPModal = () => {
   const [step, setStep] = useState(STEPS.CODE);
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
-  const [isChecked, setChecked] = useState(false);
+  const [plusOne, setPlusOne] = useState(false);
 
   const {
     register,
@@ -61,7 +61,7 @@ const RSVPModal = () => {
     setOtp("");
     setOtpError(false);
     setIsLoading(false);
-    setChecked(false);
+    setPlusOne(false);
   };
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const RSVPModal = () => {
   }, [otp]);
 
   const onBack = () => {
-    if (!isChecked && step === STEPS.CONFIRM) {
+    if (!plusOne && step === STEPS.CONFIRM) {
       setStep(STEPS.NAME);
     } else {
       setStep((value) => value - 1);
@@ -89,11 +89,12 @@ const RSVPModal = () => {
       setOtpError(true);
       return;
     }
-    if (isChecked && step === STEPS.NAME) {
+
+    if (plusOne && step === STEPS.NAME) {
       setStep(STEPS.GUEST);
     } else if (
-      (isChecked && step === STEPS.GUEST) ||
-      (!isChecked && step === STEPS.NAME)
+      (plusOne && step === STEPS.GUEST) ||
+      (!plusOne && step === STEPS.NAME)
     ) {
       setStep(STEPS.CONFIRM);
     } else {
@@ -105,18 +106,23 @@ const RSVPModal = () => {
     if (step !== STEPS.CONFIRM) {
       return onNext();
     }
+
     rsvpModal.onClose();
     setIsLoading(true);
+
     confetti({
       particleCount: 150,
       spread: 60,
     });
-    try {
-      await fetch("/api/rsvp", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
-    } catch (error) {}
+
+    console.log(data);
+    // //Backend
+    // try {
+    //   await fetch("/api/rsvp", {
+    //     method: "POST",
+    //     body: JSON.stringify(data),
+    //   });
+    // } catch (error) {}
 
     // toast.success("RSVP sent!");
   };
@@ -158,10 +164,12 @@ const RSVPModal = () => {
   if (step === STEPS.NAME) {
     bodyContent = (
       <GuestForm
-        plusOne={true}
         register={register}
         errors={errors}
         setValue={setValue}
+        plusOne={plusOne}
+        setPlusOne={setPlusOne}
+        displayPlusOne={true}
       />
     );
   }
@@ -169,10 +177,12 @@ const RSVPModal = () => {
   if (step === STEPS.GUEST) {
     bodyContent = bodyContent = (
       <GuestForm
-        plusOne={false}
+        plusOne={plusOne}
+        setPlusOne={setPlusOne}
         register={register}
         errors={errors}
         setValue={setValue}
+        displayPlusOne={false}
       />
     );
   }

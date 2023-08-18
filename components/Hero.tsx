@@ -17,6 +17,7 @@ const Hero = () => {
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
+  // Warning this style requires access to the internet
   const mainTextStyle = {
     fontSize: fontSize,
     background: "linear-gradient(to bottom, white, white)",
