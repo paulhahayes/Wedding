@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { ButtonGroup } from "@material-tailwind/react";
 
@@ -15,8 +15,8 @@ interface GuestFormProps {
   plusOne: boolean;
   register: UseFormRegister<FormData>;
   errors: FieldErrors;
-  setValue: any; // useState setter in typescript
-  setPlusOne: any; // useState setter in typescript
+  setValue: any;
+  setPlusOne: Dispatch<SetStateAction<boolean>>;
   displayPlusOne: boolean;
 }
 
@@ -32,28 +32,41 @@ const GuestForm: React.FC<GuestFormProps> = ({
   const [notGoing, setNotGoing] = useState(false);
 
   const handleGoingClick = () => {
-    setGoing(!going); // refactor
+    setGoing((prev) => !prev);
     setNotGoing(false);
+
     if (displayPlusOne) {
-      setValue("attending", "yes");
+      setValue((prevFormData: any) => ({
+        ...prevFormData,
+        attending: "yes",
+      }));
     } else {
-      setValue("plusone", "yes");
+      setValue((prevFormData: any) => ({
+        ...prevFormData,
+        plusone: "yes",
+      }));
     }
   };
 
   const handleNotGoingClick = () => {
-    setNotGoing(!notGoing); // refactor
+    setNotGoing((prev) => !prev); // refactor
     setGoing(false);
 
     if (displayPlusOne) {
-      setValue("attending", "no");
+      setValue((prevFormData: any) => ({
+        ...prevFormData,
+        attending: "no",
+      }));
     } else {
-      setValue("plusone", "no");
+      setValue((prevFormData: any) => ({
+        ...prevFormData,
+        attending: "no",
+      }));
     }
   };
 
   const handleTogglePlusOne = () => {
-    setPlusOne(!plusOne); // refactor
+    setPlusOne((prev) => !prev);
   };
 
   return (
@@ -91,7 +104,11 @@ const GuestForm: React.FC<GuestFormProps> = ({
       />
       <div>
         <Heading subtitle="Please select any dietary requirements" />
-        <DietaryOptions register={register} />
+        <DietaryOptions
+          register={register}
+          plusOne={!displayPlusOne}
+          errors={errors}
+        />
       </div>
       {displayPlusOne && (
         <div className="border-t pt-2" onClick={handleTogglePlusOne}>
