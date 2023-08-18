@@ -7,6 +7,7 @@ interface NoButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   styles?: string;
   toggle: boolean;
+  hasError: boolean;
 }
 
 const NoButton: React.FC<NoButtonProps> = ({
@@ -14,6 +15,7 @@ const NoButton: React.FC<NoButtonProps> = ({
   onClick,
   styles,
   toggle,
+  hasError,
 }) => {
   const createSVG = (width: any, height: any, radius: any) => {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -88,7 +90,13 @@ const NoButton: React.FC<NoButtonProps> = ({
   }, [toggle]);
 
   return (
-    <Button styles={` ${styles}`} outline label={label} onClick={onClick} />
+    <Button
+      styles={` ${styles}`}
+      outline
+      hasError={hasError}
+      label={label}
+      onClick={onClick}
+    />
   );
 };
 

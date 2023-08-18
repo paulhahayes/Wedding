@@ -23,6 +23,7 @@ const RSVPModal = () => {
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
   const [plusOne, setPlusOne] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const {
     register,
@@ -85,18 +86,23 @@ const RSVPModal = () => {
     }
   };
 
-  const onNext = () => {
+  const onNext = (data: any) => {
+    // OTP
     if (step === STEPS.CODE && otp !== "2023") {
       setOtpError(true);
       return;
     }
 
+    // first guess and pressed plus one
     if (plusOne && step === STEPS.NAME) {
-      setStep(STEPS.GUEST);
-    } else if (
-      (plusOne && step === STEPS.GUEST) ||
-      (!plusOne && step === STEPS.NAME)
-    ) {
+      if (!hasError) {
+        setStep(STEPS.GUEST);
+      }
+    } else if (!plusOne && step === STEPS.NAME) {
+      if (!hasError) {
+        setStep(STEPS.CONFIRM);
+      }
+    } else if (plusOne && step === STEPS.GUEST) {
       setStep(STEPS.CONFIRM);
     } else {
       setStep((value) => value + 1);
@@ -105,7 +111,7 @@ const RSVPModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (step !== STEPS.CONFIRM) {
-      return onNext();
+      return onNext(data);
     }
 
     rsvpModal.onClose();
@@ -171,6 +177,8 @@ const RSVPModal = () => {
         plusOne={plusOne}
         setPlusOne={setPlusOne}
         displayPlusOne={true}
+        hasError={hasError}
+        setHasError={setHasError}
       />
     );
   }
@@ -184,6 +192,8 @@ const RSVPModal = () => {
         errors={errors}
         setValue={setValue}
         displayPlusOne={false}
+        hasError={hasError}
+        setHasError={setHasError}
       />
     );
   }

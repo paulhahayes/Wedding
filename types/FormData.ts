@@ -10,6 +10,7 @@ export type FormData = {
   other: boolean;
   otherAllergies: string;
   plusone: boolean;
+  plusoneAttending: string;
   plusoneFirstName: string;
   plusoneLastName: string;
   plusoneVegetarian: boolean;

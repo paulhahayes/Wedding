@@ -1,7 +1,7 @@
-"use client";
-
+import React from "react";
 import { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
+
 interface ButtonProps {
   label: string | JSX.Element;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -9,6 +9,8 @@ interface ButtonProps {
   outline?: boolean;
   icon?: IconType;
   styles?: string;
+  hasError?: boolean;
+  required?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled,
   icon: Icon,
+  hasError,
 }) => {
   return (
     <button
@@ -32,14 +35,14 @@ const Button: React.FC<ButtonProps> = ({
         transition
         w-full
         bg-white
-       text-md
-       hover:bg-neutral-200
-
-       hover:border
-       hover:border-neutral-400
+        text-md
+        hover:bg-neutral-200
+        hover:border
+        hover:border-neutral-400
         py-3
         border-2
-      `,
+        `,
+        hasError ? "border-red-500" : "",
         styles
       )}
     >

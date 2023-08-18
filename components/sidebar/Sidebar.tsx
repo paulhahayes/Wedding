@@ -68,9 +68,9 @@ const Sidebar = () => {
   const refs = useMenuRefs(MENU_ITEMS);
 
   const handleItemClick = (item: any) => {
+    toggleCollapsed();
     setActiveItem(item.text);
     if (item.text === "RSVP") {
-      toggleCollapsed();
       rsvpModal.isOpen ? rsvpModal.onClose() : rsvpModal.onOpen();
       return;
     }

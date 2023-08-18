@@ -18,6 +18,8 @@ interface GuestFormProps {
   setValue: any;
   setPlusOne: Dispatch<SetStateAction<boolean>>;
   displayPlusOne: boolean;
+  hasError: boolean;
+  setHasError: Dispatch<SetStateAction<boolean>>;
 }
 
 const GuestForm: React.FC<GuestFormProps> = ({
@@ -26,6 +28,8 @@ const GuestForm: React.FC<GuestFormProps> = ({
   setValue,
   setPlusOne,
   displayPlusOne,
+  hasError,
+  setHasError,
 }) => {
   const [going, setGoing] = useState(false);
   const [notGoing, setNotGoing] = useState(false);
@@ -38,6 +42,7 @@ const GuestForm: React.FC<GuestFormProps> = ({
   const handleGoingClick = () => {
     setGoing((prev) => !prev);
     setNotGoing(false);
+    setHasError(false);
     if (displayPlusOne) {
       setValue("attending", "yes");
     } else {
@@ -48,7 +53,7 @@ const GuestForm: React.FC<GuestFormProps> = ({
   const handleNotGoingClick = () => {
     setNotGoing((prev) => !prev);
     setGoing(false);
-
+    setHasError(false);
     if (displayPlusOne) {
       setValue("attending", "no");
     } else {
@@ -65,12 +70,14 @@ const GuestForm: React.FC<GuestFormProps> = ({
       <Heading title="Will you be attending?" />
       <ButtonGroup className="w-full gap-2">
         <YesButton
+          hasError={hasError}
           toggle={going}
           label="Going"
-          styles="bg-greenGradient text-white w-[50%] yes"
+          styles="bg-greenGradient text-white w-[50%] yes border border-red-500"
           onClick={handleGoingClick}
         />
         <NoButton
+          hasError={hasError}
           toggle={notGoing}
           label="Not Going"
           styles="text-black w-[50%] hover:opacity-90 no"

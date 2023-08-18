@@ -7,6 +7,7 @@ interface YesButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   styles?: string;
   toggle: boolean;
+  hasError: boolean;
 }
 
 const YesButton: React.FC<YesButtonProps> = ({
@@ -14,6 +15,7 @@ const YesButton: React.FC<YesButtonProps> = ({
   onClick,
   styles,
   toggle,
+  hasError,
 }) => {
   const createSVG = (width: any, height: any, radius: any) => {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -87,7 +89,13 @@ const YesButton: React.FC<YesButtonProps> = ({
   }, [toggle]);
 
   return (
-    <Button styles={` ${styles}`} outline label={label} onClick={onClick} />
+    <Button
+      styles={` ${styles}`}
+      hasError={hasError}
+      outline
+      label={label}
+      onClick={onClick}
+    />
   );
 };
 
