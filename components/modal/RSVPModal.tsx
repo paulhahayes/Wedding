@@ -43,6 +43,7 @@ const RSVPModal = () => {
       other: false,
       otherAllergies: "",
       plusone: false,
+      plusoneAttending: "",
       plusoneFirstName: "",
       plusoneLastName: "",
       plusoneVegetarian: false,
@@ -71,7 +72,7 @@ const RSVPModal = () => {
   }, [rsvpModal.isOpen]);
 
   useEffect(() => {
-    if (otp === "1234") {
+    if (otp === "2023") {
       setStep(STEPS.NAME);
     }
   }, [otp]);
@@ -85,7 +86,7 @@ const RSVPModal = () => {
   };
 
   const onNext = () => {
-    if (step === STEPS.CODE && otp !== "1234") {
+    if (step === STEPS.CODE && otp !== "2023") {
       setOtpError(true);
       return;
     }

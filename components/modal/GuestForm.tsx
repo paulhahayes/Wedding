@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { ButtonGroup } from "@material-tailwind/react";
 
@@ -21,7 +21,6 @@ interface GuestFormProps {
 }
 
 const GuestForm: React.FC<GuestFormProps> = ({
-  plusOne,
   register,
   errors,
   setValue,
@@ -31,37 +30,29 @@ const GuestForm: React.FC<GuestFormProps> = ({
   const [going, setGoing] = useState(false);
   const [notGoing, setNotGoing] = useState(false);
 
+  useEffect(() => {
+    setGoing(false);
+    setNotGoing(false);
+  }, [displayPlusOne]);
+
   const handleGoingClick = () => {
     setGoing((prev) => !prev);
     setNotGoing(false);
-
     if (displayPlusOne) {
-      setValue((prevFormData: any) => ({
-        ...prevFormData,
-        attending: "yes",
-      }));
+      setValue("attending", "yes");
     } else {
-      setValue((prevFormData: any) => ({
-        ...prevFormData,
-        plusone: "yes",
-      }));
+      setValue("plusoneAttending", "yes");
     }
   };
 
   const handleNotGoingClick = () => {
-    setNotGoing((prev) => !prev); // refactor
+    setNotGoing((prev) => !prev);
     setGoing(false);
 
     if (displayPlusOne) {
-      setValue((prevFormData: any) => ({
-        ...prevFormData,
-        attending: "no",
-      }));
+      setValue("attending", "no");
     } else {
-      setValue((prevFormData: any) => ({
-        ...prevFormData,
-        attending: "no",
-      }));
+      setValue("plusoneAttending", "no");
     }
   };
 
@@ -88,7 +79,6 @@ const GuestForm: React.FC<GuestFormProps> = ({
       </ButtonGroup>
       <Heading title="Please enter your name" />
       <Input
-        //
         id={displayPlusOne ? "firstName" : "plusoneFirstName"}
         label="first name"
         register={register}
