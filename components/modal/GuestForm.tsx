@@ -73,7 +73,7 @@ const GuestForm: React.FC<GuestFormProps> = ({
           hasError={hasError}
           toggle={going}
           label="Going"
-          styles="bg-greenGradient text-white w-[50%] yes border border-red-500"
+          styles="bg-greenGradient text-white w-[50%] yes"
           onClick={handleGoingClick}
         />
         <NoButton

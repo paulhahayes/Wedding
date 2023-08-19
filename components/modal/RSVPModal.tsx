@@ -87,23 +87,23 @@ const RSVPModal = () => {
   };
 
   const onNext = (data: any) => {
-    // OTP
     if (step === STEPS.CODE && otp !== "2023") {
       setOtpError(true);
       return;
     }
 
-    // first guess and pressed plus one
-    if (plusOne && step === STEPS.NAME) {
-      if (!hasError) {
-        setStep(STEPS.GUEST);
+    if (step === STEPS.NAME) {
+      if (data.attending === "") {
+        setHasError(true);
+      } else if (!hasError) {
+        setStep(plusOne ? STEPS.GUEST : STEPS.CONFIRM);
       }
-    } else if (!plusOne && step === STEPS.NAME) {
-      if (!hasError) {
+    } else if (step === STEPS.GUEST) {
+      if (data.plusoneAttending === "") {
+        setHasError(true);
+      } else if (!hasError) {
         setStep(STEPS.CONFIRM);
       }
-    } else if (plusOne && step === STEPS.GUEST) {
-      setStep(STEPS.CONFIRM);
     } else {
       setStep((value) => value + 1);
     }
