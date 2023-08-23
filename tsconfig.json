@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/navbar/Navbar.jsx",
-    "components/input/ConfettiButton.jsx"
+    "components/input/ConfettiButton.jsx",
+    "app/api/contact/route.js"
   ],
   "exclude": ["node_modules"]
 }
