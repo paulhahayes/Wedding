@@ -1,43 +1,67 @@
 import { supabase } from "@/lib/initSupabase";
+import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 
 async function registerGuestInDB(guest: {
   firstName: string;
   lastName: string;
   attending: boolean;
+  vegetarian: boolean;
+  glutenIntolerant: boolean;
+  lactoseIntolerant: boolean;
+  nutAllergy: boolean;
+  shellfishAllergy: boolean;
+  otherAllergies: string;
 }) {
   try {
-    await supabase.from("guests").insert([
+    const result = await supabase.from("guests").insert([
       {
         first_name: guest.firstName,
         last_name: guest.lastName,
         attending: guest.attending,
+        vegetarian: guest.vegetarian,
+        gluten_intolerant: guest.glutenIntolerant,
+        lactose_intolerant: guest.lactoseIntolerant,
+        nut_allergy: guest.nutAllergy,
+        other_requirements: guest.otherAllergies,
+        shellfish_allergy: guest.shellfishAllergy,
       },
     ]);
-    return new Response("OK", { status: 200 });
+    if (result.error) throw new Error(result.error.message);
+    return new NextResponse("Success", { status: 200 });
   } catch (error) {
     console.error("An unexpected error occurred:", error);
-    return new Response("Error", { status: 500 });
+    return new NextResponse("Error", { status: 500 });
   }
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { firstName, lastName, attending } = body;
 
   const guestOne = {
-    firstName,
-    lastName,
-    attending,
+    firstName: body.firstName,
+    lastName: body.lastName,
+    attending: body.attending,
+    vegetarian: body.vegetarian,
+    nutAllergy: body.nutAllergy,
+    glutenIntolerant: body.glutenIntolerant,
+    lactoseIntolerant: body.lactoseIntolerant,
+    shellfishAllergy: body.shellfishAllergy,
+    otherAllergies: body.otherAllergies,
   };
-  registerGuestInDB(guestOne);
-
+  await registerGuestInDB(guestOne);
   if (body.plusone) {
-    const { plusoneFirstName, plusoneLastName, plusoneAttending } = body;
     const guestTwo = {
-      firstName: plusoneFirstName,
-      lastName: plusoneLastName,
-      attending: plusoneAttending,
+      firstName: body.plusoneFirstName,
+      lastName: body.plusoneLastName,
+      attending: body.plusoneAttending,
+      vegetarian: body.plusoneVegetarian,
+      nutAllergy: body.plusoneNutAllergy,
+      glutenIntolerant: body.plusoneGlutenIntolerant,
+      lactoseIntolerant: body.plusoneLactoseIntolerant,
+      shellfishAllergy: body.plusoneShellfishAllergy,
+      otherAllergies: body.plusoneOtherAllergies,
     };
-    registerGuestInDB(guestTwo);
+    return registerGuestInDB(guestTwo);
   }
 }

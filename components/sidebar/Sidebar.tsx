@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 import useSidebar from "@/hooks/useSideBar";
 import useTranslate from "@/hooks/useTranslate";
@@ -66,6 +66,7 @@ const Sidebar = () => {
   const [activeItem, setActiveItem] = useState(MENU_ITEMS[0].text);
 
   const refs = useMenuRefs(MENU_ITEMS);
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   const handleItemClick = (item: any) => {
     toggleCollapsed();
@@ -77,6 +78,30 @@ const Sidebar = () => {
     router.push(item.href);
   };
 
+  const handleOutsideClick = useCallback(
+    (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        toggleCollapsed();
+      }
+    },
+    [toggleCollapsed]
+  );
+
+  useEffect(() => {
+    if (!collapsed) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [collapsed, handleOutsideClick]);
+
   useEffect(() => {
     const activeItemRef = refs[activeItem];
     if (activeItemRef.current !== null) {
@@ -85,10 +110,13 @@ const Sidebar = () => {
         block: "nearest",
       });
     }
-  }, [activeItem]);
+  }, [activeItem, refs]);
 
   return (
-    <div className="h-screen w-12 flex flex-col items-center fixed z-40  ">
+    <div
+      ref={sidebarRef}
+      className="h-screen w-12 flex flex-col items-center fixed z-40  "
+    >
       <div
         className="fixed sm:top-[21%] min-[320px]:top-[6%] hover:cursor-pointer z-30 text-white hover:opacity-70"
         onClick={toggleCollapsed}

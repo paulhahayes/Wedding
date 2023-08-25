@@ -1,5 +1,6 @@
 "use client";
-import { toast } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+
 import { useEffect, useMemo, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Heading from "../Heading";
@@ -8,6 +9,7 @@ import useRSVP from "@/hooks/useRSVP";
 import Modal from "./Modal";
 import GuestForm from "./GuestForm";
 import confetti from "canvas-confetti";
+import { sendRsvpForm } from "@/lib/api";
 
 enum STEPS {
   CODE = 0,
@@ -66,11 +68,11 @@ const RSVPModal = () => {
     setPlusOne(false);
   };
 
-  useEffect(() => {
-    if (rsvpModal.isOpen === false) {
-      resetModal();
-    }
-  }, [rsvpModal.isOpen]);
+  // useEffect(() => {
+  //   if (rsvpModal.isOpen === false) {
+  //     resetModal();
+  //   }
+  // }, [rsvpModal.isOpen]);
 
   useEffect(() => {
     if (otp === "2023") {
@@ -122,16 +124,12 @@ const RSVPModal = () => {
       spread: 60,
     });
 
-    console.log(data);
-    // //Backend
-    // try {
-    //   await fetch("/api/rsvp", {
-    //     method: "POST",
-    //     body: JSON.stringify(data),
-    //   });
-    // } catch (error) {}
-
-    // toast.success("RSVP sent!");
+    const result: any = await sendRsvpForm(data);
+    if (result.ok) {
+      toast.success("RSVP sent!");
+    } else {
+      toast.error("Something went wrong");
+    }
   };
 
   const actionLabel = useMemo(() => {
@@ -207,20 +205,23 @@ const RSVPModal = () => {
   }
 
   return (
-    <Modal
-      disabled={isLoading}
-      isOpen={rsvpModal.isOpen}
-      title="RSVP"
-      actionLabel={actionLabel}
-      onSubmit={handleSubmit(onSubmit)}
-      secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CODE ? undefined : onBack}
-      onClose={() => {
-        rsvpModal.onClose();
-        resetModal();
-      }}
-      body={bodyContent}
-    />
+    <div>
+      <Toaster />
+      <Modal
+        disabled={isLoading}
+        isOpen={rsvpModal.isOpen}
+        title="RSVP"
+        actionLabel={actionLabel}
+        onSubmit={handleSubmit(onSubmit)}
+        secondaryActionLabel={secondaryActionLabel}
+        secondaryAction={step === STEPS.CODE ? undefined : onBack}
+        onClose={() => {
+          rsvpModal.onClose();
+          resetModal();
+        }}
+        body={bodyContent}
+      />
+    </div>
   );
 };
 
