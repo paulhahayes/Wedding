@@ -8,7 +8,7 @@ import { Button } from "@material-tailwind/react";
 import { RiFileCopyLine } from "react-icons/ri";
 import { sendContactForm } from "@/lib/api";
 
-//TODO TOAST, isLoading, Mobile
+//TODO isLoading
 
 const Contact = () => {
   const {
