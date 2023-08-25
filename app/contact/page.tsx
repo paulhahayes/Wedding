@@ -27,7 +27,7 @@ const Contact = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const result: any = await sendContactForm(data);
     if (result.ok) {
-      toast.success("RSVP sent!");
+      toast.success("Your message was sent successfully!");
     } else {
       toast.error("Something went wrong");
     }
