@@ -14,7 +14,7 @@ async function registerGuestInDB(guest: {
   otherAllergies: string;
 }) {
   try {
-    const result = await supabase.from("guests").insert([
+    await supabase.from("guests").insert([
       {
         first_name: guest.firstName,
         last_name: guest.lastName,
@@ -27,7 +27,6 @@ async function registerGuestInDB(guest: {
         shellfish_allergy: guest.shellfishAllergy,
       },
     ]);
-    if (result.error) throw new Error(result.error.message);
     return new NextResponse("Success", { status: 200 });
   } catch (error) {
     return new NextResponse("Error", { status: 500 });
@@ -48,19 +47,23 @@ export async function POST(req: Request) {
     shellfishAllergy: body.shellfishAllergy,
     otherAllergies: body.otherAllergies,
   };
-  await registerGuestInDB(guestOne);
-  if (body.plusone) {
-    const guestTwo = {
-      firstName: body.plusoneFirstName,
-      lastName: body.plusoneLastName,
-      attending: body.plusoneAttending,
-      vegetarian: body.plusoneVegetarian,
-      nutAllergy: body.plusoneNutAllergy,
-      glutenIntolerant: body.plusoneGlutenIntolerant,
-      lactoseIntolerant: body.plusoneLactoseIntolerant,
-      shellfishAllergy: body.plusoneShellfishAllergy,
-      otherAllergies: body.plusoneOtherAllergies,
-    };
-    return registerGuestInDB(guestTwo);
+  if (body.plusone !== "") {
+    return await registerGuestInDB(guestOne);
+  } else {
+    registerGuestInDB(guestOne);
+    if (body.plusone !== "") {
+      const guestTwo = {
+        firstName: body.plusoneFirstName,
+        lastName: body.plusoneLastName,
+        attending: body.plusoneAttending,
+        vegetarian: body.plusoneVegetarian,
+        nutAllergy: body.plusoneNutAllergy,
+        glutenIntolerant: body.plusoneGlutenIntolerant,
+        lactoseIntolerant: body.plusoneLactoseIntolerant,
+        shellfishAllergy: body.plusoneShellfishAllergy,
+        otherAllergies: body.plusoneOtherAllergies,
+      };
+      return await registerGuestInDB(guestTwo);
+    }
   }
 }

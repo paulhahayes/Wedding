@@ -12,7 +12,7 @@ export const sendContactForm: SubmitHandler<FieldValues> = async (data) => {
 };
 
 export const sendRsvpForm: SubmitHandler<FieldValues> = async (data) => {
-  await fetch("/api/rsvp", {
+  return await fetch("/api/rsvp", {
     method: "POST",
     body: JSON.stringify(data),
     credentials: "same-origin",
