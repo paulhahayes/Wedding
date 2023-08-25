@@ -25,7 +25,12 @@ const Contact = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    sendContactForm(data);
+    const result: any = await sendContactForm(data);
+    if (result.ok) {
+      toast.success("RSVP sent!");
+    } else {
+      toast.error("Something went wrong");
+    }
   };
 
   const copied = () => toast("Copied ✅");

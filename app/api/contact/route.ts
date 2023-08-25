@@ -1,5 +1,6 @@
 import isEmail from "validator/lib/isEmail";
 import { transporter, mailOptions } from "@/app/config/nodemailer";
+import { NextResponse } from "next/server";
 
 function checkValidEmail(email: string) {
   return isEmail(email);
@@ -56,8 +57,8 @@ export async function POST(req: Request) {
   const body = (await req.json()) as ContactMessage;
   if (checkValidEmail(body.email)) {
     await sendEmail(body);
-    return new Response("OK", { status: 200 });
+    return new NextResponse("Success", { status: 200 });
   } else {
-    return new Response("Invalid email", { status: 400 });
+    return new NextResponse("Error", { status: 500 });
   }
 }
