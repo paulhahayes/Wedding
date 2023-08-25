@@ -30,7 +30,6 @@ async function registerGuestInDB(guest: {
     if (result.error) throw new Error(result.error.message);
     return new NextResponse("Success", { status: 200 });
   } catch (error) {
-    console.error("An unexpected error occurred:", error);
     return new NextResponse("Error", { status: 500 });
   }
 }

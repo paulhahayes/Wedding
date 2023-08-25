@@ -68,12 +68,6 @@ const RSVPModal = () => {
     setPlusOne(false);
   };
 
-  // useEffect(() => {
-  //   if (rsvpModal.isOpen === false) {
-  //     resetModal();
-  //   }
-  // }, [rsvpModal.isOpen]);
-
   useEffect(() => {
     if (otp === "2023") {
       setStep(STEPS.NAME);
