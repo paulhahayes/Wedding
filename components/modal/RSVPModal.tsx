@@ -119,11 +119,12 @@ const RSVPModal = () => {
     });
 
     const result: any = await sendRsvpForm(data);
-    if (result.ok) {
-      toast.success("RSVP sent!");
-    } else {
-      toast.error("Something went wrong");
-    }
+    console.log(result);
+    // if (result.ok) {
+    //   toast.success("RSVP sent!");
+    // } else {
+    //   toast.error("Something went wrong");
+    // }
   };
 
   const actionLabel = useMemo(() => {

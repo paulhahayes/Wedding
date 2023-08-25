@@ -77,22 +77,25 @@ const Modal: React.FC<ModalProps> = ({
         ref={backdrop}
         onClick={handleBackdropClick}
         className="
+        z-40
+        fixed 
+        top:0
+        w-full
+        h-full      
           justify-center 
           items-center 
           flex 
           overflow-x-hidden 
           overflow-y-auto 
-          fixed 
           inset-0 
-          z-40
           outline-none 
           focus:outline-none
           bg-neutral-800/70
-          min-[330px]:overflow-y-scroll
         "
       >
         <div
           className="
+          max-h-full
           relative 
           w-full
           md:w-4/6
@@ -100,9 +103,9 @@ const Modal: React.FC<ModalProps> = ({
           xl:w-2/5
           my-6
           mx-auto 
-          h-full
           lg:h-auto
           md:h-auto
+          
           "
         >
           {/*content*/}
@@ -119,12 +122,11 @@ const Modal: React.FC<ModalProps> = ({
               className="
               translate
               h-full
-              lg:h-auto
               md:h-auto
               border-0 
               md:rounded-lg 
               min-[330px]:rounded-none
-              min-[330px]:h-screen
+              min-[330px]:h-[10vh]
               
               shadow-lg 
               relative 
