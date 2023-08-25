@@ -88,7 +88,7 @@ const Modal: React.FC<ModalProps> = ({
           outline-none 
           focus:outline-none
           bg-neutral-800/70
-          min-[330px]:overflow-y-hidden
+          min-[330px]:overflow-y-scroll
         "
       >
         <div
