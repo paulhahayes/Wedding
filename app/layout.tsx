@@ -1,11 +1,15 @@
 import "./globals.css";
-import { Raleway } from "next/font/google";
-import Navbar from "@/components/navbar/Navbar";
+
 import { TranslateProvider } from "@/context/TranslateContext";
+import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar";
 import RSVPModal from "@/components/modal/RSVPModal";
+import localFont from "next/font/local";
 
-const font = Raleway({ subsets: ["latin"] });
+const myFont = localFont({
+  src: "../public/fonts/Bon Vivant Serif Bold.otf",
+});
+
 export const metadata = {
   title: "P & X",
   description: "P & X's wedding website",
@@ -18,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${font.className}`}>
+      <body style={myFont.style}>
         <TranslateProvider>
           <Sidebar />
           <Navbar />

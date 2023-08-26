@@ -1,56 +1,19 @@
 "use client";
-import { useEffect, useState, useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 import { motion } from "framer-motion";
-import Head from "next/head";
+
 import { TranslateContext } from "@/context/TranslateContext";
-import { FaMapMarkerAlt } from "react-icons/fa";
+
 import { useRouter } from "next/navigation";
 import { Button } from "@material-tailwind/react";
-import { Pacifico } from "next/font/google";
-import { HiClock } from "react-icons/hi";
 
-const font = Pacifico({ weight: "400", subsets: ["latin"] });
+import GlassCardHero from "./GlassCardHero";
+
 const Hero = () => {
-  const [fontSize, setFontSize] = useState("90px");
-  const [secondaryFontSize, setSecondaryFontSize] = useState("24px");
   const { lang } = useContext(TranslateContext);
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
-  // Warning this style requires access to the internet
-  const mainTextStyle = {
-    fontSize: fontSize,
-    background: "linear-gradient(to bottom, white, white)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    fontFamily: font.style.fontFamily,
-    letterSpacing: fontSize === "72px" ? "5px" : "2px",
-  };
-
-  const secondaryTextStyle = {
-    letterSpacing: "2px",
-    fontSize: secondaryFontSize,
-  };
-
-  useEffect(() => {
-    const updateFontSize = () => {
-      if (window.innerWidth <= 640) {
-        // For mobile devices
-        setFontSize("36px");
-        setSecondaryFontSize("14px");
-      } else if (window.innerWidth <= 1024) {
-        // For tablet devices
-        setFontSize("48px");
-        setSecondaryFontSize("18px");
-      } else {
-        setFontSize("72px"); // For desktop
-      }
-    };
-
-    window.addEventListener("resize", updateFontSize);
-    updateFontSize();
-    return () => window.removeEventListener("resize", updateFontSize);
-  }, []);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -76,63 +39,84 @@ const Hero = () => {
   return (
     <motion.div
       ref={ref}
-      className="w-full flex flex-col justify-center items-center top-[25%] z-10 text-white fixed"
+      className="w-full flex flex-col justify-center items-center sm:top[25%] top-[16%] z-10 text-white absolute"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-          rel="stylesheet"
-        />
-
-        <link
-          href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
       <motion.p
-        style={secondaryTextStyle}
         variants={childVariants}
-        className="font-semibold"
+        className="text-secondary text-2xl font-bold text-center border-b w-68"
       >
-        {/* calander icon */}
-        18 . 11 . 23
-      </motion.p>
-
-      <motion.p variants={childVariants} style={secondaryTextStyle}>
         {lang === "en"
-          ? "CELEBRATING THE MARRIAGE OF"
+          ? "Celebrating the marriage of"
           : "CELEBRANDO EL MATRIMONIO DE"}
       </motion.p>
 
-      <motion.h1 variants={childVariants} style={mainTextStyle}>
+      <motion.h1 className="text-[48px]" variants={childVariants}>
         Paul & Ximena
       </motion.h1>
 
+      <motion.div
+        variants={childVariants}
+        className="flex flex-row items-center justify-center gap-2 pt-4"
+      >
+        <div className="w-32 text-end">18 . 11 . 23</div>
+        <div className="border-r border-white h-[8vh]"></div>
+        <div className="w-32">
+          Mosman,
+          <br />
+          Sydney
+        </div>
+      </motion.div>
+
       <motion.p
         variants={childVariants}
-        style={secondaryTextStyle}
-        className="w-[45%] text-center "
+        className="text-center  w-64 mt-4 text-md pt-4"
       >
-        <FaMapMarkerAlt className="inline-block" /> Georges Height Lookout,
-        Ripples Chowder Bay
+        {lang === "en" ? "Attire: Formal" : "Vestimenta: Formal"}
       </motion.p>
+
+      <motion.div className="border mt-12" variants={childVariants}>
+        <GlassCardHero
+          title="Ceremony"
+          time="3:30PM - 5:30PM"
+          desc="Georges Head Lookout"
+          address="https://goo.gl/maps/KnRn8v5KF2K6QsGS8"
+        />
+      </motion.div>
+
+      <motion.div className="border  mt-12" variants={childVariants}>
+        <GlassCardHero
+          title="Reception"
+          time="6:30PM - 11:30PM"
+          desc="Ripples, Chowder Bay"
+          address="https://goo.gl/maps/gtyFRDZ1DN4huU2w6"
+        />
+      </motion.div>
       <motion.p
         variants={childVariants}
-        style={secondaryTextStyle}
-        className="text-lg flex flex-row items-center gap-2"
+        className="text-center  w-64 mt-12 text-md pt-4 border-t"
       >
-        <HiClock className="pt-1" />3 PM - 10 PM
+        {lang === "en"
+          ? "More Information available here"
+          : "Más información disponible aquí"}
       </motion.p>
-      <motion.div variants={childVariants}>
+      <motion.div
+        className="flex flex-row w-screen justify-around gap-2 p-4 "
+        variants={childVariants}
+      >
         <Button
-          className=" bg-blue-300/70 py-2 px-4 mt-2 border-2 border-white"
+          className=" bg-blue-300/70 w-[45%] py-2 px-4 mt-2 text-white border border-white"
           onClick={() => router.push(`/details`)}
         >
-          Enter
+          See more details
+        </Button>
+        <Button
+          className=" bg-blue-300/70 py-2 px-4 w-[45%] text-white mt-2 border border-white"
+          onClick={() => router.push(`/details`)}
+        >
+          Wet weather plans
         </Button>
       </motion.div>
     </motion.div>

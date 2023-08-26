@@ -17,6 +17,7 @@ module.exports = {
       },
       colors: {
         yellow: "#e8d33f",
+        secondary: "#ccd5ae",
         lime: "#f0fd71",
         yes: "#081c15",
         button: "#ced4da",
