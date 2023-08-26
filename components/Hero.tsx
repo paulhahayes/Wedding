@@ -39,45 +39,50 @@ const Hero = () => {
   return (
     <motion.div
       ref={ref}
-      className="w-full flex flex-col justify-center items-center sm:top[25%] top-[16%] z-10 text-white absolute"
+      className="w-68 md:w-[60%] flex flex-col justify-center items-center  sm:top-[20%] sm:pt-4 pt-none  z-10 text-white absolute"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.p
         variants={childVariants}
-        className="text-secondary text-2xl font-bold text-center border-b w-68"
+        className="text-secondary md:text-[32px] text-2xl font-bold text-center border-b w-full sm:pb-4 "
       >
         {lang === "en"
           ? "Celebrating the marriage of"
           : "CELEBRANDO EL MATRIMONIO DE"}
       </motion.p>
 
-      <motion.h1 className="text-[48px]" variants={childVariants}>
+      <motion.h1
+        className="text-[48px] md:text-[88px]"
+        variants={childVariants}
+      >
         Paul & Ximena
       </motion.h1>
 
       <motion.div
         variants={childVariants}
-        className="flex flex-row items-center justify-center gap-2 pt-4"
+        className="backdrop-blur-3xl flex flex-col rounded bg-white/10 border-white border items-center"
       >
-        <div className="w-32 text-end">18 . 11 . 23</div>
-        <div className="border-r border-white h-[8vh]"></div>
-        <div className="w-32">
-          Mosman,
-          <br />
-          Sydney
+        <div className="flex  flex-row items-center justify-center  sm:gap-8 gap-2 pt-4 md:text-[30px]">
+          <div className="w-32 sm:w-36 text-end">18 . 11 . 23</div>
+          <div className="border-r border-white sm:h-[20vh] h-[8vh]"></div>
+          <div className="w-32 sm:w-36 text-secondary">
+            Mosman,
+            <br />
+            Sydney
+          </div>
         </div>
+
+        <motion.p
+          variants={childVariants}
+          className="text-center  md:text-[32px] w-64 mt-4 sm:mt-2 text-md pt-4"
+        >
+          {lang === "en" ? "Attire: Formal" : "Vestimenta: Formal"}
+        </motion.p>
       </motion.div>
 
-      <motion.p
-        variants={childVariants}
-        className="text-center  w-64 mt-4 text-md pt-4"
-      >
-        {lang === "en" ? "Attire: Formal" : "Vestimenta: Formal"}
-      </motion.p>
-
-      <motion.div className="border mt-12" variants={childVariants}>
+      <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
           title="Ceremony"
           time="3:30PM - 5:30PM"
@@ -86,7 +91,7 @@ const Hero = () => {
         />
       </motion.div>
 
-      <motion.div className="border  mt-12" variants={childVariants}>
+      <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
           title="Reception"
           time="6:30PM - 11:30PM"
@@ -96,24 +101,24 @@ const Hero = () => {
       </motion.div>
       <motion.p
         variants={childVariants}
-        className="text-center  w-64 mt-12 text-md pt-4 border-t"
+        className="text-center  w-64 mt-12 sm:text-[18px] text-md pt-4 border-t"
       >
         {lang === "en"
           ? "More Information available here"
           : "Más información disponible aquí"}
       </motion.p>
       <motion.div
-        className="flex flex-row w-screen justify-around gap-2 p-4 "
+        className="flex flex-row w-screen sm:w-full justify-around gap-2 p-4 "
         variants={childVariants}
       >
         <Button
-          className=" bg-blue-300/70 w-[45%] py-2 px-4 mt-2 text-white border border-white"
+          className=" backdrop-blur-3xl bg-slate-700/60  hover:hover:bg-neutral-100/20 w-[45%] py-2 px-4 mt-2 text-white border border-white"
           onClick={() => router.push(`/details`)}
         >
           See more details
         </Button>
         <Button
-          className=" bg-blue-300/70 py-2 px-4 w-[45%] text-white mt-2 border border-white"
+          className=" backdrop-blur-3xl bg-slate-700/60 hover:hover:bg-neutral-100/20 py-2 px-4 w-[45%] text-white mt-2 border border-white"
           onClick={() => router.push(`/details`)}
         >
           Wet weather plans
