@@ -23,7 +23,7 @@ const Details = () => {
             </span>
           </Link>
           <Link
-            href="/details/event"
+            href="/details/ceremony"
             className="relative bg-cover shadow-lg hover:opacity-70 rounded p-4 w-72 h-96 border-4 border-white"
             style={{ backgroundImage: 'url("/wedding.png")' }}
           >
@@ -32,7 +32,7 @@ const Details = () => {
             </span>
           </Link>
           <Link
-            href="/details/venue"
+            href="/details/reception"
             className="relative bg-cover shadow-lg hover:opacity-70 rounded p-4 w-72 h-96 border-4 border-white"
             style={{ backgroundImage: 'url("/ripples.png")' }}
           >

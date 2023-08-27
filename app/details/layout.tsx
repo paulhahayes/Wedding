@@ -7,9 +7,10 @@ interface Props {
 
 enum options {
   "/details" = "Welcome",
-  "/details/event" = "Event",
+  "/details/ceremony" = "Event",
   "/details/story" = "Our Story",
-  "/details/venue" = "Venue",
+  "/details/reception" = "Venue",
+  "/details/wetweather" = "Wet Weather",
 }
 
 const Layout: React.FC<Props> = ({ children }) => {

@@ -19,7 +19,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
       className={`w-full h-full flex min-[320px]:flex-col 
 
 
-    border-4 rounded-2xl shadow-lg  bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 ${
+    border rounded-2xl shadow-lg  bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 ${
       reverse ? "lg:flex-row-reverse" : "lg:flex-row"
     } `}
     >
@@ -36,9 +36,9 @@ const GlassCard: React.FC<GlassCardProps> = ({
         {image && (
           <CldImage
             src={image}
-            alt="Scubar"
-            width="550"
-            height="550"
+            alt={title}
+            width="500"
+            height="500"
             quality="100"
             className="rounded-2xl border-2 border-white shadow-lg"
           />

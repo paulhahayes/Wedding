@@ -20,8 +20,9 @@ const Landing = () => {
   };
 
   return (
-    <div className="h-[2300px]">
+    <div className="h-[1200px]">
       <Plx
+        className="h-full"
         parallaxData={[
           {
             start: 0,

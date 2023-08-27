@@ -39,7 +39,7 @@ const Hero = () => {
   return (
     <motion.div
       ref={ref}
-      className="w-68 md:w-[60%] flex flex-col justify-center items-center  sm:top-[20%] sm:pt-4 pt-none  z-10 text-white absolute"
+      className="w-68 md:w-[60%] flex flex-col justify-center items-center  sm:top-[20%]  pt-none  z-10 text-white absolute"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -76,7 +76,7 @@ const Hero = () => {
 
         <motion.p
           variants={childVariants}
-          className="text-center  md:text-[32px] w-64 mt-4 sm:mt-2 text-md pt-4"
+          className="text-center  md:text-[32px] w-64 mt-4 sm:mt-2 text-md pt-4 pb-3"
         >
           {lang === "en" ? "Attire: Formal" : "Vestimenta: Formal"}
         </motion.p>

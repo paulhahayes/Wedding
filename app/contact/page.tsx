@@ -318,7 +318,7 @@ const Contact = () => {
           <div className="flex justify-end">
             <Button
               type="submit"
-              className="bg-blue-300/70 py-2 px-6 w-[50%] mt-2 border-2 border-white"
+              className="bg-slate-700/70 hover:hover:bg-neutral-100/20 py-2 px-6 w-[50%] mt-2 border-2 border-white"
             >
               Send
             </Button>
