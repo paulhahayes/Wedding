@@ -1,12 +1,9 @@
 "use client";
 import { useContext, useRef } from "react";
 import { motion } from "framer-motion";
-
 import { TranslateContext } from "@/context/TranslateContext";
-
 import { useRouter } from "next/navigation";
 import { Button } from "@material-tailwind/react";
-
 import GlassCardHero from "./GlassCardHero";
 
 const Hero = () => {

@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
 import useTranslate from "@/hooks/useTranslate";
-import { CldImage } from "next-cloudinary";
 
 import UpdateCard from "@/components/UpdateCard";
-import { updates } from "./data.js";
+import { updates } from "./updates.js";
 
 const Details = () => {
   const { lang } = useTranslate();
@@ -15,9 +14,9 @@ const Details = () => {
         <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12 min-[320px]:justify-center">
           <Link
             href="/details/story"
-            className="relative  shadow-lg hover:opacity-70 rounded p-4 w-72 h-96 border-4 border-white"
+            className="relative bg-cover shadow-lg hover:opacity-70 rounded p-4 w-72 h-96 border-4 border-white"
+            style={{ backgroundImage: 'url("/us.jpg")' }}
           >
-            <CldImage src="us" alt="Us" fill />
             <span className="absolute right-2 bottom-2 text-4xl font-bold">
               {lang === "en" ? "Our Story" : "Historia"}
             </span>
