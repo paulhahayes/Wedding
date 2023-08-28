@@ -7,9 +7,9 @@ export default function Home() {
     <div>
       <div className="flex justify-center">
         <Hero />
-        <div className="w-12 h-12 rounded-full bg-black top-[92%] z-40 fixed flex justify-center item">
+        {/* <div className="w-12 h-12 rounded-full bg-black top-[92%] z-40 fixed flex justify-center item">
           <BsChevronDoubleDown className="text-white" />
-        </div>
+        </div> */}
       </div>
       <Landing />
     </div>
