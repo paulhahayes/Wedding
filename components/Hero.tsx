@@ -36,7 +36,7 @@ const Hero = () => {
   return (
     <motion.div
       ref={ref}
-      className="w-68 md:w-[60%] flex flex-col justify-center items-center  sm:top-[20%]  pt-none  z-10 text-white absolute"
+      className="w-68 md:w-[60%] flex flex-col justify-center items-center  sm:top-[20%] md:top-[10%]  pt-none  z-10 text-white absolute"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

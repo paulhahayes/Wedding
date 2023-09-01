@@ -7,9 +7,9 @@ interface Props {
 
 enum options {
   "/details" = "Welcome",
-  "/details/ceremony" = "Event",
+  "/details/ceremony" = "Ceremony",
   "/details/story" = "Our Story",
-  "/details/reception" = "Venue",
+  "/details/reception" = "Reception",
   "/details/wetweather" = "Wet Weather",
 }
 

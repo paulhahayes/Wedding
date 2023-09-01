@@ -26,6 +26,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-{
-  /* <div className="flex  text-white items-center justify-between md:gap-0 "> */
-}

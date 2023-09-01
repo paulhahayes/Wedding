@@ -1,5 +1,5 @@
+import TimelineCard from "@/components/TimelineCard";
 import React from "react";
-import GlassCard from "@/components/GlassCard";
 
 const data = [
   {
@@ -22,22 +22,39 @@ const data = [
   },
 ];
 
+// TODO: basic information (time and location), MAP for location, timeline,
+
 const Ceremony = () => {
   return (
-    <div className="pb-12">
-      {data.map((item) => (
-        <div
-          className="flex gap-[50px] mt-6 mb-6 min-[320px]:justify-center "
-          key={item.id}
-        >
-          <GlassCard
-            title={item.title}
-            desc={item.desc}
-            image={item.image}
-            reverse={item.id % 2 === 0}
-          />
-        </div>
-      ))}
+    <div className="w-full">
+      <div>
+        {data.map((item) => (
+          <div
+            className="flex gap-[50px] mt-6 mb-6 min-[320px]:justify-center "
+            key={item.id}
+          ></div>
+        ))}
+      </div>
+
+      <div className="">
+        <TimelineCard
+          title="test"
+          time="test"
+          desc="lorem waeifmawemifmk weafmafwekof"
+        />
+        <TimelineCard
+          title="test"
+          time="test"
+          desc="lorem waeifmawemifmk weafmafwekof"
+          reverse
+        />
+
+        <TimelineCard
+          title="test"
+          time="test"
+          desc="lorem waeifmawemifmk weafmafwekof"
+        />
+      </div>
     </div>
   );
 };

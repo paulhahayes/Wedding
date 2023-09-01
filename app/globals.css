@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* background: linear-gradient(
-    to right,
-    rgba(0, 123, 189, 0.3),
-    rgba(252, 209, 42, 0.3)
-  ); */
-
 html,
 body {
   left: 0;
