@@ -1,4 +1,5 @@
-import TimelineCard from "@/components/TimelineCard";
+import Timeline from "@/components/Timeline";
+
 import React from "react";
 
 const data = [
@@ -27,16 +28,17 @@ const data = [
 const Ceremony = () => {
   return (
     <div className="w-full">
-      <div>
+      {/* <div>
         {data.map((item) => (
           <div
             className="flex gap-[50px] mt-6 mb-6 min-[320px]:justify-center "
             key={item.id}
           ></div>
         ))}
-      </div>
+      </div> */}
 
-      <div className="">
+          <Timeline />
+      {/* <div className="timeline">
         <TimelineCard
           title="test"
           time="test"
@@ -54,7 +56,7 @@ const Ceremony = () => {
           time="test"
           desc="lorem waeifmawemifmk weafmafwekof"
         />
-      </div>
+      </div> */}
     </div>
   );
 };
