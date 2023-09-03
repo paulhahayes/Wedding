@@ -1,7 +1,10 @@
+import { CldImage } from 'next-cloudinary';
+
 type TimelineCardProps = {
   title: string;
   time: string;
   desc: string;
+  image: string;
   reverse?: boolean;
 };
 
@@ -10,6 +13,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
   time,
   desc,
   reverse,
+  image
 }) => {
   return (
     <div
@@ -26,7 +30,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
           <h2 className="text-lime text-cetext-[24px] font-bold">{title}</h2>
           <small className="text-[16px] my-4 inline-block">{time}</small>
           <p className="">{desc}</p>
-
+          <CldImage src={image} alt={image}/>
         </div>
         <span className={`h-0 w-0 absolute top-[28px] z-20 ${reverse ? "left-arrow" : "right-arrow"}`}></span>
       </div>
