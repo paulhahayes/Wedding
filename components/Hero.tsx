@@ -82,8 +82,8 @@ const Hero = () => {
       <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
           title="Ceremony"
-          time="3:30PM - 5:30PM"
-          desc="Georges Head Lookout"
+          time="3:30PM"
+          desc="Georges Head"
           address="https://goo.gl/maps/KnRn8v5KF2K6QsGS8"
         />
       </motion.div>
