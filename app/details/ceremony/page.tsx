@@ -27,7 +27,7 @@ const data = [
 
 const Ceremony = () => {
   return (
-    <div className="w-full">
+    <div className="md:mx-[-7rem]">
       {/* <div>
         {data.map((item) => (
           <div
@@ -37,26 +37,7 @@ const Ceremony = () => {
         ))}
       </div> */}
 
-          <Timeline />
-      {/* <div className="timeline">
-        <TimelineCard
-          title="test"
-          time="test"
-          desc="lorem waeifmawemifmk weafmafwekof"
-        />
-        <TimelineCard
-          title="test"
-          time="test"
-          desc="lorem waeifmawemifmk weafmafwekof"
-          reverse
-        />
-
-        <TimelineCard
-          title="test"
-          time="test"
-          desc="lorem waeifmawemifmk weafmafwekof"
-        />
-      </div> */}
+      <Timeline />
     </div>
   );
 };

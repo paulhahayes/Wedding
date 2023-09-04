@@ -1,4 +1,5 @@
-import { CldImage } from 'next-cloudinary';
+"use client";
+import { CldImage } from "next-cloudinary";
 
 type TimelineCardProps = {
   title: string;
@@ -13,26 +14,38 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
   time,
   desc,
   reverse,
-  image
+  image,
 }) => {
   return (
     <div
-      className={`relative text-start w-[50%] ${reverse ? "left-0 pr-12" : "left-[50%]  pl-12"}
+      className={`relative text-start sm:w-[50%] w-[100%] sm:py-0 py-4 px-2 sm:px-0 ${
+        reverse ? "left-0 sm:pr-12 pl-16" : "md:left-[50%] sm:pl-12 pl-16"
+      }
     `}
     >
       <div
-      className={`absolute w-6 h-6 z-20 top-[32px] rounded-full bg-white ${reverse ? "right-[-15px]" : "left-[-9px]"}
+        className={`absolute w-6 h-6 z-20 top-[32px] rounded-full  bg-white ${
+          reverse ? "right-circle" : "left-circle "
+        }
     `}
-    ></div>
-              
-      <div className="py-[10px] px-[50px] relative rounded-xl border backdrop-blur-3xl bg-slate-700/30 ">
-        <div className="py-[20px] px-[30px] relative rounded text-[18px] bg-neutral-100/10 ">
-          <h2 className="text-lime text-cetext-[24px] font-bold">{title}</h2>
-          <small className="text-[16px] my-4 inline-block">{time}</small>
+      ></div>
+
+      <div className="py-[10px] px-[20px] relative rounded-xl border h-auto sm:h-[500px] backdrop-blur-3xl flex sm:flex-row flex-col bg-slate-700/30 ">
+        <div className="py-[20px] px-[20px] relative rounded text-[18px] bg-neutral-100/10 sm:w-[40%] w-[100%] ">
+          <h2 className="text-lime text-[28px] font-bold">{title}</h2>
+          <small className="text-[16px] my-2 inline-block">{time}</small>
           <p className="">{desc}</p>
-          <CldImage src={image} alt={image}/>
         </div>
-        <span className={`h-0 w-0 absolute top-[28px] z-20 ${reverse ? "left-arrow" : "right-arrow"}`}></span>
+        <div className="sm:w-[60%] w-[100%] flex flex-col justify-center bg-neutral-100/10 pr-0 sm:pr-[20px]">
+          <div className="h-[360px] relative w-full">
+            <CldImage src={image} alt={image} fill className="rounded border" />
+          </div>
+        </div>
+        <span
+          className={`h-0 w-0 absolute top-[28px] z-20 ${
+            reverse ? "left-arrow" : "right-arrow"
+          }`}
+        ></span>
       </div>
     </div>
   );

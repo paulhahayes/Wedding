@@ -1,8 +1,7 @@
 import TimelineCard from "./TimelineCard";
 const Timeline = () => {
-
   return (
-    <div className="timeline">
+    <div className="timeline pr-2">
       <div className="roll">
         <TimelineCard
           title="Ceremony"
@@ -18,7 +17,7 @@ const Timeline = () => {
           desc="After the ceremony we invite guests to make there way to Chowder Bay. There will be a shuttle bus on the day but places may be limited.  Alternatively, there is a small bush walk to the bay. Laslty for those driving, there is parking close to ripples beware it is metered. "
           reverse
           image="lookout"
-          />
+        />
       </div>
       <div className="roll">
         <TimelineCard
@@ -35,10 +34,10 @@ const Timeline = () => {
           desc="The offically reception begins 6:30pm."
           reverse
           image="ripples-day"
-          />
-        </div>
+        />
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Timeline;

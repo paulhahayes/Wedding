@@ -65,6 +65,7 @@ const Contact = () => {
                     className="object-cover rounded-l"
                     src="/c.png"
                     fill
+                    quality={1}
                     alt="Image"
                   />
                 </div>
@@ -73,6 +74,7 @@ const Contact = () => {
                     className="object-cover rounded-l"
                     src="/bride.png"
                     fill
+                    quality={1}
                     alt="Image"
                   />
                 </div>
