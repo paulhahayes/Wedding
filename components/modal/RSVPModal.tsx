@@ -15,8 +15,7 @@ import { sendRsvpForm } from "@/lib/api";
 enum STEPS {
   CODE = 0,
   NAME = 1,
-  GUEST = 2,
-  CONFIRM = 3,
+  CONFIRM = 2,
 }
 
 const RSVPModal = () => {
@@ -25,7 +24,6 @@ const RSVPModal = () => {
   const [step, setStep] = useState(STEPS.CODE);
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState(false);
-  const [plusOne, setPlusOne] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   const {
@@ -46,17 +44,6 @@ const RSVPModal = () => {
       shellfishAllergy: false,
       other: false,
       otherAllergies: "",
-      plusone: false,
-      plusoneAttending: "",
-      plusoneFirstName: "",
-      plusoneLastName: "",
-      plusoneVegetarian: false,
-      plusoneLactoseIntolerant: false,
-      plusoneGlutenIntolerant: false,
-      plusoneNutAllergy: false,
-      plusoneShellfishAllergy: false,
-      plusoneOther: false,
-      plusoneOtherAllergies: "",
     },
   });
 
@@ -66,7 +53,6 @@ const RSVPModal = () => {
     setOtp("");
     setOtpError(false);
     setIsLoading(false);
-    setPlusOne(false);
   };
 
   useEffect(() => {
@@ -76,11 +62,7 @@ const RSVPModal = () => {
   }, [otp]);
 
   const onBack = () => {
-    if (!plusOne && step === STEPS.CONFIRM) {
-      setStep(STEPS.NAME);
-    } else {
-      setStep((value) => value - 1);
-    }
+    setStep((value) => value - 1);
   };
 
   const onNext = (data: any) => {
@@ -91,12 +73,6 @@ const RSVPModal = () => {
 
     if (step === STEPS.NAME) {
       if (data.attending === "") {
-        setHasError(true);
-      } else if (!hasError) {
-        setStep(plusOne ? STEPS.GUEST : STEPS.CONFIRM);
-      }
-    } else if (step === STEPS.GUEST) {
-      if (data.plusoneAttending === "") {
         setHasError(true);
       } else if (!hasError) {
         setStep(STEPS.CONFIRM);
@@ -168,24 +144,6 @@ const RSVPModal = () => {
         register={register}
         errors={errors}
         setValue={setValue}
-        plusOne={plusOne}
-        setPlusOne={setPlusOne}
-        displayPlusOne={true}
-        hasError={hasError}
-        setHasError={setHasError}
-      />
-    );
-  }
-
-  if (step === STEPS.GUEST) {
-    bodyContent = bodyContent = (
-      <GuestForm
-        plusOne={plusOne}
-        setPlusOne={setPlusOne}
-        register={register}
-        errors={errors}
-        setValue={setValue}
-        displayPlusOne={false}
         hasError={hasError}
         setHasError={setHasError}
       />

@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/initSupabase";
 import { NextResponse } from "next/server";
-// import { NextResponse } from "next/server";
 
 async function registerGuestInDB(guest: {
   firstName: string;
@@ -47,23 +46,6 @@ export async function POST(req: Request) {
     shellfishAllergy: body.shellfishAllergy,
     otherAllergies: body.otherAllergies,
   };
-  if (body.plusone !== "") {
-    return await registerGuestInDB(guestOne);
-  } else {
-    registerGuestInDB(guestOne);
-    if (body.plusone !== "") {
-      const guestTwo = {
-        firstName: body.plusoneFirstName,
-        lastName: body.plusoneLastName,
-        attending: body.plusoneAttending,
-        vegetarian: body.plusoneVegetarian,
-        nutAllergy: body.plusoneNutAllergy,
-        glutenIntolerant: body.plusoneGlutenIntolerant,
-        lactoseIntolerant: body.plusoneLactoseIntolerant,
-        shellfishAllergy: body.plusoneShellfishAllergy,
-        otherAllergies: body.plusoneOtherAllergies,
-      };
-      return await registerGuestInDB(guestTwo);
-    }
-  }
+
+  return await registerGuestInDB(guestOne);
 }

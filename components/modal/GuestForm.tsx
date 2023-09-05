@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction, useEffect } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { ButtonGroup } from "@material-tailwind/react";
 
@@ -7,17 +7,13 @@ import DietaryOptions from "../input/DietaryOptions";
 import Input from "../input/Input";
 import YesButton from "../input/YesButton";
 import NoButton from "../input/NoButton";
-import Checkbox from "../input/Checkbox";
 
 import { FormData } from "@/types/FormData";
 
 interface GuestFormProps {
-  plusOne: boolean;
   register: UseFormRegister<FormData>;
   errors: FieldErrors;
   setValue: any;
-  setPlusOne: Dispatch<SetStateAction<boolean>>;
-  displayPlusOne: boolean;
   hasError: boolean;
   setHasError: Dispatch<SetStateAction<boolean>>;
 }
@@ -26,43 +22,24 @@ const GuestForm: React.FC<GuestFormProps> = ({
   register,
   errors,
   setValue,
-  setPlusOne,
-  displayPlusOne,
   hasError,
   setHasError,
 }) => {
   const [going, setGoing] = useState(false);
   const [notGoing, setNotGoing] = useState(false);
 
-  useEffect(() => {
-    setGoing(false);
-    setNotGoing(false);
-  }, [displayPlusOne]);
-
   const handleGoingClick = () => {
     setGoing((prev) => !prev);
     setNotGoing(false);
     setHasError(false);
-    if (displayPlusOne) {
-      setValue("attending", "yes");
-    } else {
-      setValue("plusoneAttending", "yes");
-    }
+    setValue("attending", "yes");
   };
 
   const handleNotGoingClick = () => {
     setNotGoing((prev) => !prev);
     setGoing(false);
     setHasError(false);
-    if (displayPlusOne) {
-      setValue("attending", "no");
-    } else {
-      setValue("plusoneAttending", "no");
-    }
-  };
-
-  const handleTogglePlusOne = () => {
-    setPlusOne((prev) => !prev);
+    setValue("attending", "no");
   };
 
   return (
@@ -86,14 +63,14 @@ const GuestForm: React.FC<GuestFormProps> = ({
       </ButtonGroup>
       <Heading title="Please enter your name" />
       <Input
-        id={displayPlusOne ? "firstName" : "plusoneFirstName"}
+        id="firstName"
         label="first name"
         register={register}
         errors={errors}
         required
       />
       <Input
-        id={displayPlusOne ? "lastName" : "plusoneLastName"}
+        id="lastName"
         label="last name"
         register={register}
         errors={errors}
@@ -101,21 +78,8 @@ const GuestForm: React.FC<GuestFormProps> = ({
       />
       <div>
         <Heading subtitle="Please select any dietary requirements" />
-        <DietaryOptions
-          register={register}
-          plusOne={!displayPlusOne}
-          errors={errors}
-        />
+        <DietaryOptions register={register} errors={errors} />
       </div>
-      {displayPlusOne && (
-        <div className="border-t pt-2" onClick={handleTogglePlusOne}>
-          <Checkbox
-            id="plusone"
-            label="Do you have a plus one?"
-            register={register}
-          />
-        </div>
-      )}
     </div>
   );
 };
