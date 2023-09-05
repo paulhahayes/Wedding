@@ -18,7 +18,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
 }) => {
   return (
     <div
-      className={`w-full sm:h-[450px] h-full flex flex-col gap-8 sm:flex-row border-t-2 sm:border-none p-2 border-white
+      className={`w-full sm:h-[450px] lg:h-[550px] h-full flex flex-col gap-8 sm:flex-row border-t-2 sm:border-none p-2 border-white
       ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"}
       ${
         background

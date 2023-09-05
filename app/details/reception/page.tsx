@@ -25,21 +25,29 @@ const data = [
 const Reception = () => {
   return (
     <div className="pb-12">
-      {data.map((item) => (
-        <div
-          className="flex gap-[50px] mt-6 mb-6 min-[320px]:justify-center "
-          key={item.id}
-        >
-          <GlassCard
-            title={item.title}
-            desc={item.desc}
-            image={item.image}
-            reverse={item.id % 2 === 0}
-          />
+
+        <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12 min-[320px]:justify-center w-full">
+          <div
+
+            className=" bg-cover shadow-lg  rounded p-4 w-[300px] 2xl:w-[660px] h-[400px] border border-white"
+            style={{ backgroundImage: 'url("/ripples-day.jpg")' }}
+          >
+          </div>
+          <div
+
+            className=" bg-cover shadow-lg  rounded p-4 w-[300px] 2xl:w-[660px] h-[400px]  border border-white"
+            style={{ backgroundImage: 'url("/food.avif")' }}
+          >
+
+          </div>
+          <div
+            className=" bg-cover shadow-lg  rounded p-4 w-[300px] 2xl:w-[660px] h-[400px] border border-white"
+            style={{ backgroundImage: 'url("/ripples-night.avif")' }}
+          >
+          </div>
         </div>
-      ))}
-    </div>
-  );
-};
+
+    </div>)
+}
 
 export default Reception;

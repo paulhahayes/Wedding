@@ -36,14 +36,14 @@ const Hero = () => {
   return (
     <motion.div
       ref={ref}
-      className="w-68 md:w-[60%] flex flex-col justify-center items-center  z-10 text-white absolute"
+      className="w-68 md:w-[60%] flex flex-col justify-center items-center z-10 text-white absolute"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.p
         variants={childVariants}
-        className="text-secondary md:text-[32px] text-2xl font-bold text-center border-b w-full sm:pb-4 "
+        className="text-lime md:text-[32px] text-2xl font-bold text-center border-b w-full sm:pb-4 "
       >
         {lang === "en"
           ? "Celebrating the marriage of"
@@ -59,12 +59,12 @@ const Hero = () => {
 
       <motion.div
         variants={childVariants}
-        className="backdrop-blur-3xl flex flex-col rounded bg-white/10 border-white border items-center"
+        className="backdrop-blur-3xl flex flex-col rounded bg-white/10 border-white border items-center shadow-md"
       >
         <div className="flex  flex-row items-center justify-center  sm:gap-8 gap-2 pt-4 md:text-[30px]">
           <div className="w-32 sm:w-36 text-end">18 . 11 . 23</div>
           <div className="border-r border-white sm:h-[20vh] h-[8vh]"></div>
-          <div className="w-32 sm:w-36 text-secondary">
+          <div className="w-32 sm:w-36 text-lime">
             Mosman,
             <br />
             Sydney

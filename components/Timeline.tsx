@@ -15,9 +15,9 @@ const Timeline = () => {
         <TimelineCard
           title="Travel down to Chowder Bay"
           time="4:45pm"
-          desc="After the ceremony we invite guests to make there way to Chowder Bay. There will be a shuttle bus on the day but places may be limited.  Alternatively, there is a small bush walk to the bay. Laslty for those driving, there is parking close to ripples beware it is metered. "
+          desc="After the ceremony we invite guests to make there way to Chowder Bay. There will be a shuttle bus on the day leaving from the carpark.  Alternatively, there is a small bush walk to the bay. Laslty for those driving, there is parking close to ripples but beware it is metered."
           reverse
-          image="lookout"
+          image="cannon"
         />
       </div>
       <div className="roll">
@@ -25,14 +25,14 @@ const Timeline = () => {
           title="Relax by the bay"
           time="5:15pm"
           desc="There will be a short break between the ceremony and receiption. Feel free to hang out around Chowder Bay and enjoy some drinks, sunshine and good company. Explore the Wharf and take plenty of photos! "
-          image="3511997_nuMs-R64kAgINssltPSHz8G6vjsP6j59q19E1K3WIT8_jxjthq"
+          image="Chowder-bay_byw4be"
         />
       </div>
       <div className="roll">
         <TimelineCard
           title="Reception begins"
           time="6:30pm"
-          desc="The offically reception begins 6:30pm. "
+          desc="The offically reception begins 6:30pm. There will be drinks and food."
           reverse
           image="ripples-day"
         />

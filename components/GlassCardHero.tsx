@@ -21,7 +21,7 @@ const GlassCardHero: React.FC<GlassCardHeroProps> = ({
     <div className="h-full flex flex-col w-screen sm:w-full shadow-lg bg-white backdrop-filter backdrop-blur-lg bg-opacity-10">
       {/* Text and desc */}
       <div className="flex-1 flex-col bg-clip-padding">
-        <div className="pt-2 text-center font-bold sm:text-[32px] text-3xl text-secondary">
+        <div className="pt-2 text-center font-bold sm:text-[32px] text-3xl text-lime">
           {title}
         </div>
         <div
