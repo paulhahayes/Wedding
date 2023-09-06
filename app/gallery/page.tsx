@@ -6,5 +6,10 @@ import { getImages } from "./getImages";
 export default async function GalleryPage() {
   const images = await getImages();
 
-  return <Content images={images} />;
+  return (
+    <>
+      <div>Upload an image</div>
+      <Content images={images} />;
+    </>
+  );
 }
