@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ImageProps } from "@/types/GalleryTypes";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
 type ContentProps = {
   images: ImageProps[];
@@ -11,11 +11,9 @@ type ContentProps = {
 const Content: React.FC<ContentProps> = ({ images }) => {
   const [photoId, setPhotoId] = useState<number | null>(null);
 
-  useEffect(() => {}, [photoId]);
-
   return (
     <main className="mx-auto max-w-[1960px] p-4 ">
-      {photoId && (
+      {photoId != null && (
         <ImageModal
           images={images}
           onClose={() => {
@@ -30,7 +28,7 @@ const Content: React.FC<ContentProps> = ({ images }) => {
         {images.map(({ id, public_id, format, blurDataUrl }) => (
           <div
             key={id}
-            className="after:content group relative mb-5 block w-full shadow after:pointer-events-none after:absolute after:inset-0 after:rounded-lg "
+            className="after:content group relative mb-5 block hover:cursor-pointer w-full shadow after:pointer-events-none after:absolute after:inset-0 after:rounded-lg "
           >
             <Image
               alt={public_id}

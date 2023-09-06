@@ -30,7 +30,8 @@
     ".next/types/**/*.ts",
     "components/navbar/Navbar.jsx",
     "components/input/ConfettiButton.jsx",
-    "app/api/contact/route.js"
+    "app/api/contact/route.js",
+    "lib/utils/downloadPhoto.js"
   ],
   "exclude": ["node_modules"]
 }

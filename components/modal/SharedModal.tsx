@@ -28,9 +28,7 @@ export default function SharedModal({
   let filteredImages = images?.filter((img: ImageProps) =>
     range(index - 15, index + 15).includes(img.id)
   );
-
   let currentImage = images ? images[index] : currentPhoto;
-
   let imagesLength = images ? images.length : 0;
 
   const handlers = useSwipeable({
@@ -46,7 +44,7 @@ export default function SharedModal({
     },
     trackMouse: true,
   });
-
+  console.log(loaded);
   return (
     <MotionConfig
       transition={{
@@ -72,11 +70,7 @@ export default function SharedModal({
                 className="absolute"
               >
                 <Image
-                  src={`https://res.cloudinary.com/${
-                    process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-                  }/image/upload/c_scale,${"w_1280"}/${
-                    currentImage?.public_id
-                  }.${currentImage?.format}`}
+                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1280/${currentImage?.public_id}.${currentImage?.format}`}
                   width={1280}
                   height={853}
                   priority
@@ -88,6 +82,7 @@ export default function SharedModal({
           </div>
         </div>
 
+        {/* Buttons + bottom nav bar */}
         <div className="absolute inset-0 mx-auto flex max-w-7xl items-center justify-center">
           {/* Buttons */}
           {loaded && (
@@ -123,7 +118,6 @@ export default function SharedModal({
                 >
                   <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                 </a>
-
                 <button
                   onClick={() =>
                     downloadPhoto(
@@ -139,7 +133,9 @@ export default function SharedModal({
               </div>
               <div className="absolute top-0 left-0 flex items-center gap-2 p-3 text-white">
                 <button
-                  onClick={() => closeModal()}
+                  onClick={() => {
+                    closeModal();
+                  }}
                   className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
                 >
                   <XMarkIcon className="h-5 w-5" />

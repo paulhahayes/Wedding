@@ -1,7 +1,6 @@
 "use client";
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
 import type { ImageProps } from "@/types/GalleryTypes";
@@ -19,14 +18,10 @@ export default function ImageModal({
   setPhotoId: (photoId: number | null) => void;
 }) {
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const router = useRouter();
   let index = Number(photoId);
-
   const [direction, setDirection] = useState(0);
   const [curIndex, setCurIndex] = useState(index);
-
   function handleClose() {
-    router.push("/gallery");
     onClose?.();
   }
 
@@ -52,15 +47,22 @@ export default function ImageModal({
     }
   });
 
+  const handleBackdropClick = (event: any) => {
+    if (event.target === overlayRef.current) {
+      handleClose();
+    }
+  };
+
   return (
     <Dialog
       static
       open={true}
-      onClose={handleClose}
+      onClose={() => {}}
       initialFocus={overlayRef}
       className="fixed inset-0 z-50 flex items-center justify-center"
     >
       <Dialog.Overlay
+        onClick={handleBackdropClick}
         ref={overlayRef}
         as={motion.div}
         key="backdrop"
@@ -68,13 +70,13 @@ export default function ImageModal({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       />
+
       <SharedModal
         index={curIndex}
         direction={direction}
         images={images}
         changePhotoId={changePhotoId}
         closeModal={handleClose}
-        navigation={true}
       />
     </Dialog>
   );

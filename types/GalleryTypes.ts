@@ -15,6 +15,5 @@ export interface SharedModalProps {
   currentPhoto?: ImageProps;
   changePhotoId: (newVal: number) => void;
   closeModal: () => void;
-  navigation: boolean;
   direction?: number;
 }
