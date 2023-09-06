@@ -5,11 +5,7 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
-  return (
-    <div className="lg:px-24 md:px-12 sm:px-8 min-h- last:screen">
-      {children}
-    </div>
-  );
+  return <div className="">{children}</div>;
 };
 
 export default Layout;
