@@ -5,7 +5,12 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
-  return <div className="">{children}</div>;
+  return (
+    <div className="md:px-36  py-0 text-center">
+      <h1 className="text-[70px] text-white">Gallery</h1>
+      {children}
+    </div>
+  );
 };
 
 export default Layout;

@@ -10,3 +10,9 @@ export type FormData = {
   other: boolean;
   otherAllergies: string;
 };
+
+export type ImageData = {
+  name: string;
+  title: string;
+  file: any;
+};

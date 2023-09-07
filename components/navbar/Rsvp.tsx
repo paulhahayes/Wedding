@@ -13,7 +13,7 @@ const Rsvp = () => {
   return (
     <div
       className="text-xl font-semibold items-center hidden sm:block rounded-xl
-      dark:text-neutral-100 cursor-pointer hover:opacity-60 border-2 border-white py-1 px-2
+      cursor-pointer hover:opacity-60 border-2 border-white py-1 px-2
       transition-opacity"
       onClick={handleClick}
     >

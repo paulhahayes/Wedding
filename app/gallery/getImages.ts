@@ -5,7 +5,7 @@ import getBase64ImageUrl from "@/lib/utils/generateBlurPlaceholder";
 export async function getImages() {
   const results = await cloudinary.v2.search
     .expression(`folder:gallery/*`)
-    .sort_by("created_at", "desc")
+    .sort_by("created_at", "asc")
     .max_results(400)
     .execute();
   let reducedResults: ImageProps[] = [];

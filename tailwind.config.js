@@ -42,5 +42,5 @@ module.exports = {
   variants: {
     extend: { flexDirection: ["nth-child"] },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };
