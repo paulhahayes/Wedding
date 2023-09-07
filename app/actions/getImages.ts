@@ -6,9 +6,11 @@ export async function getImages() {
   const results = await cloudinary.v2.search
     .expression(`folder:gallery/*`)
     .sort_by("created_at", "desc")
-    .max_results(400)
+    .max_results(30)
     .with_field("tags")
+    .next_cursor()
     .execute();
+
   let reducedResults: ImageProps[] = [];
 
   let i = 0;

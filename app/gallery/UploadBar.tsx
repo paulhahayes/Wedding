@@ -16,8 +16,8 @@ const UploadBar = () => {
   }, [imageModal]);
 
   return (
-    <div className="flex flex-row justify-between border-b pb-4">
-      <div className="text-lime text-3xl text-center hidden sm:block">
+    <div className="flex flex-row justify-between border-b pb-4 p-4 sm:px-0">
+      <div className="text-lime text-3xl text-center hidden sm:block ">
         Upload an image
       </div>
       <div className="w-40">

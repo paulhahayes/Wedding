@@ -33,7 +33,7 @@ export default function GridImage({
 
   return (
     <div className="group">
-      <div className="after:content relative mb-5 block w-full hover:cursor-pointer after:pointer-events-none overflow-y-hidden after:absolute after:inset-0 after:rounded-lg">
+      <div className="after:content relative mb-5 block w-full hover:cursor-pointer after:pointer-events-none  after:absolute after:inset-0 after:rounded-lg">
         <CldImage
           alt={image.public_id}
           className="transform rounded-lg brightness-90 transition will-change-auto border group-hover:brightness-110"
@@ -51,12 +51,11 @@ export default function GridImage({
           onClick={() => setPhotoId(image.id)}
         />
       </div>
-
       <p
         className="text-lg text-start font-medium text-white absolute hover:cursor-pointer"
         onClick={handleClick}
       >
-        {addTag()}
+        {image.tags[0] ? addTag() : ""}
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
-//TODO Upload, Pagination, + scroll,, re-render on upload / delete
+//TODO pagination, + scroll,, re-render on upload / delete
 
 import Content from "./Content";
-import { getImages } from "./getImages";
+import { getImages } from "../actions/getImages";
 import UploadBar from "./UploadBar";
 
 export default async function GalleryPage() {
