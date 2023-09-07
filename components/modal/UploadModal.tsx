@@ -94,10 +94,12 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
     setLoading(false);
     if (result.asset_id) {
       toast.success("Image uploaded!");
-      router.refresh();
     } else {
       toast.error("Something went wrong");
     }
+    setTimeout(() => {
+      router.refresh();
+    }, 2000);
     handleClose();
   };
 

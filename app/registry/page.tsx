@@ -1,34 +1,42 @@
-import { FeatureTitle } from "./components/FeatureTitle";
-import registry from "./data";
-
-
 export default function Registry() {
   return (
-    <div className="card">Hello</div>
+    <div>
+      <svg
+        className="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shapeRendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g className="parallax">
+          <use
+            xlinkHref="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(255,255,255,0.7)"
+          />
+          <use
+            xlinkHref="#gentle-wave"
+            x="48"
+            y="3"
+            fill="rgba(255,255,255,0.5)"
+          />
+          <use
+            xlinkHref="#gentle-wave"
+            x="48"
+            y="5"
+            fill="rgba(255,255,255,0.3)"
+          />
+          <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
   );
 }
-
-
-
-// OLD STUFF - IF TIME COME BACK TO FOR REFERENCE
-
-{/* <div className="mx-auto max-w-6xl px-24 -translate-y-8 h-min-screen">
-<div className="flex w-full items-start gap-20 ">
-  <div className="w-full py-24">
-    <ul>
-      {registry.map((item) => (
-        <li key={item.id}>
-          <FeatureTitle id={item.id}>{item.title}</FeatureTitle>
-        </li>
-      ))}
-    </ul>
-  </div>
-  <div className="sticky w-full flex h-screen items-center top-0">
-    <div className="relative inset-0 aspect-square md:w-[400px] rounded-2xl bg-gray-100">
-      {registry.map((item) => (
-        <item.card id={item.id} key={item.id} />
-      ))}
-    </div>
-  </div>
-</div>
-</div> */}
