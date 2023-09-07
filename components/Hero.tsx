@@ -116,7 +116,7 @@ const Hero = () => {
         </Button>
         <Button
           className=" backdrop-blur-3xl bg-slate-700/60 hover:hover:bg-neutral-100/20 py-2 px-4 w-[45%] text-white mt-2 border border-white"
-          onClick={() => router.push(`/details`)}
+          onClick={() => router.push(`/details/wetweather`)}
         >
           Wet weather plans
         </Button>
