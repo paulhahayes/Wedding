@@ -17,7 +17,9 @@ const UploadBar = () => {
 
   return (
     <div className="flex flex-row justify-between border-b pb-4">
-      <div className="text-lime text-3xl text-center">Upload an image</div>
+      <div className="text-lime text-3xl text-center hidden sm:block">
+        Upload an image
+      </div>
       <div className="w-40">
         <Button
           className="backdrop-blur-3xl bg-slate-700/60 hover:hover:bg-neutral-100/20 py-2 px-4 text-white mt-2 border border-white"

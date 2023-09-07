@@ -7,6 +7,7 @@ export interface ImageProps {
   blurDataUrl?: string;
   lastViewedPhoto?: string | null;
   key?: string;
+  tags?: string[];
 }
 
 export interface SharedModalProps {

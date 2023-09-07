@@ -24,8 +24,8 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
     reset,
   } = useForm({
     defaultValues: {
+      socialMedia: "",
       title: "",
-      name: "",
       file: {},
     },
   });
@@ -78,7 +78,10 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const formData = new FormData();
+
+    const tags = [data.title, data.name];
     formData.append("file", data.file);
+    formData.append("tags", tags.join(","));
     formData.append("upload_preset", "wedding");
     setLoading(true);
     const result = await fetch(
@@ -143,14 +146,14 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
           </div>
         </div>
         <ImageInput
-          id="title"
-          label="title"
+          id="socialMedia"
+          label="Add Social Media (not required)"
           register={register}
           errors={errors}
         />
         <ImageInput
-          id="name"
-          label="name"
+          id="title"
+          label="Add a Photo Title (not required)"
           register={register}
           errors={errors}
         />

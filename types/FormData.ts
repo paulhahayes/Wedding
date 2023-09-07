@@ -12,7 +12,7 @@ export type FormData = {
 };
 
 export type ImageData = {
-  name: string;
+  socialMedia: string;
   title: string;
   file: any;
 };

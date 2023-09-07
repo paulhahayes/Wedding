@@ -5,8 +5,9 @@ import getBase64ImageUrl from "@/lib/utils/generateBlurPlaceholder";
 export async function getImages() {
   const results = await cloudinary.v2.search
     .expression(`folder:gallery/*`)
-    .sort_by("created_at", "asc")
+    .sort_by("created_at", "desc")
     .max_results(400)
+    .with_field("tags")
     .execute();
   let reducedResults: ImageProps[] = [];
 
@@ -18,6 +19,7 @@ export async function getImages() {
       width: result.width,
       public_id: result.public_id,
       format: result.format,
+      tags: result.tags,
     });
     i++;
   }

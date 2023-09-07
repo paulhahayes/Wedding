@@ -1,15 +1,36 @@
+"use client";
 import React from "react";
 
 import { CldImage } from "next-cloudinary";
 export default function GridImage({
   image,
   setPhotoId,
-  author,
 }: {
   image: any;
   setPhotoId: any;
-  author: string;
 }) {
+  const addTag = () => {
+    const tag =
+      image.tags.length > 0 && image.tags[0].startsWith("@")
+        ? image.tags[0]
+        : "@" + image.tags[0];
+    return tag;
+  };
+
+  const removeTag = () => {
+    if (image.tags.length > 0 && image.tags[0].startsWith("@")) {
+      return image.tags[0].substring(1);
+    } else {
+      return image.tags[0];
+    }
+  };
+
+  const handleClick = () => {
+    const tag = removeTag();
+    const instagramUrl = `https://www.instagram.com/${tag}`;
+    window.open(instagramUrl, "_blank");
+  };
+
   return (
     <div className="group">
       <div className="after:content relative mb-5 block w-full hover:cursor-pointer after:pointer-events-none overflow-y-hidden after:absolute after:inset-0 after:rounded-lg">
@@ -31,8 +52,11 @@ export default function GridImage({
         />
       </div>
 
-      <p className="text-lg text-start font-medium text-white absolute">
-        {author}
+      <p
+        className="text-lg text-start font-medium text-white absolute hover:cursor-pointer"
+        onClick={handleClick}
+      >
+        {addTag()}
       </p>
     </div>
   );

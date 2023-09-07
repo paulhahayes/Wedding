@@ -10,7 +10,7 @@ export default async function GalleryPage() {
   return (
     <>
       <UploadBar />
-      <Content images={images} />
+      <Content images={images} />;
     </>
   );
 }
