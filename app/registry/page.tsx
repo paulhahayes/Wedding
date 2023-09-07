@@ -5,7 +5,7 @@ export default function Registry() {
   return (
     <div className="mx-auto max-w-6xl px-24 -translate-y-8 h-min-screen">
       <div className="flex w-full items-start gap-20 ">
-        <div className="w-full py-[40vh]">
+        <div className="w-full py-24">
           <ul>
             {registry.map((item) => (
               <li key={item.id}>

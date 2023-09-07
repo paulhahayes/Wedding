@@ -83,7 +83,7 @@ const Hero = () => {
         <GlassCardHero
           title="Ceremony"
           time="3:30PM"
-          desc="Georges Head"
+          desc="Georges Head Lookout"
           address="https://goo.gl/maps/KnRn8v5KF2K6QsGS8"
         />
       </motion.div>
