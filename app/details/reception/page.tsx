@@ -25,20 +25,7 @@ const data = [
 const Reception = () => {
   return (
     <div className="pb-12">
-      <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12 min-[320px]:justify-center w-full">
-        <div
-          className=" bg-cover shadow-lg  rounded p-4 border border-white"
-          style={{ backgroundImage: 'url("/ripples-day.jpg")' }}
-        ></div>
-        <div
-          className=" bg-cover shadow-lg  rounded p-4  border border-white"
-          style={{ backgroundImage: 'url("/food.avif")' }}
-        ></div>
-        <div
-          className=" bg-cover shadow-lg  rounded p-4 border border-white"
-          style={{ backgroundImage: 'url("/ripples-night.avif")' }}
-        ></div>
-      </div>
+      <div className="grid lg:grid-flow-col md:grid-cols-2 gap-12 min-[320px]:justify-center w-full"></div>
     </div>
   );
 };
