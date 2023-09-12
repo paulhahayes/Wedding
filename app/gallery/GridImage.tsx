@@ -55,7 +55,7 @@ export default function GridImage({
         className="text-lg text-start font-medium text-white absolute hover:cursor-pointer"
         onClick={handleClick}
       >
-        {image.tags[0] ? addTag() : ""}
+        {/* {image.tags[0] ? addTag() : ""} */}
       </p>
     </div>
   );

@@ -4,20 +4,21 @@ import Modal from "./Modal";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import ImageInput from "../input/ImageInput";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { useGallery } from "@/context/GalleryContext";
 
 type UploadModalProps = {
   onClose: () => void;
   isOpen: boolean;
+  handleUpdate: () => void;
 };
 
-const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
+const UploadModal: React.FC<UploadModalProps> = ({
+  onClose,
+  isOpen,
+  handleUpdate,
+}) => {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
-  const { handleMore } = useGallery();
   const {
     register,
     handleSubmit,
@@ -98,11 +99,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
     } else {
       toast.error("Something went wrong");
     }
-
-    setTimeout(() => {
-      router.refresh();
-    }, 3000);
-    handleMore();
+    handleUpdate();
     handleClose();
   };
 

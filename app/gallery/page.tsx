@@ -2,14 +2,11 @@
 
 import Content from "./Content";
 import { getImages } from "@/lib/utils/cloudinary";
-import UploadBar from "./UploadBar";
 
 export default async function GalleryPage() {
-  const { images, nextCursor } = await getImages();
-
+  const { images, nextCursor } = await getImages("", 0, 0);
   return (
     <>
-      <UploadBar />
       <Content images={images} nextCursor={nextCursor} />
     </>
   );

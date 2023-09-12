@@ -1,7 +1,6 @@
 import "./globals.css";
 
 import { TranslateProvider } from "@/context/TranslateContext";
-import { GalleryProvider } from "@/context/GalleryContext";
 import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar";
 import RSVPModal from "@/components/modal/RSVPModal";
@@ -28,9 +27,8 @@ export default function RootLayout({
           <Sidebar />
           <Navbar />
           <RSVPModal />
-          <GalleryProvider>
-            <div className="">{children}</div>
-          </GalleryProvider>
+
+          <div className="">{children}</div>
         </TranslateProvider>
       </body>
     </html>

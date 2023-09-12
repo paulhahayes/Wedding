@@ -5,7 +5,10 @@ import UploadModal from "@/components/modal/UploadModal";
 import useImageUpload from "@/hooks/useImageUpload";
 import { AiFillPlusCircle } from "react-icons/ai";
 
-const UploadBar = () => {
+type UploadBarProps = {
+  handleUpdate: () => void;
+};
+const UploadBar: React.FC<UploadBarProps> = ({ handleUpdate }) => {
   const imageModal = useImageUpload();
 
   const handleClick = useCallback(() => {
@@ -30,7 +33,11 @@ const UploadBar = () => {
           Add photo
         </Button>
       </div>
-      <UploadModal isOpen={imageModal.isOpen} onClose={handleClose} />
+      <UploadModal
+        isOpen={imageModal.isOpen}
+        onClose={handleClose}
+        handleUpdate={handleUpdate}
+      />
     </div>
   );
 };
