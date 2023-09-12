@@ -97,10 +97,10 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
       toast.error("Something went wrong");
     }
 
-    handleClose();
     setTimeout(() => {
-      router.push("/gallery");
+      router.refresh();
     }, 3000);
+    handleClose();
   };
 
   const bodyContent = (
