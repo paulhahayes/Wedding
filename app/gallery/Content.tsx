@@ -2,7 +2,7 @@
 //TODO paginations + folders
 import GridImage from "./GridImage";
 import { ImageProps } from "@/types/GalleryTypes";
-import { useState } from "react";
+import { use, useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
 import UploadBar from "./UploadBar";
 type ContentProps = {
@@ -17,10 +17,7 @@ const Content: React.FC<ContentProps> = ({
   const [photoId, setPhotoId] = useState<number | null>(null);
   const [images, setImages] = useState(defaultImages);
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
-
-  function printIds() {
-    images.map((image) => console.log(image.id));
-  }
+  const [loading, setLoading] = useState(false);
 
   function incrementIds(): ImageProps[] {
     return images.map((image) => ({
@@ -46,16 +43,19 @@ const Content: React.FC<ContentProps> = ({
   }
 
   async function handlePagination() {
-    const results = await fetch("/api/gallery", {
-      method: "POST",
-      body: JSON.stringify({
-        nextCursor,
-        length: images.length,
-        offset: 1,
-      }),
-    }).then((r) => r.json());
-    setImages((prevImages) => [...prevImages, ...results.images]);
-    setNextCursor(results.nextCursor);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    // const results = await fetch("/api/gallery", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     nextCursor,
+    //     length: images.length,
+    //     offset: 1,
+    //   }),
+    // }).then((r) => r.json());
+    // setImages((prevImages) => [...prevImages, ...results.images]);
+    // setNextCursor(results.nextCursor);
   }
 
   return (

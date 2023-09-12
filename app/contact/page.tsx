@@ -65,6 +65,7 @@ const Contact = () => {
                       className="object-cover rounded-l"
                       src="/c.png"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       quality={1}
                       alt="Image"
                     />
@@ -73,6 +74,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/bride.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       quality={1}
                       alt="Image"
@@ -125,6 +127,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/email.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       alt="Image"
                     />
@@ -133,6 +136,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/bride.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       alt="Image"
                     />
@@ -187,6 +191,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/c.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       alt="Image"
                     />
@@ -195,6 +200,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/groom2.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       alt="Image"
                     />
@@ -246,6 +252,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/email.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       alt="Image"
                     />
@@ -254,6 +261,7 @@ const Contact = () => {
                     <Image
                       className="object-cover rounded-l"
                       src="/groom2.png"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       fill
                       alt="Image"
                     />
