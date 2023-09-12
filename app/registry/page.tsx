@@ -3,28 +3,31 @@ import WaveAnimation from "@/components/WaveAnimation";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
 import { RiFileCopyLine } from "react-icons/ri";
+import useTranslate from "@/hooks/useTranslate";
+import React from "react"; // Make sure to import React
+
 export default function Registry() {
-  const copied = () => toast("Copied ✅");
+  const { lang } = useTranslate();
+  const copied = () => toast(lang === "en" ? "Copied ✅" : "Copiado ✅");
 
   return (
     <div>
       <Toaster />
       <WaveAnimation reverse={false} />
       <div
-        className="w-full sm:h-auto sm:px-4 md:px-36 min-h-[60vh] flex flex-col sm:flex-row 
+        className="w-full sm:h-auto sm:px-4 sm:pt-4 md:px-36 min-h-[60vh] flex flex-col sm:flex-row 
    border-white shadow-lg  bg-white backdrop-filter backdrop-blur-lg bg-opacity-10"
       >
         <div>
           <p className="px-4 py-4 sm:text-[22px] text-[20px] tracking-wide text-start">
-            While we don&apos;t have a traditional gift registry, if you&apos;d
-            like to contribute to our honeymoon fund, we would truly appreciate
-            it.
+            {lang === "en"
+              ? "While we don't have a traditional gift registry, if you'd like to contribute to our honeymoon fund, we would truly appreciate it."
+              : "Si bien no tenemos una lista de regalos tradicional, si desea contribuir a nuestro fondo de luna de miel, realmente lo apreciaríamos."}
             <br />
             <br />
-            Please find our bank details below and{" "}
-            <span className="underline">
-              include your name in the description.
-            </span>
+            {lang === "en"
+              ? "Please find our bank details below and include your name in the description."
+              : "Encuentre a continuación los detalles de nuestra cuenta bancaria e incluya su nombre en la descripción."}
           </p>
           <div
             className="w-full h-24 flex items-center flex-row px-4 mt-2 gap-3 backdrop-blur-3xl rounded
@@ -47,7 +50,9 @@ export default function Registry() {
                               "
               >
                 <p className="text-[20px] font-bold truncate py-2">
-                  Account Name: Paul and Ximena
+                  {lang === "en"
+                    ? "Account Name: Paul and Ximena"
+                    : "Nombre de la cuenta: Paul y Ximena"}
                 </p>
 
                 <div
@@ -94,7 +99,9 @@ export default function Registry() {
                               "
               >
                 <p className="text-[20px] font-bold truncate py-2">
-                  Account Number: 018191069
+                  {lang === "en"
+                    ? "Account Number: 018191069"
+                    : "Número de cuenta: 018191069"}
                 </p>
                 <div
                   className="
@@ -166,8 +173,9 @@ export default function Registry() {
 
           <br />
           <p className="px-4 py-4 sm:text-[22px] text-[20px] tracking-wide text-start">
-            Your generosity means the world to us, and we look forward to
-            sharing our special moments with you.
+            {lang === "en"
+              ? "Your generosity means the world to us, and we look forward to sharing our special moments with you."
+              : "Tu generosidad significa el mundo para nosotros y esperamos compartir nuestros momentos especiales contigo."}
           </p>
         </div>
       </div>

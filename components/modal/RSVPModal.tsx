@@ -1,6 +1,6 @@
 "use client";
 import toast, { Toaster } from "react-hot-toast";
-
+import useTranslate from "@/hooks/useTranslate";
 import { useEffect, useMemo, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
@@ -19,6 +19,7 @@ enum STEPS {
 }
 
 const RSVPModal = () => {
+  const { lang } = useTranslate();
   const rsvpModal = useRSVP();
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(STEPS.CODE);
@@ -97,31 +98,40 @@ const RSVPModal = () => {
 
     const result: any = await sendRsvpForm(data);
     if (result.ok) {
-      toast.success("RSVP sent!");
+      toast.success(lang === "en" ? "RSVP sent!" : "¡RSVP enviado!");
     } else {
-      toast.error("Something went wrong");
+      toast.error(lang === "en" ? "Something went wrong" : "Algo salió mal");
     }
     resetModal();
   };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.CONFIRM) {
-      return "Submit 🎉";
+      const message = lang === "en" ? "Submit 🎉" : "Enviar 🎉";
+      return message;
     }
-    return "Next";
+    const message = lang === "en" ? "Next" : "Siguiente";
+    return message;
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
     if (step === STEPS.CODE) {
       return undefined;
     }
-
-    return "Back";
+    const message = lang === "en" ? "Back" : "Atrás";
+    return message;
   }, [step]);
 
   let bodyContent = (
     <div className="flex flex-col gap-8 ">
-      <Heading title="Please enter the verification code" subtitle="" />
+      <Heading
+        title={
+          lang === "en"
+            ? "Please enter the verification code"
+            : "Porfavor ingrese el codigo de verificacion"
+        }
+        subtitle=""
+      />
       <div
         className="
           grid 
@@ -153,7 +163,14 @@ const RSVPModal = () => {
   if (step === STEPS.CONFIRM) {
     bodyContent = (
       <div className="flex flex-col gap-8">
-        <Heading center title="Please confirm your RSVP" />
+        <Heading
+          center
+          title={
+            lang === "en"
+              ? "Please confirm your RSVP"
+              : "Por favor confirme su asistencia"
+          }
+        />
       </div>
     );
   }

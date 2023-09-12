@@ -2,8 +2,9 @@
 import { CldImage } from "next-cloudinary";
 import React from "react";
 import { IoLocationSharp } from "react-icons/io5";
-
+import useTranslate from "@/hooks/useTranslate";
 const page = () => {
+  const { lang } = useTranslate();
   return (
     <div
       className="w-full sm:h-[450px] lg:h-[550px] h-full flex flex-col gap-8 sm:flex-row   p-2
@@ -12,16 +13,17 @@ const page = () => {
       {/* Text and desc */}
       <div className="flex-1 flex-col bg-clip-padding sm:w-[50%] w-full">
         <div className=" px-4 pb-2 font-semibold sm:text-[36px] text-[32px] sm:text-start  text-lime border-b-2">
-          Wet Weather Plan
+          {lang == "en" ? "Wet Weather Plan" : "Plan de lluvia"}
         </div>
         <div className="p-4 sm:text-[22px] text-[20px] tracking-wide text-start">
-          In the event of poor weather on the day. The backup venue for the
-          Ceremony will be held at The Barn Mosman at 3:30pm. The reception will
-          still be at Ripples.
+          {lang == "en"
+            ? "In the event of poor weather on the day. The backup venue for the Ceremony will be held at The Barn Mosman at 3:30pm. The reception will still be at Ripples."
+            : "En caso de mal tiempo durante el día. El lugar de respaldo para la Ceremonia se llevará a cabo en The Barn Mosman a las 3:30 p.m. La recepción seguirá siendo en Ripples."}
           <br />
           <br />
-          We will send out an email and post an update the website if this
-          occurs.
+          {lang == "en"
+            ? "We will send out an email and post an update the website if this occurs."
+            : "Enviaremos un correo electrónico y publicaremos una actualización del sitio web si esto ocurre."}
           <br />
           <br />
           <span

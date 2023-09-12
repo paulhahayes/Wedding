@@ -33,7 +33,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
         }`}
       ></div>
 
-      <div className="py-[10px] px-[20px] relative rounded-xl border h-auto sm:h-[500px] backdrop-blur-3xl flex sm:flex-row flex-col bg-slate-700/30 ">
+      <div className="py-[10px] px-[20px] relative rounded-xl border h-auto sm:h-[500px] md:h-[550px] backdrop-blur-3xl flex sm:flex-row flex-col bg-slate-700/30 ">
         <div className="py-[20px] px-[20px] relative rounded text-[18px] bg-neutral-100/10 sm:w-[40%] w-[100%] ">
           <h2 className="text-lime text-[28px] font-bold">{title}</h2>
           <small className="text-[16px] my-2 inline-block">{time}</small>

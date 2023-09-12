@@ -2,7 +2,6 @@
 import Timeline from "@/components/Timeline";
 import React from "react";
 import Map from "@/hooks/useMap";
-// TODO: basic information (time and location)
 
 const Ceremony = () => {
   return (

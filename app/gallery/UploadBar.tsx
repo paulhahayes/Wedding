@@ -4,11 +4,12 @@ import { useCallback } from "react";
 import UploadModal from "@/components/modal/UploadModal";
 import useImageUpload from "@/hooks/useImageUpload";
 import { AiFillPlusCircle } from "react-icons/ai";
-
+import useTranslate from "@/hooks/useTranslate";
 type UploadBarProps = {
   handleUpdate: () => void;
 };
 const UploadBar: React.FC<UploadBarProps> = ({ handleUpdate }) => {
+  const { lang } = useTranslate();
   const imageModal = useImageUpload();
 
   const handleClick = useCallback(() => {
@@ -22,7 +23,7 @@ const UploadBar: React.FC<UploadBarProps> = ({ handleUpdate }) => {
   return (
     <div className="flex flex-row justify-between border-b pb-4 p-4 sm:px-0">
       <div className="text-lime text-3xl text-center hidden sm:block ">
-        Upload an image
+        {lang === "en" ? "Upload an image" : "Subir una imagen?"}
       </div>
       <div className="w-40">
         <Button
@@ -30,7 +31,7 @@ const UploadBar: React.FC<UploadBarProps> = ({ handleUpdate }) => {
           onClick={handleClick}
         >
           <AiFillPlusCircle className="inline-block -translate-y-[2px] mr-2 " />
-          Add photo
+          {lang === "en" ? "Add photo" : "Añadir foto"}
         </Button>
       </div>
       <UploadModal

@@ -3,8 +3,9 @@ import React from "react";
 import { CldImage } from "next-cloudinary";
 import { IoLocationSharp } from "react-icons/io5";
 import { AiFillClockCircle } from "react-icons/ai";
-
+import useTranslate from "@/hooks/useTranslate";
 const Reception = () => {
+  const { lang } = useTranslate();
   return (
     <div
       className="flex flex-col items-center justify-center w-full h-full px-4 sm:px-none pb-12
@@ -13,7 +14,7 @@ const Reception = () => {
     >
       <div className="border rounded-2xl shadow-lg sm:w-[50%] w-full h-72 bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 mb-4">
         <div className=" px-4 pb-2 font-semibold sm:text-[32px] text-[28px] sm:text-center  text-lime border-b-2">
-          Reception details
+          {lang === "en" ? "Reception details" : "Detalles de la recepción"}
         </div>
 
         <ul className="p-4 sm:text-[22px] text-[20px] tracking-wide text-start">
@@ -29,7 +30,9 @@ const Reception = () => {
             <IoLocationSharp className="inline-block" /> Ripples Chowder Bay
           </li>
           <li className="">
-            Paid parking available along the road to Ripples.
+            {lang === "en"
+              ? "Paid parking available along the road to Ripples."
+              : "Estacionamiento de pago disponible a lo largo de la carretera a Ripples."}
           </li>
         </ul>
       </div>

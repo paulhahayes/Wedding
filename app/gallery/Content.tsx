@@ -1,10 +1,11 @@
 "use client";
-//TODO paginations + folders
+//TODO pagination + loaders
 import GridImage from "./GridImage";
 import { ImageProps } from "@/types/GalleryTypes";
-import { use, useState } from "react";
+import { useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
 import UploadBar from "./UploadBar";
+
 type ContentProps = {
   images: ImageProps[];
   nextCursor: string;
@@ -77,7 +78,7 @@ const Content: React.FC<ContentProps> = ({
           <GridImage key={image.id} image={image} setPhotoId={setPhotoId} />
         ))}
       </div>
-      <button onClick={handlePagination}>pagination</button>
+      {/* <button onClick={handlePagination}>pagination</button> */}
     </main>
   );
 };

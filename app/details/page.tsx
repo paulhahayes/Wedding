@@ -42,15 +42,21 @@ const Details = () => {
         </div>
       </div>
 
-      <div className=" w-[80%] p-4">
-        <div className="sm:text-[50px] border-b-2 ">Updates</div>
+      <div className="w-[80%] p-4">
+        <div className="sm:text-[50px] border-b-2">
+          {lang === "en" ? "Updates" : "Actualizaciones"}
+        </div>
         <div className="w-full mt-4 ">
-          {updates.length == 0 ? (
+          {updates.length === 0 ? (
             <UpdateCard
               id="0"
               key="0"
-              title="No Updates."
-              desc="Any major updates will be posted here."
+              title={lang === "en" ? "No Updates." : "Sin actualizaciones."}
+              desc={
+                lang === "en"
+                  ? "Any major updates will be posted here."
+                  : "Cualquier actualización importante se publicará aquí."
+              }
               date="1:10pm - 04.08.23"
             />
           ) : (
@@ -59,8 +65,8 @@ const Details = () => {
                 <UpdateCard
                   id={update.id.toString()}
                   key={update.id}
-                  title={update.title}
-                  desc={update.desc}
+                  title={lang === "en" ? update.title : "Título en español"}
+                  desc={lang === "en" ? update.desc : "Descripción en español"}
                   date={update.date}
                 />
               ))

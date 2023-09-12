@@ -47,7 +47,7 @@ const Hero = () => {
       >
         {lang === "en"
           ? "Celebrating the marriage of"
-          : "CELEBRANDO EL MATRIMONIO DE"}
+          : "Celebrando el matrimonio de"}
       </motion.p>
 
       <motion.h1
@@ -81,7 +81,7 @@ const Hero = () => {
 
       <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
-          title="Ceremony"
+          title={lang === "en" ? "Ceremony" : "Ceremonia"}
           time="3:30PM"
           desc="Georges Head Lookout"
           address="https://goo.gl/maps/KnRn8v5KF2K6QsGS8"
@@ -90,35 +90,45 @@ const Hero = () => {
 
       <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
-          title="Reception"
+          title={lang === "en" ? "Reception" : "Recepción"}
           time="6:30PM - 11:30PM"
           desc="Ripples, Chowder Bay"
           address="https://goo.gl/maps/gtyFRDZ1DN4huU2w6"
         />
       </motion.div>
+
       <motion.p
         variants={childVariants}
-        className="text-center  w-64 mt-12 sm:text-[18px] text-md pt-4 border-t"
+        className="text-center mt-8  w-72 sm:text-[18px] text-md pb-2"
+      >
+        {lang === "en"
+          ? "Please RSVP by the 10th of October"
+          : "Por favor confirme su asistencia antes del 10 de Octubre"}
+      </motion.p>
+      <motion.p
+        variants={childVariants}
+        className="text-center  w-64 sm:text-[18px] text-md pt-2 border-t"
       >
         {lang === "en"
           ? "More Information available here"
           : "Más información disponible aquí"}
       </motion.p>
+
       <motion.div
         className="flex flex-row w-screen sm:w-full justify-around gap-2 p-4 "
         variants={childVariants}
       >
         <Button
-          className=" backdrop-blur-3xl bg-slate-700/60  hover:hover:bg-neutral-100/20 w-[45%] py-2 px-4 mt-2 text-white border border-white"
+          className="backdrop-blur-3xl bg-slate-700/60 hover:bg-neutral-100/20 w-[45%] py-2 px-4 mt-2 text-white border border-white"
           onClick={() => router.push(`/details`)}
         >
-          See more details
+          {lang === "en" ? "See more details" : "Ver más detalles"}{" "}
         </Button>
         <Button
-          className=" backdrop-blur-3xl bg-slate-700/60 hover:hover:bg-neutral-100/20 py-2 px-4 w-[45%] text-white mt-2 border border-white"
+          className="backdrop-blur-3xl bg-slate-700/60 hover:bg-neutral-100/20 py-2 px-4 w-[45%] text-white mt-2 border border-white"
           onClick={() => router.push(`/details/wetweather`)}
         >
-          Wet weather plans
+          {lang === "en" ? "Wet weather plans" : "Plan de lluvia"}{" "}
         </Button>
       </motion.div>
     </motion.div>

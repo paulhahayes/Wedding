@@ -1,4 +1,5 @@
 "use client";
+// TODO LOADER!
 import React, { Suspense } from "react";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
@@ -7,8 +8,10 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@material-tailwind/react";
 import { RiFileCopyLine } from "react-icons/ri";
 import { sendContactForm } from "@/lib/api";
+import useTranslate from "@/hooks/useTranslate";
 
 const Contact = () => {
+  const { lang } = useTranslate();
   const {
     register,
     handleSubmit,
@@ -301,42 +304,60 @@ const Contact = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <span className="text-lime text-start text-[22px] font-bold">
-            Send us a message
+            {lang === "en" ? "Send us a message" : "Envíanos un mensaje"}
           </span>
           <input
             type="text"
             {...register("name", { required: true })}
-            placeholder="Your Name"
+            placeholder={lang === "en" ? "Your Name" : "Tu Nombre"}
             className="p-[20px] placeholder-white backdrop-blur-3xl rounded bg-slate-700/30 border-none outline-none text-white text-[20px] font-bold"
           />
-          {errors.name && <span>This field is required</span>}
+          {errors.name && (
+            <span>
+              {lang === "en"
+                ? "This field is required"
+                : "Este campo es obligatorio"}
+            </span>
+          )}
           <input
             type="email"
             {...register("email", { required: true })}
-            placeholder="Your Email"
+            placeholder={lang === "en" ? "Your Email" : "Tu Correo"}
             className="p-[20px] backdrop-blur-3xl  placeholder-white rounded bg-slate-700/30 border-none outline-none text-white text-[20px] font-bold "
           />
-          {errors.email && <span>This field is required</span>}
+          {errors.email && (
+            <span>
+              {lang === "en"
+                ? "This field is required"
+                : "Este campo es obligatorio"}
+            </span>
+          )}
           <input
             type="text"
             {...register("subject", { required: true })}
-            placeholder="Subject"
+            placeholder={lang === "en" ? "Subject" : "Asunto"}
             className="p-[20px] placeholder-white backdrop-blur-3xl rounded bg-slate-700/30 border-none outline-none text-white text-[20px] font-bold"
           />
           {errors.name && <span>This field is required</span>}
           <textarea
             {...register("message", { required: true })}
             className="p-[20px] h-[400px] backdrop-blur-3xl rounded placeholder-white bg-slate-700/30 border-none outline-none text-white text-[20px] font-bold"
-            placeholder="Message"
+            placeholder={lang === "en" ? "Message" : "Mensaje"}
           ></textarea>
-          {errors.message && <span>This field is required</span>}
+          {errors.message && (
+            <span>
+              {lang === "en"
+                ? "This field is required"
+                : "Este campo es obligatorio"}
+            </span>
+          )}
 
           <div className="flex justify-end">
             <Button
               type="submit"
               className="bg-slate-700/70 hover:hover:bg-neutral-100/20 py-2 px-6 w-[50%] mt-2 border-2 border-white"
             >
-              Send
+              {lang === "en" ? "Send" : "Enviar"}
             </Button>
           </div>
         </form>

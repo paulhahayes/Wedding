@@ -4,6 +4,7 @@ import Modal from "./Modal";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import ImageInput from "../input/ImageInput";
 import toast, { Toaster } from "react-hot-toast";
+import useTranslate from "@/hooks/useTranslate";
 type UploadModalProps = {
   onClose: () => void;
   isOpen: boolean;
@@ -15,6 +16,7 @@ const UploadModal: React.FC<UploadModalProps> = ({
   isOpen,
   handleUpdate,
 }) => {
+  const { lang } = useTranslate();
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -94,9 +96,11 @@ const UploadModal: React.FC<UploadModalProps> = ({
     ).then((res) => res.json());
     setLoading(false);
     if (result.asset_id) {
-      toast.success("Image uploaded!");
+      toast.success(
+        lang === "en" ? "Image uploaded!" : "Imagen subida con éxito"
+      );
     } else {
-      toast.error("Something went wrong");
+      toast.error(lang === "en" ? "Something went wrong" : "Algo salió mal");
     }
     handleUpdate();
     handleClose();
@@ -125,7 +129,9 @@ const UploadModal: React.FC<UploadModalProps> = ({
                     alt=""
                   ></img>
                   <span className="mt-2 text-base leading-normal">
-                    Select or drag an Image
+                    {lang === "en"
+                      ? "Select or drag an Image"
+                      : "Selecciona o arrastra una imagen"}
                   </span>
                   <input
                     id="file"
@@ -148,13 +154,21 @@ const UploadModal: React.FC<UploadModalProps> = ({
         </div>
         <ImageInput
           id="socialMedia"
-          label="Add Social Media (not required)"
+          label={
+            lang === "en"
+              ? "Add Social Media (not required)"
+              : "Agregar redes sociales (no requerido)"
+          }
           register={register}
           errors={errors}
         />
         <ImageInput
           id="title"
-          label="Add a Photo Title (not required)"
+          label={
+            lang === "en"
+              ? "Add a Photo Title (not required)"
+              : "Añadir un título a la foto (no requerido)"
+          }
           register={register}
           errors={errors}
         />
@@ -180,10 +194,10 @@ const UploadModal: React.FC<UploadModalProps> = ({
 
   return (
     <Modal
-      title="Upload an Image"
-      actionLabel={"Upload"}
+      title={lang === "en" ? "Upload an Image" : "Subir una imagen"}
+      actionLabel={lang === "en" ? "Upload" : "Subir"}
       secondaryAction={handleClear}
-      secondaryActionLabel={"Clear"}
+      secondaryActionLabel={lang === "en" ? "Clear" : "Limpiar"}
       isOpen={isOpen}
       onSubmit={handleSubmit(onSubmit)}
       onClose={handleClose}
