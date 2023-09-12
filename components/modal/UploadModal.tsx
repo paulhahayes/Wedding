@@ -4,7 +4,6 @@ import Modal from "./Modal";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import ImageInput from "../input/ImageInput";
 import toast, { Toaster } from "react-hot-toast";
-
 type UploadModalProps = {
   onClose: () => void;
   isOpen: boolean;

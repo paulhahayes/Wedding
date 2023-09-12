@@ -20,6 +20,9 @@ export async function getImages(nextCursor, length, offset) {
   let reducedResults: ImageProps[] = [];
 
   let i = length;
+  if (offset == -1) {
+    i = 0;
+  }
   for (let result of results.resources) {
     reducedResults.push({
       id: i,

@@ -2,7 +2,7 @@
 //TODO paginations + folders
 import GridImage from "./GridImage";
 import { ImageProps } from "@/types/GalleryTypes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
 import UploadBar from "./UploadBar";
 type ContentProps = {
@@ -18,7 +18,20 @@ const Content: React.FC<ContentProps> = ({
   const [images, setImages] = useState(defaultImages);
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
 
+  function printIds() {
+    images.map((image) => console.log(image.id));
+  }
+
+  function incrementIds(): ImageProps[] {
+    return images.map((image) => ({
+      ...image,
+      id: image.id + 1,
+    }));
+  }
+
   async function handleUpload() {
+    //
+
     const results = await fetch("/api/gallery", {
       method: "POST",
       body: JSON.stringify({
@@ -27,6 +40,7 @@ const Content: React.FC<ContentProps> = ({
         offset: -1,
       }),
     }).then((r) => r.json());
+    incrementIds();
     setImages((prevImages) => [...results.images, ...prevImages]);
     setNextCursor(results.nextCursor);
   }

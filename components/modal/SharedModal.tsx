@@ -44,7 +44,6 @@ export default function SharedModal({
     },
     trackMouse: true,
   });
-  console.log(loaded);
   return (
     <MotionConfig
       transition={{
