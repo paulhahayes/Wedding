@@ -126,7 +126,7 @@ const Modal: React.FC<ModalProps> = ({
               border-0 
               md:rounded-lg 
               min-[330px]:rounded-none
-              min-[330px]:h-[130vh]
+              min-[330px]:h-[102vh]
               
               shadow-lg 
               relative 

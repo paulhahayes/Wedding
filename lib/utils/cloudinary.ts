@@ -3,8 +3,9 @@
 import type { ImageProps } from "@/types/GalleryTypes";
 import getBase64ImageUrl from "@/lib/utils/generateBlurPlaceholder";
 import cloudinary from "cloudinary";
+
 export async function getImages(nextCursor, length, offset) {
-  let max_results = 2;
+  let max_results = 10;
   if (offset == -1) {
     max_results = 1;
   }

@@ -20,7 +20,12 @@ const Reception = () => {
           <li>
             <AiFillClockCircle className="inline-block" /> 6:30pm - 11:30pm
           </li>
-          <li className="py-4 hover:cursor-pointer " onClick={() => window.open("https://goo.gl/maps/gtyFRDZ1DN4huU2w6", "_blank")}>
+          <li
+            className="py-4 hover:cursor-pointer "
+            onClick={() =>
+              window.open("https://goo.gl/maps/gtyFRDZ1DN4huU2w6", "_blank")
+            }
+          >
             <IoLocationSharp className="inline-block" /> Ripples Chowder Bay
           </li>
           <li className="">

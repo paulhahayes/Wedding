@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 export default function GridImage({
   image,
   setPhotoId,
@@ -33,17 +33,18 @@ export default function GridImage({
 
   return (
     <div className="group">
-      <div className="after:content relative mb-5 block w-full hover:cursor-pointer after:pointer-events-none  after:absolute after:inset-0 after:rounded-lg">
-        <CldImage
+      <div className="after:content relative mb-5 block w-full hover:cursor-pointer after:pointer-events-none  after:absolute after:inset-0 after:rounded-lg h-[290px]">
+        <Image
           alt={image.public_id}
-          className="transform rounded-lg brightness-90 transition will-change-auto border group-hover:brightness-110"
-          style={{ transform: "translate3d(0, 0, 0)" }}
+          className="transform rounded-lg brightness-90 transition will-change-auto border group-hover:brightness-110 "
+          style={{
+            transform: "translate3d(0, 0, 0)",
+            objectFit: "cover",
+          }}
+          fill
           placeholder="blur"
           blurDataURL={image.blurDataUrl}
-          width={640}
-          crop="fill"
-          height={480}
-          src={`${image.public_id}`}
+          src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${image.public_id}.${image.format}`}
           sizes="(max-width: 640px) 100vw,
                   (max-width: 1280px) 50vw,
                   (max-width: 1536px) 33vw,

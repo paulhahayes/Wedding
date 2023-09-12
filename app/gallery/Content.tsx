@@ -45,7 +45,7 @@ const Content: React.FC<ContentProps> = ({
   }
 
   return (
-    <main className="mx-auto sm:px-0 ">
+    <main className="mx-auto sm:px-0 px-4">
       <UploadBar handleUpdate={handleUpload} />
       {photoId != null && (
         <ImageModal
