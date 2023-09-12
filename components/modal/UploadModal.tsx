@@ -5,6 +5,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import ImageInput from "../input/ImageInput";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useGallery } from "@/context/GalleryContext";
 
 type UploadModalProps = {
   onClose: () => void;
@@ -16,6 +17,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+  const { handleMore } = useGallery();
   const {
     register,
     handleSubmit,
@@ -100,6 +102,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, isOpen }) => {
     setTimeout(() => {
       router.refresh();
     }, 3000);
+    handleMore();
     handleClose();
   };
 

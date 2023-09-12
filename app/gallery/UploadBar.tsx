@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import UploadModal from "@/components/modal/UploadModal";
 import useImageUpload from "@/hooks/useImageUpload";
 import { AiFillPlusCircle } from "react-icons/ai";
+
 const UploadBar = () => {
   const imageModal = useImageUpload();
 

@@ -31,7 +31,9 @@
     "components/navbar/Navbar.jsx",
     "components/input/ConfettiButton.jsx",
     "app/api/contact/route.js",
-    "lib/utils/downloadPhoto.js"
+    "lib/utils/downloadPhoto.js",
+    "app/api/gallery/route.ts",
+    "app/actions/getImages.js"
   ],
   "exclude": ["node_modules"]
 }
