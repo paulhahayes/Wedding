@@ -1,6 +1,7 @@
 "use client";
 //TODO pagination + loaders
 import GridImage from "./GridImage";
+import GridLoading from "./GridLoading";
 import { ImageProps } from "@/types/GalleryTypes";
 import { useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
@@ -28,7 +29,7 @@ const Content: React.FC<ContentProps> = ({
   }
 
   async function handleUpload() {
-    //
+    setLoading(true);
     setImages(await incrementIds());
     const results = await fetch("/api/gallery", {
       method: "POST",
@@ -40,9 +41,11 @@ const Content: React.FC<ContentProps> = ({
     }).then((r) => r.json());
     setImages((prevImages) => [...results.images, ...prevImages]);
     setNextCursor(results.nextCursor);
+    setLoading(false);
   }
 
   async function handlePagination() {
+    setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -73,6 +76,7 @@ const Content: React.FC<ContentProps> = ({
       )}
 
       <div className="grid grid-cols-1 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-x-4 ">
+        {loading && <GridLoading />}
         {images.map((image) => (
           <GridImage key={image.id} image={image} setPhotoId={setPhotoId} />
         ))}
