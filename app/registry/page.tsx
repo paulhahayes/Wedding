@@ -26,7 +26,7 @@ export default function Registry() {
             <br />
             <br />
           </p>
-          <div className=" px-4 sm:text-[22px] text-[20px] tracking-wide text-start">
+          <div className=" px-4 sm:text-[22px] text-[20px] tracking-wide text-start pb-2">
             {lang === "en"
               ? "Please find our bank details below and "
               : "Encuentre a continuación los detalles de nuestra cuenta bancaria e "}
