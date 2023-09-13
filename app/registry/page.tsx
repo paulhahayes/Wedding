@@ -25,10 +25,18 @@ export default function Registry() {
               : "Si bien no tenemos una lista de regalos tradicional, si desea contribuir a nuestro fondo de luna de miel, realmente lo apreciaríamos."}
             <br />
             <br />
-            {lang === "en"
-              ? "Please find our bank details below and include your name in the description."
-              : "Encuentre a continuación los detalles de nuestra cuenta bancaria e incluya su nombre en la descripción."}
           </p>
+          <div className=" px-4 sm:text-[22px] text-[20px] tracking-wide text-start">
+            {lang === "en"
+              ? "Please find our bank details below and "
+              : "Encuentre a continuación los detalles de nuestra cuenta bancaria e "}
+            <span className="underline">
+              {lang === "en"
+                ? "include your name in the description."
+                : "incluya su nombre en la descripción."}
+            </span>
+          </div>
+
           <div
             className="w-full h-24 flex items-center flex-row px-4 mt-2 gap-3 backdrop-blur-3xl rounded
            bg-slate-700/30 border-white border text-white sm:text-[20px] min-[330px]:text-[12px] font-bold"
