@@ -3,7 +3,7 @@ import { CldImage } from "next-cloudinary";
 import React from "react";
 import { IoLocationSharp } from "react-icons/io5";
 import useTranslate from "@/hooks/useTranslate";
-const page = () => {
+const Page = () => {
   const { lang } = useTranslate();
   return (
     <div
@@ -55,4 +55,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

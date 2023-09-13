@@ -34,12 +34,10 @@ const data = [
   },
 ];
 
-const page = () => {
+const Page = () => {
   const { lang } = useTranslate();
   return (
     <div className="flex flex-col justify-center items-center ">
-      {/* Banner */}
-
       <Image
         className="object-cover border-2 shadow-xl rounded sm:h-auto h-[275px] sm:w-[80%] w-[95%] sm:mb-12 mb-4 "
         sizes="100vw"
@@ -69,4 +67,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -112,7 +112,7 @@ const RSVPModal = () => {
     }
     const message = lang === "en" ? "Next" : "Siguiente";
     return message;
-  }, [step]);
+  }, [step, lang]);
 
   const secondaryActionLabel = useMemo(() => {
     if (step === STEPS.CODE) {
@@ -120,7 +120,7 @@ const RSVPModal = () => {
     }
     const message = lang === "en" ? "Back" : "Atrás";
     return message;
-  }, [step]);
+  }, [step, lang]);
 
   let bodyContent = (
     <div className="flex flex-col gap-8 ">
