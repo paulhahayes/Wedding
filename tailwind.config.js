@@ -8,6 +8,11 @@ module.exports = {
 
   theme: {
     extend: {
+      keyframes: {
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
+      },
       opacity: {
         10: "0.1",
         20: "0.2",

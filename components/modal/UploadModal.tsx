@@ -29,7 +29,6 @@ const UploadModal: React.FC<UploadModalProps> = ({
   } = useForm({
     defaultValues: {
       socialMedia: "",
-      title: "",
       file: {},
     },
   });
@@ -82,7 +81,7 @@ const UploadModal: React.FC<UploadModalProps> = ({
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const formData = new FormData();
-    const tags = [data.title, data.name];
+    const tags = [data.socialMedia];
     formData.append("file", data.file);
     formData.append("tags", tags.join(","));
     formData.append("upload_preset", "wedding");
@@ -158,16 +157,6 @@ const UploadModal: React.FC<UploadModalProps> = ({
             lang === "en"
               ? "Add Social Media (not required)"
               : "Agregar redes sociales (no requerido)"
-          }
-          register={register}
-          errors={errors}
-        />
-        <ImageInput
-          id="title"
-          label={
-            lang === "en"
-              ? "Add a Photo Title (not required)"
-              : "Añadir un título a la foto (no requerido)"
           }
           register={register}
           errors={errors}

@@ -13,6 +13,5 @@ export type FormData = {
 
 export type ImageData = {
   socialMedia: string;
-  title: string;
   file: any;
 };

@@ -20,7 +20,7 @@ const Content: React.FC<ContentProps> = ({
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
   const [loading, setLoading] = useState(false);
 
-  function incrementIds(): ImageProps[] {
+  async function incrementIds(): Promise<ImageProps[]> {
     return images.map((image) => ({
       ...image,
       id: image.id + 1,
@@ -29,7 +29,7 @@ const Content: React.FC<ContentProps> = ({
 
   async function handleUpload() {
     //
-
+    setImages(await incrementIds());
     const results = await fetch("/api/gallery", {
       method: "POST",
       body: JSON.stringify({
@@ -38,7 +38,6 @@ const Content: React.FC<ContentProps> = ({
         offset: -1,
       }),
     }).then((r) => r.json());
-    incrementIds();
     setImages((prevImages) => [...results.images, ...prevImages]);
     setNextCursor(results.nextCursor);
   }
