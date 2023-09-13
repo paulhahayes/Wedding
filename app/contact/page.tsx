@@ -9,9 +9,11 @@ import { Button } from "@material-tailwind/react";
 import { RiFileCopyLine } from "react-icons/ri";
 import { sendContactForm } from "@/lib/api";
 import useTranslate from "@/hooks/useTranslate";
+import LoadingCircle from "./loadingCircle";
 
 const Contact = () => {
   const { lang } = useTranslate();
+  const [loading, setingLoading] = React.useState(false);
   const {
     register,
     handleSubmit,
@@ -26,18 +28,21 @@ const Contact = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    setingLoading(true);
     const result: any = await sendContactForm(data);
     if (result.ok) {
       toast.success("Your message was sent successfully!");
     } else {
       toast.error("Something went wrong");
     }
+    setingLoading(false);
   };
 
   const copied = () => toast("Copied ✅");
 
   return (
     <div className=" min-[390px]:pb-14 sm:pb-8">
+      {loading && <LoadingCircle />}
       <Toaster />
       <div className="flex min-[390px]:flex-col sm:flex-row gap-8 min-[330px]:mx-4 min-[330px]:justify-center">
         <div className="flex-1 sm:h-[600px] flex flex-col gap-[20px] items-end ">
