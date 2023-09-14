@@ -1,5 +1,5 @@
 // @ts-nocheck
-// TODO type safe
+
 import type { ImageProps } from "@/types/GalleryTypes";
 import getBase64ImageUrl from "@/lib/utils/generateBlurPlaceholder";
 import cloudinary from "cloudinary";
@@ -9,14 +9,23 @@ export async function getImages(nextCursor, length, offset) {
   if (offset == -1) {
     max_results = 1;
   }
+  let results;
+  if (nextCursor !== "") {
+    results = await cloudinary.v2.search
+      .expression(`folder:gallery/*`)
+      .max_results(max_results)
+      .with_field("tags")
 
-  const results = await cloudinary.v2.search
-    .expression(`folder:gallery/*`)
-    .max_results(max_results)
-    .with_field("tags")
-    .next_cursor(nextCursor)
-    .execute();
-
+      .next_cursor(nextCursor)
+      .execute();
+  } else {
+    results = await cloudinary.v2.search
+      .expression(`folder:gallery/*`)
+      .max_results(max_results)
+      .with_field("tags")
+      .sort_by("created_at", "desc")
+      .execute();
+  }
   let reducedResults: ImageProps[] = [];
 
   let i = length;
