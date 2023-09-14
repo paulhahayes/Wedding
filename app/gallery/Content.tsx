@@ -14,6 +14,7 @@ const Content = ({}) => {
   const [nextCursor, setNextCursor] = useState("");
   const [loadingImage, setLoadingImage] = useState(false);
   const [loadingGrid, setLoadingGrid] = useState(false);
+  const [loadingPagination, setLoadingPagination] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -57,20 +58,18 @@ const Content = ({}) => {
   }
 
   async function handlePagination() {
-    // setLoadingGrid(true);
-    // setTimeout(() => {
-    //   setLoadingGrid(false);
-    // }, 3000);
-    // const results = await fetch("/api/gallery", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     nextCursor,
-    //     length: images.length,
-    //     offset: 1,
-    //   }),
-    // }).then((r) => r.json());
-    // setImages((prevImages) => [...prevImages, ...results.images]);
-    // setNextCursor(results.nextCursor);
+    setLoadingPagination(true);
+    const results = await fetch("/api/gallery", {
+      method: "POST",
+      body: JSON.stringify({
+        nextCursor,
+        length: images.length,
+        offset: 1,
+      }),
+    }).then((r) => r.json());
+    setImages((prevImages) => [...prevImages, ...results.images]);
+    setNextCursor(results.nextCursor);
+    setLoadingPagination(false);
   }
 
   return (
@@ -89,11 +88,17 @@ const Content = ({}) => {
       )}
       {loadingGrid && <LoadingGrid />}
       <div className="grid grid-cols-1 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-x-4 ">
+        {loadingPagination && <GridLoading />}
+        {loadingPagination && <GridLoading />}
+        {loadingPagination && <GridLoading />}
+        {loadingPagination && <GridLoading />}
+        {loadingPagination && <GridLoading />}
         {loadingImage && <GridLoading />}
         {images.map((image) => (
           <GridImage key={image.id} image={image} setPhotoId={setPhotoId} />
         ))}
       </div>
+
       {/* <button onClick={handlePagination}>pagination</button> */}
     </main>
   );
