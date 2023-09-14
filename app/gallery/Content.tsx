@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
 import UploadBar from "./UploadBar";
 import LoadingGrid from "./LoadingGrid";
+import { useRouter } from "next/navigation";
 
 const Content = ({}) => {
   const [photoId, setPhotoId] = useState<number | null>(null);

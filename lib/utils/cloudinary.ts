@@ -9,23 +9,26 @@ export async function getImages(nextCursor, length, offset) {
   if (offset == -1) {
     max_results = 1;
   }
+
+  setTimeout(() => {}, 2000);
+
   let results;
   if (nextCursor !== "") {
     results = await cloudinary.v2.search
       .expression(`folder:gallery/*`)
       .max_results(max_results)
       .with_field("tags")
-
-      .next_cursor(nextCursor)
+      .sort_by("created_at", "desc")
       .execute();
   } else {
     results = await cloudinary.v2.search
       .expression(`folder:gallery/*`)
       .max_results(max_results)
       .with_field("tags")
-      .sort_by("created_at", "desc")
+      .next_cursor(nextCursor)
       .execute();
   }
+
   let reducedResults: ImageProps[] = [];
 
   let i = length;
