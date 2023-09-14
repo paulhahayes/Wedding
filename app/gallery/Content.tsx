@@ -3,25 +3,38 @@
 import GridImage from "./GridImage";
 import GridLoading from "./GridLoading";
 import { ImageProps } from "@/types/GalleryTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageModal from "@/components/modal/ImageModal";
 import UploadBar from "./UploadBar";
+import LoadingGrid from "./LoadingGrid";
 
-type ContentProps = {
-  images: ImageProps[];
-  nextCursor: string;
-};
-
-const Content: React.FC<ContentProps> = ({
-  images: defaultImages,
-  nextCursor: defaultNextCursor,
-}) => {
+const Content = ({}) => {
   const [photoId, setPhotoId] = useState<number | null>(null);
-  const [images, setImages] = useState(defaultImages);
-  const [nextCursor, setNextCursor] = useState(defaultNextCursor);
-  const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState<ImageProps[]>([]);
+  const [nextCursor, setNextCursor] = useState("");
+  const [loadingImage, setLoadingImage] = useState(false);
+  const [loadingGrid, setLoadingGrid] = useState(false);
 
-  async function incrementIds(): Promise<ImageProps[]> {
+  useEffect(() => {
+    async function fetchData() {
+      setLoadingGrid(true);
+      const response = await fetch("/api/gallery", {
+        method: "POST",
+        body: JSON.stringify({
+          nextCursor: "",
+          length: images.length,
+          offset: 1,
+        }),
+      });
+      const results = await response.json();
+      setImages((prevImages) => [...prevImages, ...results.images]);
+      setNextCursor(results.nextCursor);
+      setLoadingGrid(false);
+    }
+    fetchData();
+  }, []);
+
+  async function incrementIds(images: ImageProps[]): Promise<ImageProps[]> {
     return images.map((image) => ({
       ...image,
       id: image.id + 1,
@@ -29,26 +42,25 @@ const Content: React.FC<ContentProps> = ({
   }
 
   async function handleUpload() {
-    setLoading(true);
-    setImages(await incrementIds());
+    setLoadingImage(true);
+    setImages(await incrementIds(images));
     const results = await fetch("/api/gallery", {
       method: "POST",
       body: JSON.stringify({
-        nextCursor,
+        nextCursor: "",
         length: images.length,
         offset: -1,
       }),
     }).then((r) => r.json());
     setImages((prevImages) => [...results.images, ...prevImages]);
-    setNextCursor(results.nextCursor);
-    setLoading(false);
+    setLoadingImage(false);
   }
 
   async function handlePagination() {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    // setLoadingGrid(true);
+    // setTimeout(() => {
+    //   setLoadingGrid(false);
+    // }, 3000);
     // const results = await fetch("/api/gallery", {
     //   method: "POST",
     //   body: JSON.stringify({
@@ -64,6 +76,7 @@ const Content: React.FC<ContentProps> = ({
   return (
     <main className="mx-auto sm:px-0 px-4">
       <UploadBar handleUpdate={handleUpload} />
+
       {photoId != null && (
         <ImageModal
           images={images}
@@ -74,9 +87,9 @@ const Content: React.FC<ContentProps> = ({
           photoId={photoId}
         />
       )}
-
+      {loadingGrid && <LoadingGrid />}
       <div className="grid grid-cols-1 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-x-4 ">
-        {loading && <GridLoading />}
+        {loadingImage && <GridLoading />}
         {images.map((image) => (
           <GridImage key={image.id} image={image} setPhotoId={setPhotoId} />
         ))}
