@@ -10,7 +10,7 @@ export async function getImages(nextCursor, length, offset) {
     max_results = 1;
   }
 
-  setTimeout(() => {}, 2000);
+  setTimeout(() => {}, 4000);
 
   let results;
   if (nextCursor !== "") {
