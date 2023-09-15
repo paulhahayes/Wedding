@@ -93,6 +93,7 @@ const UploadModal: React.FC<UploadModalProps> = ({
         body: formData,
       }
     ).then((res) => res.json());
+
     setLoading(false);
     if (result.asset_id) {
       toast.success(

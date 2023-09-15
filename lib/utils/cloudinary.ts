@@ -10,10 +10,10 @@ export async function getImages(nextCursor, length, offset) {
     max_results = 1;
   }
 
-  setTimeout(() => {}, 4000);
+  setTimeout(() => {}, 10000);
 
   let results;
-  if (nextCursor !== "") {
+  if (offset === -1) {
     results = await cloudinary.v2.search
       .expression(`folder:gallery/*`)
       .max_results(max_results)
