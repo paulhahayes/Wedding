@@ -45,6 +45,8 @@ const Content = ({}) => {
 
   async function handleUpload() {
     setLoadingImage(true);
+    setTimeout(() => {}, 5000);
+
     setImages(await incrementIds(images));
     const results = await fetch("/api/gallery", {
       method: "POST",
