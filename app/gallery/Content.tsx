@@ -45,9 +45,10 @@ const Content = ({}) => {
 
   async function handleUpload() {
     setLoadingImage(true);
-    setTimeout(() => {}, 5000);
-
+    
     setImages(await incrementIds(images));
+    setTimeout(() => {
+
     const results = await fetch("/api/gallery", {
       method: "POST",
       body: JSON.stringify({
@@ -58,7 +59,7 @@ const Content = ({}) => {
     }).then((r) => r.json());
     setImages((prevImages) => [...results.images, ...prevImages]);
     setLoadingImage(false);
-  }
+  }, 3000);
 
   async function handlePagination() {
     setLoadingPagination(true);
