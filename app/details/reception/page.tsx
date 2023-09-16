@@ -19,7 +19,7 @@ const Reception = () => {
 
         <ul className="p-4 sm:text-[22px] text-[20px] tracking-wide text-start">
           <li>
-            <AiFillClockCircle className="inline-block" /> 6:30pm - 11:30pm
+            <AiFillClockCircle className="inline-block" /> 6:30 pm - 11:30 pm
           </li>
           <li
             className="py-4 hover:cursor-pointer "

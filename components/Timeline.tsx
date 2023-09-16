@@ -7,10 +7,10 @@ const Timeline = () => {
       <div className="roll">
         <TimelineCard
           title={lang === "en" ? "Ceremony" : " Ceremonia"}
-          time="3:30pm"
+          time="3:30 pm"
           desc={
             lang === "en"
-              ? "Come and join the Ceremony at Georges Head Lookout. Please bring Sunglasses as it will be an outdoor ceremony. There is parking available close by in "
+              ? "Come and join the ceremony at Georges Head Lookout. Please bring sunglasses as it will be an outdoor ceremony. There is parking available close by in "
               : "Ven y únete a la ceremonia en Georges Head Lookout. Por favor traiga gafas de sol ya que será una ceremonia al aire libre. Hay aparcamiento disponible cerca en"
           }
           image="georges-head8_ocz8i4"
@@ -27,7 +27,7 @@ const Timeline = () => {
           time=""
           desc={
             lang === "en"
-              ? "After the ceremony we invite guests to make their way to Chowder Bay. There will be a shuttle bus on the day leaving from the carpark.  Alternatively, there is a small bush walk down to the bay. Laslty, for those driving, there is parking close to ripples but beware it is metered."
+              ? "After the ceremony we invite guests to make their way to Chowder Bay. There will be a shuttle van on the day leaving from the carpark.  For intrepid walkers there is a small bush walk down to the bay. Lastly, for those driving, there is metered parking close to Ripples."
               : "Después de la ceremonia invitamos a los invitados a dirigirse a Chowder Bay. Habrá un autobús lanzadera ese día que saldrá desde el aparcamiento. Alternativamente, hay un pequeño paseo por los arbustos hasta la bahía. Por último, para quienes conducen, hay estacionamiento cerca de las ondulaciones, pero tengan cuidado porque tiene taxímetro."
           }
           reverse
@@ -42,7 +42,7 @@ const Timeline = () => {
           time=""
           desc={
             lang === "en"
-              ? "There will be a short break between the ceremony and reception. Feel free to hang out around Chowder Bay and enjoy some drinks, sunshine and good company. Explore the Wharf and take plenty of photos! "
+              ? "There will be a short break between the ceremony and reception. Explore the wharf and take plenty of photos!"
               : "Habrá un breve descanso entre la ceremonia y la recepción. Siéntete libre de pasar el rato en Chowder Bay y disfrutar de unas bebidas, el sol y la buena compañía. ¡Explora el muelle y toma muchas fotos!"
           }
           image="Chowder-bay_byw4be"
@@ -51,10 +51,10 @@ const Timeline = () => {
       <div className="roll">
         <TimelineCard
           title={lang === "en" ? "Reception begins" : "Comienza la recepción"}
-          time="6:30pm"
+          time="6:30 pm"
           desc={
             lang === "en"
-              ? "The official reception begins at 6:30pm. There will be food and drinks."
+              ? "The official reception begins at 6:30 pm. There will be food and drinks."
               : "La recepción oficial comienza a las 6:30 pm. Habrá comida ybebidas."
           }
           reverse

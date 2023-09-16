@@ -180,11 +180,6 @@ export default function Registry() {
           </div>
 
           <br />
-          <p className="px-4 py-4 sm:text-[22px] text-[20px] tracking-wide text-start">
-            {lang === "en"
-              ? "Your generosity means the world to us, and we look forward to sharing our special day with you."
-              : "Tu generosidad significa el mundo para nosotros y esperamos compartir nuestros momento especiales contigo."}
-          </p>
         </div>
       </div>
       <WaveAnimation reverse={true} />

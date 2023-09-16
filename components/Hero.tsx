@@ -82,7 +82,7 @@ const Hero = () => {
       <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
           title={lang === "en" ? "Ceremony" : "Ceremonia"}
-          time="3:30PM"
+          time="3:30 pm"
           desc="Georges Head Lookout"
           address="https://goo.gl/maps/KnRn8v5KF2K6QsGS8"
         />
@@ -91,7 +91,7 @@ const Hero = () => {
       <motion.div className="border mt-12 w-full" variants={childVariants}>
         <GlassCardHero
           title={lang === "en" ? "Reception" : "Recepción"}
-          time="6:30PM - 11:30PM"
+          time="6:30 pm - 11:30 pm"
           desc="Ripples, Chowder Bay"
           address="https://goo.gl/maps/gtyFRDZ1DN4huU2w6"
         />

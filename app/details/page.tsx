@@ -57,7 +57,7 @@ const Details = () => {
                   ? "Any major updates will be posted here."
                   : "Cualquier actualización importante se publicará aquí."
               }
-              date="1:10pm - 04.08.23"
+              date="1:10 pm - 04.08.23"
             />
           ) : (
             updates
