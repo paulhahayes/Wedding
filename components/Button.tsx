@@ -42,7 +42,7 @@ const Button: React.FC<ButtonProps> = ({
         py-3
         border-2
         `,
-        hasError ? "border-red-500" : "",
+        hasError ? "border-red-500 error" : "",
         styles
       )}
     >
