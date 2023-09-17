@@ -5,8 +5,10 @@ import { TranslateContext } from "@/context/TranslateContext";
 import { useRouter } from "next/navigation";
 import { Button } from "@material-tailwind/react";
 import GlassCardHero from "./GlassCardHero";
+import useRSVP from "@/hooks/useRSVP";
 
 const Hero = () => {
+  const rsvpModal = useRSVP();
   const { lang } = useContext(TranslateContext);
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
@@ -99,11 +101,23 @@ const Hero = () => {
 
       <motion.p
         variants={childVariants}
+        // onClick={}
         className="text-center mt-8  w-72 sm:text-[18px] text-md pb-2"
       >
-        {lang === "en"
-          ? "Please RSVP by the 10th of October"
-          : "Por favor confirme su asistencia antes del 10 de Octubre"}
+        <span>{lang === "en" ? "Please " : "Por favor "}</span>
+
+        <span
+          onClick={rsvpModal.onOpen}
+          className="underline hover:cursor-pointer"
+        >
+          {lang === "en" ? "RSVP" : "confirme su asistencia"}
+        </span>
+
+        <span>
+          {lang === "en"
+            ? " by the 10th of October"
+            : " antes del 10 de Octubre"}
+        </span>
       </motion.p>
       <motion.p
         variants={childVariants}
