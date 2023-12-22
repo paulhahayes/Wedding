@@ -15,6 +15,7 @@ body {
   min-height: 100vh;
   background: #9db7be;
   background-size: cover;
+  scroll-behavior: smooth;
 }
 
 a {

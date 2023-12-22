@@ -11,6 +11,7 @@ import LoadingGrid from "./LoadingGrid";
 import { useMutation } from "@tanstack/react-query";
 import { loadImagePage } from "@/lib/api";
 import Thankyou from "./Thankyou";
+import BackToTop from "./BackToTop";
 
 // Variables
 const tabs = [
@@ -150,6 +151,7 @@ const Content = () => {
           );
         })}
       </div>
+      {/* <BackToTop /> */}
     </main>
   );
 };

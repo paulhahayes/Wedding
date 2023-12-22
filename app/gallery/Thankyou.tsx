@@ -13,7 +13,7 @@ const Thankyou = () => {
       onClick={handleToggle}
       className={`${
         open ? "h-[270px]" : "h-[80px] sm:h-[80px]"
-      } sm:w-[500px] hover:sm:w-[600px] w-full text-white bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 border fixed bottom-0 right-0 z-30 transition-all ease-in-out duration-500 flex flex-col p-4`}
+      } sm:w-[500px] hover:sm:w-[600px] hover:sm:h-[270px] w-full text-white bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 border fixed bottom-0 right-0 z-30 transition-all ease-in-out duration-500 flex flex-col p-4`}
     >
       <div className="sm:hidden flex justify-center text-xl">
         {open ? (
