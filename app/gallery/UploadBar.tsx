@@ -21,19 +21,19 @@ const UploadBar: React.FC<UploadBarProps> = ({ handleUpdate }) => {
   }, [imageModal]);
 
   return (
-    <div className="flex flex-row justify-between border-b pb-4 p-4 sm:px-0">
+    <div className="flex flex-row justify-between items-center border-b pt-12 sm:pt-0">
       <div className="text-lime text-3xl text-center hidden sm:block ">
         {lang === "en" ? "Upload an image" : "Subir una imagen?"}
       </div>
-      <div className="w-40">
-        <Button
-          className="backdrop-blur-3xl bg-slate-700/60 hover:hover:bg-neutral-100/20 py-2 px-4 text-white mt-2 border border-white"
-          onClick={handleClick}
-        >
-          <AiFillPlusCircle className="inline-block -translate-y-[2px] mr-2 " />
-          {lang === "en" ? "Add photo" : "Añadir foto"}
-        </Button>
-      </div>
+
+      <Button
+        className="backdrop-blur-3xl bg-slate-700/60 hover:hover:bg-neutral-100/20 md:py-2 py-1 text-white md:text-lg text-xs my-2 border border-white"
+        onClick={handleClick}
+      >
+        <AiFillPlusCircle className="inline-block -translate-y-[2px] mr-2 " />
+        {lang === "en" ? "Add photo" : "Añadir foto"}
+      </Button>
+
       <UploadModal
         isOpen={imageModal.isOpen}
         onClose={handleClose}

@@ -101,7 +101,6 @@ const Hero = () => {
 
       <motion.p
         variants={childVariants}
-        // onClick={}
         className="text-center mt-8  w-72 sm:text-[18px] text-md pb-2"
       >
         <span>{lang === "en" ? "Please " : "Por favor "}</span>

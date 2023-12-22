@@ -4,37 +4,19 @@ import type { ImageProps } from "@/types/GalleryTypes";
 import getBase64ImageUrl from "@/lib/utils/generateBlurPlaceholder";
 import cloudinary from "cloudinary";
 
-export async function getImages(nextCursor, length, offset) {
-  let max_results = 10;
-  if (offset == -1) {
-    max_results = 1;
-  }
-
-  setTimeout(() => {}, 10000);
-
+export async function getImages(nextCursor, length, folder) {
   let results;
-  if (offset === -1) {
-    results = await cloudinary.v2.search
-      .expression(`folder:gallery/*`)
-      .max_results(max_results)
-      .with_field("tags")
-      .sort_by("created_at", "desc")
-      .execute();
-  } else {
-    results = await cloudinary.v2.search
-      .expression(`folder:gallery/*`)
-      .max_results(max_results)
-      .with_field("tags")
-      .next_cursor(nextCursor)
-      .execute();
-  }
+
+  results = await cloudinary.v2.search
+    .expression(`folder:${folder}/*`)
+    .next_cursor(nextCursor)
+    .with_field("tags")
+    .sort_by("created_at", "desc")
+    .execute();
 
   let reducedResults: ImageProps[] = [];
-
   let i = length;
-  if (offset == -1) {
-    i = 0;
-  }
+
   for (let result of results.resources) {
     reducedResults.push({
       id: i,
@@ -57,3 +39,5 @@ export async function getImages(nextCursor, length, offset) {
 
   return { images: reducedResults, nextCursor: results.next_cursor };
 }
+
+export async function getImagesAfterUpload(nextCursor, folder) {}

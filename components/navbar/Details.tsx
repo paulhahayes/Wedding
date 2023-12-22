@@ -11,7 +11,7 @@ const Details = ({ onClick }: detailsProps) => {
   return (
     <div
       className="text-xl font-semibold  items-center hidden sm:block
-      dark:text-neutral-100 cursor-pointer hover:opacity-60 
+      dark:text-neutral-100 cursor-pointer hover:opacity-60 hover:scale-110 
       transition-opacity"
       onClick={onClick}
     >

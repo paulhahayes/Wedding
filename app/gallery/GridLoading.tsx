@@ -14,8 +14,7 @@ const GridLoading = () => {
       ></div>
       <div className="space-y-3">
         <div
-          className="h-5 w-8/12 rounded-full bg-slate-700/30 backdrop-filter backdrop-blur-lg border
-    
+          className="h-5 w-8/12 rounded-full bg-slate-700/30 backdrop-filter backdrop-blur-lg border mb-2
         "
         ></div>
       </div>

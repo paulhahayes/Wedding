@@ -14,6 +14,7 @@ import { variants } from "@/lib/utils/animationVariants";
 import downloadPhoto from "@/lib/utils/downloadPhoto";
 import { range } from "@/lib/utils/range";
 import type { ImageProps, SharedModalProps } from "@/types/GalleryTypes";
+import { CldImage } from "next-cloudinary";
 
 export default function SharedModal({
   index,
@@ -66,12 +67,13 @@ export default function SharedModal({
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute"
+                className="absolute w-[1280] h-[853] overflow-hidden"
               >
-                <Image
-                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1280/${currentImage?.public_id}.${currentImage?.format}`}
+                <CldImage
+                  src={`${currentImage?.public_id}.${currentImage?.format}`}
                   width={1280}
                   height={853}
+                  className="object-cover w-full h-full"
                   priority
                   alt=""
                   onLoadingComplete={() => setLoaded(true)}
